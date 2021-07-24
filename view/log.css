@@ -1,0 +1,27 @@
+.navbar-brand img{
+    width:130px;
+}
+
+.navbar-brand {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 5px;
+}
+.nav-log {
+    position: absolute;
+    left: 90%;
+    top: 10px;
+}
+
+.navbar-toggler{
+    border: none !important;
+    outline: none !important;
+}
+
+.imag img {
+    width: 60%;
+    position: relative;
+    left:20%;
+    top: 30px;
+}
