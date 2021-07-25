@@ -1,4 +1,4 @@
-
+// manta
 $(document).ready(function () {
   // for choosing change username or password
   $("#change_username").hide();
