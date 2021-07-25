@@ -1,3 +1,5 @@
+// resetPassword.js
+
 
 $(document).ready(function () {
     $('#check_re').click(function () {

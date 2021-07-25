@@ -1,13 +1,13 @@
 <?php 
     session_start();
-    include "connection_db.php";
+    include "../model/connection_db.php";
     if(!isset($_SESSION['email'])){
-        header('Location: home.php');
+        header('Location: ../view/home_user/home.php');
     }
     
     
     if($_POST['type'] == 3){
-        $username  = $_POST["username_u"];
+        $username  = $_POST["username"];
         $new_username = $_POST['new_username'];
         $password = $_POST['password'];
         $password = sha1(md5($password)); //crypt pass
@@ -16,13 +16,16 @@
         $num = mysqli_num_rows($query);
         $row = mysqli_fetch_array($query);
         
-        if( $num > 0 ){ #?????????????????
-            console.log("hi");
+        if( $num == 1 ){ 
             $_SESSION['email'] = $row['email'];
             $sql = mysqli_query($conn, "UPDATE `user` SET username = '$new_username' WHERE username='$username' ");
             echo "success";
         }
-        else{
+        else if ($num>1){
+            echo "fail_exists";
+        }else{
+            echo $new_username;
+            echo $row['username'];
             echo "fail";
         }
         
@@ -44,13 +47,10 @@
 
     if( $num == 1 ){
         echo "success";
-        $sql = mysqli_query($conn, "UPDATE `user` SET password = '$new_password' WHERE password='$old_username' ");
+        $sql = mysqli_query($conn, "UPDATE `user` SET password = '$new_password' WHERE password='$old_password' ");
     }
     else{
         echo "fail_pass";
     }
 
-}   
-
-
-?>
+}
