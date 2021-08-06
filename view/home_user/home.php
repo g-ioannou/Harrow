@@ -14,12 +14,13 @@
      <meta charset="UTF-8">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-     <script src="/harrow/controller/home.js"></script>
 
+     <script type="text/javascript" src="/harrow/controller/home.js"></script>
+     <script type="text/javascript" src="/harrow/view/style/home.js"></script>
 
      <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.15.1/css/all.css" type="text/css">
      <link rel="stylesheet" href="/harrow/view/style/user.css">
-     <script src="/harrow/view/style/home.js"></script>
+
 
      <title>Harrow</title>
  </head>
@@ -34,9 +35,9 @@
 
 
          <!--user logout-->
-         <a class='btn nav-btn' id='logout-btn' href="/harrow/controller/logout.php"><i class="fal fa-door-open"></i></a>
+         <a class='nav-btn' id='logout-btn' href="/harrow/controller/logout.php"><i class="fal fa-door-open"></i></a>
          <!--Edit profile-->
-         <a class='btn nav-btn' href="profile.php"><i class="fal fa-user"></i></a>
+         <a class='nav-btn' href="profile.php"><i class="fal fa-user"></i></a>
 
 
          <button class='btn' id='admin-btn' type="button" hidden>Admin Dashboard</button>
@@ -52,11 +53,23 @@
 
              <input type="file" id="upload-btn" accept=".json, .har" hidden multiple>
              <button id="fake-upload">Upload</button>
-             
+
          </div>
-        <br>
+         <br>
          <div class="new-files">
-            Ready to be uploaded
+             <button id="hidden-display" hidden></button>
+             Ready to be uploaded
+             <div class="file-list">
+                 <table class="file-table">
+                     <th hidden><th>
+                     <th>File Name</th>
+                     <th>Size</th>
+                     <th>Delete</th>
+                     <th>Download Cleaned</th>
+                     <div class="seperator"></div>
+                 </table>
+             </div>
+             <button id="test">test</button>
          </div>
      </div>
 
