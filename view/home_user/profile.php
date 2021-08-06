@@ -14,6 +14,8 @@ include "../../model/connection_db.php";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="/harrow/controller/edit_profile.js"></script>
+    <script src="/harrow/view/style/home.js"></script>
+    <link rel="stylesheet" href="/harrow/view/style/user.css">
 
 
     <title>Edit profile</title>
@@ -21,7 +23,19 @@ include "../../model/connection_db.php";
 
 <body>
 
-    <a href="home.php">Home</a>
+<div class="top-bar">
+        <div class="logo" >Homepage</div>
+        
+        
+        
+        <!--user logout-->
+        <a class='btn nav-btn' id='logout-btn' href="/harrow/controller/logout.php"><i class="fal fa-door-open"></i></a>
+         <!--Edit profile-->
+        <a class='btn nav-btn' href="profile.php"><i class="fal fa-user"></i></a>
+         
+
+         <button class='btn' id='admin-btn' type="button" hidden>Admin Dashboard</button>
+     </div>
 
     <br>
     <button type="button" class="btn btn-success btn-sm" id="main_username">Change your username</button>

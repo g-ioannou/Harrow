@@ -1,0 +1,64 @@
+
+
+body {
+  padding: 0;
+  margin: 0;
+  font-size: 1.2em;
+}
+
+.logo {
+  display: inline-block;
+  position: relative;
+}
+
+a:link, a:visited, a:active{
+  color:black;
+}
+
+.top-bar {
+  white-space: nowrap;
+  display: inline-block;
+  position: fixed;
+  border-bottom: 1px solid white;
+  width: 100%;
+  padding: 20px 20px 20px 20px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 1px 15px;
+}
+
+.nav-btn {
+  position: relative;
+  right: 5%;
+  padding-left: 20px;
+  float: right;
+  text-align: right;
+}
+
+.no-files {
+  font-size: 0.8em;
+  top: 50%;
+  width: 100%;
+  text-align: center;
+  position: fixed;
+  color: rgb(168, 168, 168);
+}
+
+.import-icon {
+  padding: 20px;
+  font-size: 2em;
+}
+
+.action-btn {
+  padding-left: 20px;
+}
+
+.upload-btn {
+  
+  text-align: center;
+}
+
+#fake-upload {
+  background: none;
+  border: 1px solid black;
+  padding: 10px;
+  cursor: pointer;
+}
