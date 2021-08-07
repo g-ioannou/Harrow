@@ -12,11 +12,11 @@ $(document).ready(function () {
 
   $("#hidden-display").click(function (e) {
     e.preventDefault();
-    for (let i = 0; i < har_list.length; i++) {
-      const file = har_list[i];
-        if (file.shown==0){
-            $(".file-table").append(file.displayHTML());
-        }
+
+    for (id in uploaded_files) {
+      if (uploaded_files[id].shown == 0) {
+        $(".file-table").append(uploaded_files[id].displayHTML());
+      }
     }
   });
 });

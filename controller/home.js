@@ -1,4 +1,5 @@
-let har_list = [];
+let uploaded_files = {};
+let uploaded_selected_files = {};
 
 $(document).ready(function () {
   // const handler = new UploadHandler()
@@ -14,7 +15,44 @@ $(document).ready(function () {
     },
   });
 
-  //let files = $("#upload-btn").prop('files')
+  $(document).on("change", "#file-select", function (event) {
+    event.preventDefault();
+
+    let id = $(this).parent().parent().attr("id");
+
+    let is_selected = uploaded_files[id].selected;
+
+    if (is_selected == 0) {
+      uploaded_files[id].select = 1;
+      uploaded_selected_files[id] = uploaded_files[id];
+    } else {
+      uploaded_files[id].select = 0;
+      delete uploaded_selected_files[id];
+    }
+
+    let select_files_cnt = get_json_len(uploaded_selected_files);
+    if (select_files_cnt == 0) {
+      $("#delete-multiple-new-btn").attr("disabled", true);
+      $("#download-multiple-new-btn").attr("disabled", true);
+      $("#selected-uploaded-files-msg").css({
+        color: "gray",
+      });
+    } else {
+      $("#delete-multiple-new-btn").removeAttr("disabled");
+      $("#download-multiple-new-btn").removeAttr("disabled");
+      $("#selected-uploaded-files-msg").css({
+        color: "green",
+      });
+    }
+
+    $("#selected-uploaded-files-number").html(select_files_cnt);
+  });
+
+  $(document).on("click", "#hidden-display", function () {
+    $(".no-files").hide();
+    $(".new-files").show();
+  });
+
   $("#upload-btn").change(function () {
     const files = $("#upload-btn");
     fileList = this.files;
@@ -23,52 +61,58 @@ $(document).ready(function () {
       uploadFile(fileList[i]);
     }
   });
+
+  $("#download-multiple-new-btn").click(function (e) {
+    e.preventDefault();
+
+    for (id in uploaded_selected_files) {
+      const file = uploaded_selected_files[id];
+      file.download();
+    }
+  });
+
+  $("#delete-multiple-new-btn").click(function (e) {
+    e.preventDefault();
+
+    let id_list = [];
+    for (id in uploaded_selected_files) {
+      id_list.push(id);
+      delete uploaded_files[id];
+    }
+
+    for (let i = 0; i < id_list.length; i++) {
+      const id = id_list[i];
+      delete uploaded_selected_files[id];
+      $(`#${id}`).fadeOut(300);
+    }
+  });
+
   $(document).on("click", ".file-dow-btn", function () {
     let id = $(this).attr("id");
-    for (let i = 0; i < har_list.length; i++) {
-      const file = har_list[i];
 
-      if (file.id == id) {
-        file.download();
-      }
-    }
+    uploaded_files[id].download();
   });
 
   $(document).on("click", ".file-dlt-btn", function () {
     let id = $(this).attr("id");
-    deleteFile(id)
+    deleteFile(id);
     $(this).parent().parent().fadeOut(300);
-  });
-
-  $(document).on("change", "#file-select", function () {
-    let id = $(this).parent().parent().attr("id");
-
-    for (let i = 0; i < har_list.length; i++) {
-      const file = har_list[i];
-
-      if (id == file.id) {
-        if (file.checked == 0) {
-          file.checked = 1;
-        } else {
-          file.checked = 0;
-        }
-      }
-    }
   });
 });
 
 function uploadFile(file) {
   let fr = new FileReader();
-  current_id = har_list.length;
+  current_id = uploaded_files.length;
   fr.onload = function () {
     try {
+      let current_id = new Date().valueOf();
       let harFile = new HARfile(
         current_id,
         file.name,
         file.size,
         JSON.parse(fr.result)
       );
-      har_list.push(harFile);
+      uploaded_files[current_id] = harFile;
       $("#hidden-display").click();
     } catch (error) {
       console.log(error);
@@ -78,14 +122,17 @@ function uploadFile(file) {
 }
 
 function deleteFile(file_id) {
-    let pos = -1;
-    for (let i = 0; i < har_list.length; i++) {
-      const file = har_list[i];
-      if (file.id == file_id) {
-        pos = i;
-      }
-    }
-    har_list.pop(pos);
+  try {
+    delete uploaded_files[file_id];
+  } catch (e) {}
+
+  try {
+    delete uploaded_selected_files[file_id];
+  } catch (e) {}
+}
+
+function get_json_len(json) {
+  return Object.keys(json).length;
 }
 
 class HARfile {
@@ -95,7 +142,15 @@ class HARfile {
     this.size = size;
     this.contents = this.clean_contents(contents.log.entries);
     this.shown = 0;
-    this.checked = 0;
+    this.selected = 0;
+  }
+
+  get select() {
+    return this.selected;
+  }
+
+  set select(value) {
+    this.selected = value;
   }
 
   download() {

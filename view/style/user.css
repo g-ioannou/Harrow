@@ -16,6 +16,7 @@ a:active {
 }
 
 .top-bar {
+  font-family: "Ubuntu", sans-serif;
   white-space: nowrap;
   display: inline-block;
   position: fixed;
@@ -57,9 +58,16 @@ a:active {
 
 #fake-upload {
   background: none;
-  border: 1px solid black;
   padding: 10px;
   cursor: pointer;
+  border-radius: 0.4em;
+  text-align: center;
+  border: 1px solid gray;
+}
+
+#fake-upload:hover {
+  background: green;
+  color: white;
 }
 
 .file-list {
@@ -70,21 +78,31 @@ a:active {
 
 .btn {
   font-size: 1.3em;
-  border: none;
   background: none;
   cursor: pointer;
+  border: none;
+}
+
+.new-files {
+  width: 95%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .file-table {
   text-align: center;
-
   table-layout: fixed;
   height: max-content;
+  margin: 0px;
 }
 
 .file-table td {
   white-space: nowrap;
   overflow: hidden;
+  border: 1em transparent;
+  border-radius: 0.2em;
 }
 
 .file-table tr {
@@ -93,28 +111,35 @@ a:active {
 
 .file-table th {
   background: rgb(164, 207, 164);
+  border: 1em transparent;
+  border-radius: 0.4em;
 }
 
 .file-table th:nth-of-type(2) {
-  width: 2em;
+  width: 3%;
 }
 
 .file-table th:nth-of-type(3) {
-  width: 65em;
-  padding-left: 1em;
-}
-.file-table td:nth-of-type(2) {
-  max-width: 65em;
-  text-align: left;
+  width: 70%;
   padding-left: 1em;
 }
 
 .file-table th:nth-of-type(4) {
-  width: 10em;
+  width: 10%;
 }
 
 .file-table th:nth-of-type(5) {
-  width: 10em;
+  width: 10%;
+}
+
+.file-table th:nth-of-type(6) {
+  width: 10%;
+}
+
+.file-table td:nth-of-type(2) {
+  max-width: 65em;
+  text-align: left;
+  padding-left: 1em;
 }
 
 tr:nth-child(even) {
@@ -122,7 +147,55 @@ tr:nth-child(even) {
 }
 
 tr:nth-child(odd) {
-  background: rgb(253, 231, 255);
+  background: #e1e1e1;
 }
 
+#ready-to-upload-msg {
+  text-align: center;
+  white-space: nowrap;
+}
 
+#ready-to-upload-msg span {
+  padding: 0.5em;
+  padding-right: 6em;
+  padding-left: 6em;
+  background: rgba(149, 157, 165, 0.2);
+  border-radius: 0.4em;
+}
+
+#delete-multiple-new-btn,
+#download-multiple-new-btn {
+  float: right;
+  font-size: 0.9em;
+  background-color: white;
+  color: black;
+  padding: 0.5em;
+  border-radius: 0.4em;
+  margin-top: 0.5em;
+  margin-left: 0.5em;
+  border: 1px solid gray;
+}
+
+#delete-multiple-new-btn:disabled,
+#download-multiple-new-btn:disabled {
+  background-color: gray;
+  color: white;
+}
+
+#delete-multiple-new-btn:hover {
+  background-color: red;
+  color: white;
+}
+
+#download-multiple-new-btn:hover {
+  background-color: blue;
+  color: white;
+}
+
+#selected-uploaded-files-msg {
+  margin-top: 0.5em;
+  vertical-align: middle;
+  text-align: center;
+  float: right;
+  padding: 0.5em;
+}

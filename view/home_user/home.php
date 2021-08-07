@@ -1,11 +1,11 @@
  <?php
     // session_start();
     // include "../../model/connection_db.php";
-    // if (!isset($_SESSION['email'])) {
-    //     header('Location: ../view/login/login.html');
+    // if (!isset($_session['email'])) {
+    //     header('location: ../view/login/login.html');
     // }
 
-    ?>
+?>
 
  <!DOCTYPE html>
  <html lang="en">
@@ -15,11 +15,23 @@
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+
+    <style type="text/css">
+        body {
+            font-family: 'Ubuntu', sans-serif;
+        }
+    </style>
+
      <script type="text/javascript" src="/harrow/controller/home.js"></script>
      <script type="text/javascript" src="/harrow/view/style/home.js"></script>
 
      <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.15.1/css/all.css" type="text/css">
      <link rel="stylesheet" href="/harrow/view/style/user.css">
+
+
 
 
      <title>Harrow</title>
@@ -42,23 +54,25 @@
 
          <button class='btn' id='admin-btn' type="button" hidden>Admin Dashboard</button>
      </div>
-
      <div class="main">
          <div class="no-files">
-             No files imported yet. Click button or drop to upload.<br>
+             No files imported or saved yet. Click button or drop to upload.<br>
              <i class="fal fa-file-import import-icon"></i>
          </div>
 
          <div class="upload-btn">
 
              <input type="file" id="upload-btn" accept=".json, .har" hidden multiple>
-             <button id="fake-upload">Upload</button>
+             <button id="fake-upload" class='btn'>Upload</button>
 
          </div>
          <br>
-         <div class="new-files">
+         <div class="new-files" hidden>
              <button id="hidden-display" hidden></button>
-             Ready to be uploaded
+             <div id="ready-to-upload-msg">
+                 <span>Newly uploaded files</span>
+             </div>
+             <br>
              <div class="file-list">
                  <table class="file-table">
                      <th hidden><th>
@@ -69,18 +83,14 @@
                      <div class="seperator"></div>
                  </table>
              </div>
-             <button id="test">test</button>
+
+            <button id="save-to-server-btn" class="btn" disabled='disabled'>Save Multiple </button>
+
+             <button id="download-multiple-new-btn" class="btn" disabled='disabled'>Download </button>
+             <button id="delete-multiple-new-btn" class="btn" disabled='disabled'>Delete </button>
+             <div id='selected-uploaded-files-msg'><span id="selected-uploaded-files-number">0</span> files selected.</div>
          </div>
      </div>
-
-
-
-
-
-
-
-
-
 
  </body>
 
