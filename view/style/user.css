@@ -4,13 +4,8 @@ body {
   font-size: 1.2em;
 }
 
-.page {
-  padding-top: 8em;
-}
-
 .logo {
   display: inline-block;
-  position: relative;
 }
 
 a:link,
@@ -75,6 +70,7 @@ a:active {
   top: 50%;
   width: 100%;
   text-align: center;
+  vertical-align: middle;
   color: rgb(168, 168, 168);
   z-index: -1;
 }
@@ -98,12 +94,6 @@ a:active {
   border: none;
 }
 
-.file-list {
-  color: rgb(63, 63, 63);
-  border-collapse: collapse;
-  border: 1px solid none;
-}
-
 .btn {
   font-size: 1.3em;
   background: none;
@@ -111,18 +101,27 @@ a:active {
   border: none;
 }
 
+.spacer {
+  width: 100%;
+  height: 5em;
+}
+
 .new-files {
+  margin: 0 auto;
   width: 95%;
-  position: absolute;
-  top: 13em;
-  left: 50%;
-  transform: translate(-50%, -50%);
+}
+
+.file-list {
+  color: rgb(63, 63, 63);
+  border-collapse: collapse;
+  border: 1px solid none;
+  overflow: auto;
+  height: 10em;
 }
 
 .file-table {
   text-align: center;
   table-layout: fixed;
-  height: max-content;
   margin: 0px;
 }
 
@@ -141,6 +140,9 @@ a:active {
   background: rgb(164, 207, 164);
   border: 1em transparent;
   border-radius: 0.4em;
+  position: sticky;
+  z-index: 1;
+  top: 0;
 }
 
 .file-table th:nth-of-type(2) {
@@ -200,7 +202,6 @@ tr:nth-child(odd) {
 }
 
 #fake-upload {
-  position: absolute;
   float: left;
   font-size: 1em;
   background: none;
@@ -274,4 +275,21 @@ tr:nth-child(odd) {
   border: none;
   top: 25em;
   vertical-align: middle;
+}
+
+.file-list::-webkit-scrollbar {
+  width: 0.2em;
+}
+
+.file-list::-webkit-scrollbar {
+  width: 0.4em;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: black;
+  border-radius: 0.4em;
 }

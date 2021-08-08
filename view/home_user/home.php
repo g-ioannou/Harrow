@@ -40,30 +40,33 @@
  <body>
 
 
-     <div class="top-bar">
-         <div class="logo">Homepage</div>
-
-         <a href="/harrow/view/home_user/home.php" class="btn action-btn"><i class="fal fa-home"></i></a>
-
-
-         <!--user logout-->
-         <a class='nav-btn' id='logout-btn' href="/harrow/controller/logout.php"><i class="fal fa-door-open"></i></a>
-         <!--Edit profile-->
-         <a class='nav-btn' href="profile.php"><i class="fal fa-user"></i></a>
-
-         <!-- Admin dashboard -->
-         <button class='btn' id='admin-btn' type="button" hidden>Admin Dashboard</button>
-     </div>
+     
 
      <div class="notifications">    
          <!-- Notifications -->
      </div>
 
 
-     </div>
+     
 
      <div class="page">
+
+            <div class="top-bar">
+             <div class="logo">Homepage</div>
+
+             <a href="/harrow/view/home_user/home.php" class="btn action-btn"><i class="fal fa-home"></i></a>
+
+
+             <!--user logout-->
+             <a class='nav-btn' id='logout-btn' href="/harrow/controller/logout.php"><i class="fal fa-door-open"></i></a>
+             <!--Edit profile-->
+             <a class='nav-btn' href="profile.php"><i class="fal fa-user"></i></a>
+
+             <!-- Admin dashboard -->
+             <button class='btn' id='admin-btn' type="button" hidden>Admin Dashboard</button>
+        </div>
          
+         <div class="spacer"></div>
 
          <!-- New files area -->
         <div class="new-files" >

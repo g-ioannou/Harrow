@@ -1,7 +1,7 @@
 let uploaded_files = {};
 let uploaded_selected_files = {};
 
-$.(document).ready(function () {
+$(document).ready(function () {
   // const handler = new UploadHandler()
 
   $.ajax({
