@@ -4,6 +4,10 @@ body {
   font-size: 1.2em;
 }
 
+.page {
+  padding-top: 8em;
+}
+
 .logo {
   display: inline-block;
   position: relative;
@@ -20,6 +24,7 @@ a:active {
   white-space: nowrap;
   display: inline-block;
   position: fixed;
+  margin: 0em;
   border-bottom: 1px solid white;
   width: 100%;
   padding: 20px 20px 20px 20px;
@@ -34,6 +39,38 @@ a:active {
   text-align: right;
 }
 
+.notifications {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  background: transparent;
+  bottom: 2em;
+  right: 4em;
+  height: 500px;
+  align: right;
+  width: 20em;
+}
+
+.notification {
+  display: flex;
+  float: right;
+  align-items: center;
+  background: rgba(149, 157, 165, 0.5);
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  padding: 0.7em;
+  padding-left: 0.3m;
+  border: 1px solid white;
+  border-radius: 0.4em;
+  width: 100%;
+  max-width: ;
+  z-index: 1;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
 .no-files {
   font-size: 0.8em;
   top: 50%;
@@ -41,6 +78,7 @@ a:active {
   text-align: center;
   position: fixed;
   color: rgb(168, 168, 168);
+  z-index: -1;
 }
 
 .import-icon {
@@ -54,15 +92,23 @@ a:active {
 
 .upload-btn {
   text-align: center;
+  background: white;
+}
+
+.file-dlt-btn,
+.file-dow-btn {
+  border: none;
 }
 
 #fake-upload {
+  font-size: 1.5em;
   background: none;
   padding: 10px;
   cursor: pointer;
   border-radius: 0.4em;
   text-align: center;
   border: 1px solid gray;
+  width: 20em;
 }
 
 #fake-upload:hover {
@@ -86,7 +132,7 @@ a:active {
 .new-files {
   width: 95%;
   position: absolute;
-  top: 50%;
+  top: 20em;
   left: 50%;
   transform: translate(-50%, -50%);
 }
@@ -198,4 +244,28 @@ tr:nth-child(odd) {
   text-align: center;
   float: right;
   padding: 0.5em;
+}
+
+.error {
+  background: rgba(236, 120, 120, 0.5);
+}
+
+.success {
+  background: rgba(149, 246, 118, 0.5);
+}
+
+.notification-sign {
+  color: black;
+  margin-right: 0.9em;
+  font-size: 2em;
+  vertical-align: middle;
+}
+
+.close-notification {
+  color: rgba(89, 89, 89, 0.5);
+  right: 0px;
+  font-size: 0.9em;
+  border: none;
+  top: 25em;
+  vertical-align: middle;
 }

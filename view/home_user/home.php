@@ -54,20 +54,24 @@
 
          <button class='btn' id='admin-btn' type="button" hidden>Admin Dashboard</button>
      </div>
-     <div class="main">
+
+     <div class="notifications">
+         </div>
+     </div>
+
+     <div class="page">
          <div class="no-files">
-             No files imported or saved yet. Click button or drop to upload.<br>
+             No files imported yet. Click button or drop to upload.<br>
              <i class="fal fa-file-import import-icon"></i>
          </div>
 
          <div class="upload-btn">
 
              <input type="file" id="upload-btn" accept=".json, .har" hidden multiple>
-             <button id="fake-upload" class='btn'>Upload</button>
+             <button id="fake-upload">Upload</button>
 
          </div>
-         <br>
-         <div class="new-files" hidden>
+        <div class="new-files" >
              <button id="hidden-display" hidden></button>
              <div id="ready-to-upload-msg">
                  <span>Newly uploaded files</span>
@@ -91,6 +95,7 @@
              <div id='selected-uploaded-files-msg'><span id="selected-uploaded-files-number">0</span> files selected.</div>
          </div>
      </div>
+     
 
  </body>
 

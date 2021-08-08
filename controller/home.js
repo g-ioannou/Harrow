@@ -96,7 +96,12 @@ $(document).ready(function () {
   $(document).on("click", ".file-dlt-btn", function () {
     let id = $(this).attr("id");
     deleteFile(id);
-    $(this).parent().parent().fadeOut(300);
+    $(this)
+      .parent()
+      .parent()
+      .fadeOut(300, function () {
+        $(this).remove();
+      });
   });
 });
 
@@ -112,10 +117,18 @@ function uploadFile(file) {
         file.size,
         JSON.parse(fr.result)
       );
+      notify("success", `<b>Successfully uploaded</b> ${file.name}`);
       uploaded_files[current_id] = harFile;
       $("#hidden-display").click();
-    } catch (error) {
-      console.log(error);
+    } catch (e) {
+      if (e instanceof SyntaxError) {
+        notify(
+          "error",
+          `<b>This file seems corrupted and can't be uploaded</b>. Details: <br>${e}`
+        );
+      } else {
+        notify("error", `<b>Could not load file</b>. Unexpected error: ${e}`);
+      }
     }
   };
   fr.readAsBinaryString(file);
@@ -154,14 +167,18 @@ class HARfile {
   }
 
   download() {
-    let a = document.createElement("a");
-    let dataStr =
-      "data:text/json;charset=utf-8," +
-      encodeURIComponent(JSON.stringify(this.contents, null, 4));
-    //   let file = new Blob([this.contents],{type: 'text'})
-    a.href = dataStr;
-    a.download = "cleaned_" + this.name;
-    a.click();
+    try {
+      let a = document.createElement("a");
+      let dataStr =
+        "data:text/json;charset=utf-8," +
+        encodeURIComponent(JSON.stringify(this.contents, null, 4));
+      //   let file = new Blob([this.contents],{type: 'text'})
+      a.href = dataStr;
+      a.download = "cleaned_" + this.name;
+      a.click();
+    } catch (e) {
+      notify("error", `<b>Unable to download file</b>. <br> Error: ${e}`);
+    }
   }
 
   displayHTML() {
