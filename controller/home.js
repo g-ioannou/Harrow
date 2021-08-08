@@ -34,12 +34,14 @@ $(document).ready(function () {
     if (select_files_cnt == 0) {
       $("#delete-multiple-new-btn").attr("disabled", true);
       $("#download-multiple-new-btn").attr("disabled", true);
+      $("#save-to-server-btn").attr("disabled", true);
       $("#selected-uploaded-files-msg").css({
         color: "gray",
       });
     } else {
       $("#delete-multiple-new-btn").removeAttr("disabled");
       $("#download-multiple-new-btn").removeAttr("disabled");
+      $("#save-to-server-btn").removeAttr("disabled");
       $("#selected-uploaded-files-msg").css({
         color: "green",
       });
@@ -102,6 +104,11 @@ $(document).ready(function () {
       .fadeOut(300, function () {
         $(this).remove();
       });
+    if (get_json_len(uploaded_selected_files) == 0) {
+      $("#delete-multiple-new-btn").attr("disabled", true);
+      $("#download-multiple-new-btn").attr("disabled", true);
+      $("#save-to-server-btn").attr("disabled", true);
+    }
   });
 });
 

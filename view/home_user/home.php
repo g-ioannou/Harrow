@@ -60,17 +60,9 @@
      </div>
 
      <div class="page">
-         <div class="no-files">
-             No files imported yet. Click button or drop to upload.<br>
-             <i class="fal fa-file-import import-icon"></i>
-         </div>
+         
 
-         <div class="upload-btn">
-
-             <input type="file" id="upload-btn" accept=".json, .har" hidden multiple>
-             <button id="fake-upload">Upload</button>
-
-         </div>
+         
         <div class="new-files" >
              <button id="hidden-display" hidden></button>
              <div id="ready-to-upload-msg">
@@ -80,18 +72,38 @@
              <div class="file-list">
                  <table class="file-table">
                      <th hidden><th>
+
                      <th>File Name</th>
                      <th>Size</th>
                      <th>Delete</th>
                      <th>Download Cleaned</th>
-                     <div class="seperator"></div>
+                     
                  </table>
              </div>
 
-            <button id="save-to-server-btn" class="btn" disabled='disabled'>Save Multiple </button>
+        <div class="no-files">
+             No files imported yet. Click button or drop to upload.<br>
+             <i class="fal fa-file-import import-icon"></i>
+             
+         </div>
+
+        <div class="upload-btn">
+
+             <input type="file" id="upload-btn" accept=".json, .har" hidden multiple>
+             <button id="fake-upload">Upload</button>
+
+
+
+         </div>
+         <button id="delete-multiple-new-btn" class="btn" disabled='disabled'>Delete </button>
+
+         
+            
+            
 
              <button id="download-multiple-new-btn" class="btn" disabled='disabled'>Download </button>
-             <button id="delete-multiple-new-btn" class="btn" disabled='disabled'>Delete </button>
+             <button id="save-to-server-btn" class="btn" disabled='disabled'>Save</button>
+             
              <div id='selected-uploaded-files-msg'><span id="selected-uploaded-files-number">0</span> files selected.</div>
          </div>
      </div>
