@@ -17,16 +17,6 @@ $(document).ready(function () {
       }
     }
   });
-
-  $("#test").click(function (e) {
-    e.preventDefault();
-    notify("error", "This is an error");
-    notify(
-      "tip",
-      "Thisddddd dddddddd ddddddddd ddddddd dddddddddd dddddddddddddddddddddddddddddddddddd is a tsdfsdf"
-    );
-    notify("success", "Success!");
-  });
 });
 
 function notify(type, msg) {

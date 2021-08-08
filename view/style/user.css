@@ -200,6 +200,7 @@ tr:nth-child(odd) {
 }
 
 #fake-upload {
+  position: absolute;
   float: left;
   font-size: 1em;
   background: none;
