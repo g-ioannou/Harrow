@@ -2,9 +2,6 @@
 
 //destroy
 session_start();
-unset($_SESSION['email']);
+var_dump($_SESSION);
 session_destroy();
 header('Location: /harrow/view/login/login.html');
-
-
-?>

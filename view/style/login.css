@@ -1,16 +1,12 @@
 /*? MAIN PAGE CSS */
- body
-{
-margin:0;
-padding:0;
-background:url(../../view/images/backgroundlogin1.jpg);
-background-size: cover;
+body {
+  margin: 0;
+  padding: 0;
 
+  background-size: cover;
 }
 
-
-.login .form-user
-{
+.login .form-user {
   width: 420px;
   height: 620px;
   background: #000;
@@ -18,14 +14,13 @@ background-size: cover;
   top: 50%;
   left: 50%;
   position: absolute;
-  transform: translate(-50% ,-50%);
+  transform: translate(-50%, -50%);
   box-sizing: border-box;
   border-radius: 20px;
   padding: 40px 30px;
 }
 
-.registration .form-user
-{
+.registration .form-user {
   width: 420px;
   height: 700px;
   background: #000;
@@ -33,56 +28,54 @@ background-size: cover;
   top: 50%;
   left: 50%;
   position: absolute;
-  transform: translate(-50% ,-50%);
+  transform: translate(-50%, -50%);
   box-sizing: border-box;
   border-radius: 20px;
   padding: 40px 30px;
 }
-.avatar
-{
+.avatar {
   width: 100px;
   height: 100px;
   border-radius: 50%;
   position: relative;
   top: -30px;
-  left: 125px
+  left: 125px;
 }
 
-
-.navbar-toggler{
-    border: none !important;
-    outline: none !important;
+.navbar-toggler {
+  border: none !important;
+  outline: none !important;
 }
 
 .imag img {
-    width: 60%;
-    position: relative;
-    left:20%;
-    top: 30px;
+  width: 60%;
+  position: relative;
+  left: 20%;
+  top: 30px;
 }
 
 /*? box valid for password */
 #password_reg_info {
-    position:fixed;
-    bottom: 12px;
+  position: fixed;
+  bottom: 12px;
 
-    left: 975px;
-    width: 350px;
-    padding: 15px;
-    background: #fefefe;
-    font-size: 0.875em;
-    border-radius: 5px;
-    box-shadow: 0 1px 3px #ccc;
-    border: 1px solid #ddd;
-  }
-  
-  #password_reg_info h4 {
-    margin: 0 0 10px 0;
-    padding: 0;
-    font-weight: normal;
-  }
-  
-  /* #password_reg_info::before {
+  left: 975px;
+  width: 350px;
+  padding: 15px;
+  background: #fefefe;
+  font-size: 0.875em;
+  border-radius: 5px;
+  box-shadow: 0 1px 3px #ccc;
+  border: 1px solid #ddd;
+}
+
+#password_reg_info h4 {
+  margin: 0 0 10px 0;
+  padding: 0;
+  font-weight: normal;
+}
+
+/* #password_reg_info::before {
     content: "\25B2";
     position: absolute;
     top: 12px;
@@ -93,22 +86,36 @@ background-size: cover;
     text-shadow: none;
     display: block;
   } */
-  
-  .invalid {
-    background: url(../images/invalid.png) no-repeat 0 50%;
-    padding-left: 22px;
-    line-height: 24px;
-    color: #ec3f41;
-  }
-  .valid {
-    background: url(../images/valid.png) no-repeat 0 50%;
-    padding-left: 22px;
-    line-height: 24px;
-    color: #3a7d34;
-  }
-  
-  #password_reg_info {
-    display: none;
-  }
 
-  /* password message style end */
+.invalid {
+  /* background: url(../images/invalid.png) no-repeat 0 50%; */
+  padding-left: 22px;
+  line-height: 24px;
+  color: #ec3f41;
+}
+.valid {
+  /* background: url(../images/valid.png) no-repeat 0 50%; */
+  padding-left: 22px;
+  line-height: 24px;
+  color: #3a7d34;
+}
+
+#password_reg_info {
+  display: none;
+}
+
+/* password message style end */
+
+/* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+#map {
+  height: 100%;
+}
+
+/* Optional: Makes the sample page fill the window. */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}

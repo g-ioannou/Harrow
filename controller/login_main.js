@@ -22,28 +22,26 @@ $(document).ready(function () {
       $("#login_error").html("Please fill the fields.");
     } else {
       if (!email_regex.test(email_log)) {
-        $("#login_error").html("Please fill correct the email.");
+        $("#login_error").html("This is not a valid email.");
       } else {
         $.ajax({
-          method: "post",
+          method: "POST",
           url: "/harrow/model/login_form.php",
           data: {
-            type: 1,
+            type: "login",
             email: email_log,
             password: password_log,
           },
           //dataType: "json",
           success: function (response) {
-            // $("#login_error").html(data);
             if (response == "success") {
-              console.log("OOOOOOOOOOOOOK");
-              window.location.href = "/harrow/view/home_user/home.php";
-            } else {
-              $("#login_error").html("Invalid email or password.");
+              window.location.replace("/harrow/view/home_user/home.php");
             }
           },
+          error: function (error) {
+            console.log(error);
+          },
         });
-        //return true;
       }
     }
   });
@@ -118,7 +116,7 @@ $(document).ready(function () {
         method: "post",
         url: "/harrow/model/login_form.php",
         data: {
-          type: 2,
+          type: "register",
           firstname: firstname,
           lastname: lastname,
           username: username,
@@ -134,11 +132,10 @@ $(document).ready(function () {
             $("#register_error").html("Email ID already exists.");
             $("#register_error").show();
           } else {
-            if (response == "success") {
-              window.location.href = "/harrow/view/home_user/home.php";
-            }
-            //$("#register_error").html("Registration success. You can login now.");
-            //$("#register_error").show();
+            $("#register_error").html(
+              "Registration success. You can login now."
+            );
+            $("#register_error").show();
 
             //clear input fields
             $("#firstname").val("");
@@ -147,6 +144,9 @@ $(document).ready(function () {
             $("#email_reg").val("");
             $("#password_reg").val("");
           }
+        },
+        error: function (error) {
+          console.log(error);
         },
       });
     }

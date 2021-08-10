@@ -1,3 +1,7 @@
+let notifications_timeout = setTimeout(function () {
+  $(".notifications-side").fadeOut(300);
+}, 5000);
+
 $(document).ready(function () {
   $("#fake-upload").click(function (e) {
     $("#upload-btn").click();
@@ -5,7 +9,21 @@ $(document).ready(function () {
 
   $(document).on("click", ".close-notification", function (event) {
     event.preventDefault();
-    $(this).parent().remove();
+    $(this)
+      .parent()
+      .fadeOut(300, function () {
+        $(this).remove();
+      });
+    notification_glow();
+  });
+
+  $(".notifications-side").hover(function (e) {
+    clearTimeout(notifications_timeout);
+  });
+
+  $(document).on("click", "#clear-notifications", function () {
+    $(".notifications").empty();
+    notification_glow();
   });
 
   $("#hidden-display").click(function (e) {
@@ -16,6 +34,14 @@ $(document).ready(function () {
         $(".file-table").append(uploaded_files[id].displayHTML());
       }
     }
+  });
+
+  $(document).on("click", "#close-side-notifications", function () {
+    $(".notifications-side").fadeOut(300);
+  });
+
+  $(document).on("click", ".notification-list-btn", function () {
+    $(".notifications-side").fadeIn(300);
   });
 });
 
@@ -38,26 +64,36 @@ function notify(type, msg) {
     css_class = "tip";
   }
 
+  if (type == "upload") {
+    icon = `<i class="fas fa-cloud-upload"></i>`;
+  }
+
   let notification_id = new Date().valueOf();
 
-  let html =
-    '<div id="' +
+  let html_perma_notification =
+    '<div id="perm_' +
     notification_id +
-    '"class="notification ' +
+    '"class="notification-perma ' +
     css_class +
     '"><button class="close-notification btn"><i class="fas fa-times"></button></i><span class="notification-sign">' +
     icon +
     '</span><span class="notification_msg">' +
     msg +
     "</span></div>";
-  console.log(html);
 
-  let new_div = $(html).hide();
+  $(".notifications").prepend(html_perma_notification);
+  $(".notifications-side").fadeIn(300);
 
-  $(".notifications").append(new_div);
-  new_div.slideDown("fast");
+  notifications_timeout;
+  notification_glow();
 
-  setTimeout(() => {
-    $(`#${notification_id}`).fadeOut(2000);
-  }, 5000);
+  return `perm_${notification_id}`;
+}
+
+function notification_glow() {
+  if ($(".notifications").is(":empty")) {
+    $(".notification-list-btn").css({ color: "black" });
+  } else {
+    $(".notification-list-btn").css({ color: "green" });
+  }
 }
