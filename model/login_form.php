@@ -1,62 +1,45 @@
 <?php
-
 session_start();
 include '../model/connection_db.php';
 
-
-
-if($_POST['type'] == 1){
+if ($_POST['type'] == "login") {
     $email = $_POST['email'];
-    $password = $_POST['password'];
-    $password = sha1(md5($password)); //crypt password
-
-    $query = mysqli_query($conn, "SELECT * FROM `user` WHERE `email` = '$email' AND `password`='$password' ");
-    $num = mysqli_num_rows($query);
+    $password = sha1(md5($_POST['password'])); //encrypt password
+    $query = mysqli_query($conn, "CALL validate_login('$email','$password')");
     $row = mysqli_fetch_array($query);
-
-    if( $num == 1 ){
+    if ($row['email'] == $email) {
         $_SESSION['email'] = $row['email'];
-        echo "success";
-    }
-    else{
+        $_SESSION['user_id'] = $row['user_id'];
+        echo 'success';
+    } else {
+        session_destroy();
         echo "fail";
     }
+}
 
-}       
-
-if($_POST['type'] == 2){
-
-    
+if ($_POST['type'] == "register") {
     $firstname = $_POST['firstname'];
     $lastname = $_POST['lastname'];
     $username = $_POST['username'];
     $email = $_POST['email'];
-    $password = $_POST['password'];
-    $password = sha1(md5($password)); //crypt password
-    
-    $query_email = mysqli_query($conn, "SELECT * FROM `user` WHERE `email` = '$email'");
-    $query_username = mysqli_query($conn, "SELECT * FROM `user` WHERE `username` = '$username'");
-    $num_email = mysqli_num_rows($query_email);
-    $num_username = mysqli_num_rows($query_username);
-    
-    
-    if( $num_email == 0){
-        if( $num_username == 0){
-            $sql = mysqli_query($conn, "INSERT INTO `user` ( `firstname`, `lastname`, `username`, `email`, `password`) VALUES ('$firstname','$lastname','$username','$email', '$password')");            
+
+    $password = sha1(md5($_POST['password']));
+    $query = mysqli_query($conn, "CALL get_user('$email')");
+    $row = mysqli_fetch_array($query);
+
+    if ($username == $row['username']) {
+        echo 'fail_user';
+    } elseif ($email == $row['email']) {
+        echo 'fail_email';
+    } else {
+        $query->close();
+        $conn->next_result();
+        if (!$sql = mysqli_query($conn, "CALL add_user('$email','$username','$password','$firstname','$lastname') ")) {
+            echo mysqli_error(($conn));
+        } else {
             
-            $query_email = mysqli_query($conn, "SELECT * FROM `user` WHERE `email` = '$email'");
-            $row = mysqli_fetch_array($query_email);
-            $_SESSION['email'] = $row['email']; // OR $_SESSION['email'] = $email
-            echo "success";
+            $_SESSION['email'] = $email;
+            echo 'success';
         }
-        else {
-            echo "fail_user";
-        }   
-    }
-    else{
-        echo "fail_email";
     }
 }
-
-
-?>

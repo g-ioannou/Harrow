@@ -15,7 +15,7 @@ $(document).ready(function () {
     },
   });
 
-  $(document).on("change", "#file-select", function (event) {
+  $(document).on("change", ".file-select", function (event) {
     event.preventDefault();
 
     let id = $(this).parent().parent().attr("id");
@@ -57,6 +57,7 @@ $(document).ready(function () {
 
   $("#upload-btn").change(function () {
     const files = $("#upload-btn");
+    let all_files_uploaded = false;
     fileList = this.files;
 
     for (let i = 0; i < fileList.length; i++) {
@@ -75,7 +76,6 @@ $(document).ready(function () {
 
   $("#delete-multiple-new-btn").click(function (e) {
     e.preventDefault();
-
     let id_list = [];
     for (id in uploaded_selected_files) {
       id_list.push(id);
@@ -87,6 +87,12 @@ $(document).ready(function () {
       delete uploaded_selected_files[id];
       $(`#${id}`).fadeOut(300);
     }
+
+    $("#selected-uploaded-files-number").html("0");
+    $("#selected-uploaded-files-msg").css({ color: "gray" });
+    $("#delete-multiple-new-btn").attr("disabled", true);
+    $("#download-multiple-new-btn").attr("disabled", true);
+    $("#save-to-server-btn").attr("disabled", true);
   });
 
   $(document).on("click", ".file-dow-btn", function () {
@@ -131,10 +137,13 @@ function uploadFile(file) {
       if (e instanceof SyntaxError) {
         notify(
           "error",
-          `<b>This file seems corrupted and can't be uploaded</b>. Details: <br>${e}`
+          `<b>File ${file.name} seems corrupted and can't be uploaded</b>. Details: <br>${e}`
         );
       } else {
-        notify("error", `<b>Could not load file</b>. Unexpected error: ${e}`);
+        notify(
+          "error",
+          `<b>Could not load file ${file.name}</b>. Unexpected error: ${e}`
+        );
       }
     }
   };
@@ -191,7 +200,9 @@ class HARfile {
   displayHTML() {
     this.shown = 1;
     let html = `<tr id="${this.id}" class="uploaded-file">
-                <td><input type="checkbox" id="file-select"></td>
+                <td><input type="checkbox" class="file-select" id="${
+                  this.id
+                }" ></td>
                 <td><i class="fal fa-file"></i>&nbsp;&nbsp; ${this.name}</td>
                 <td>${(this.size / Math.pow(10, 6)).toFixed(1)} MB</td>
                 <td><button class="btn file-dlt-btn" id="${
@@ -215,8 +226,14 @@ class HARfile {
         return new URL(url).hostname;
       };
 
+      let year_date = entry.startedDateTime.split("T")[0];
+      let hours = entry.startedDateTime.replace(year_date + "T", "");
+      hours = hours.split("+")[0].split(".")[0];
+
+      let final_date_time = year_date + " " + hours;
+
       let cleaned_entry = {
-        startedDateTime: entry.startedDateTime,
+        startedDateTime: final_date_time,
         timings: {
           wait: entry.timings.wait,
         },
@@ -242,7 +259,7 @@ class HARfile {
       for (let i = 0; i < headers.length; i++) {
         const header = headers[i];
         let name = header.name.toLowerCase();
-
+        let cleaned_header = {};
         if (
           name == "content-type" ||
           name == "cache-control" ||
@@ -252,7 +269,8 @@ class HARfile {
           name == "last-modified" ||
           name == "host"
         ) {
-          cleaned_headers.push(header);
+          cleaned_header[name] = header["value"].replace("-", "_");
+          cleaned_headers.push(cleaned_header);
         }
       }
       return cleaned_headers;
