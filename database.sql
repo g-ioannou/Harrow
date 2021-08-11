@@ -190,7 +190,18 @@ DELIMITER $
 CREATE PROCEDURE `get_files`(
 	IN `inp_user_id` BIGINT
 )
-	BEGIN SELECT * FROM files WHERE user_id=`inp_user_id`;
+BEGIN 
+	SELECT * FROM files WHERE user_id=`inp_user_id`;
 END$
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS delete_file;
+DELIMITER $
+CREATE PROCEDURE `delete_file`(
+	IN `inp_user_id` BIGINT,
+	IN `inp_file_id` BIGINT
+)
+BEGIN 
+	DELETE FROM files WHERE user_id = `inp_user_id` AND file_id = `inp_file_id`;
+END $
+DELIMITER $

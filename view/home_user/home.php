@@ -83,16 +83,16 @@ if (!isset($_SESSION['email'])) {
         <!-- New files area -->
         <div class="new-files">
             <button id="hidden-display" hidden></button>
-            <div id="ready-to-upload-msg"><span>Newly uploaded files</span></div>
+            <div id="ready-to-upload-msg"><span><b>Newly uploaded files</b></span><br><span style="font-size:0.8em;color:rgb(149, 157, 165)">All sensitive data will removed during upload and you may download the sanitized file :)</span></div>
             <br>
             <div class="file-list">
-                <table class="file-table">
-                    <th hidden>
-                    <th>
-                    <th>File Name</th>
-                    <th>Size</th>
-                    <th>Delete</th>
-                    <th>Download Cleaned</th>
+                <table id="new-files-table" class="file-table">
+
+                    <th></th>
+                    <th><i class="fas fa-file"></i></th>
+                    <th><i class="fas fa-save"></i></th>
+                    <th><i class="fas fa-trash-alt"></i></th>
+                    <th><i class="fas fa-download"></i></th>
 
                 </table>
                 <div class="no-files">
@@ -117,12 +117,24 @@ if (!isset($_SESSION['email'])) {
             <div id='selected-uploaded-files-msg'><span id="selected-uploaded-files-number">0</span> files selected </div>
 
         </div>
+        <div class="spacer"></div>
+        <!-- old files area -->
+        <div class="old-files">
+            <div id="already-uploaded-msg"><span><b>Your files</b></span></div><br>
+            <div class="file-list">
+                <table class="file-table" id='old-files-table'>
 
+                    <th></th>
+                    <th><i class="fas fa-file"></i></th>
+                    <th><i class="fas fa-save"></i></th>
+                    <th><i class="fas fa-trash-alt"></i></th>
+                    <th><i class="fas fa-download"></i></th>
 
-        <div class="old-files"></div>
+                </table>
+
+            </div>
+        </div>
     </div>
-
-
 
 
 </body>

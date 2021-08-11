@@ -31,7 +31,7 @@ $(document).ready(function () {
 
     for (id in uploaded_files) {
       if (uploaded_files[id].shown == 0) {
-        $(".file-table").append(uploaded_files[id].displayHTML());
+        $("#new-files-table").append(uploaded_files[id].displayHTML());
       }
     }
   });

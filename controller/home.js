@@ -1,5 +1,6 @@
 let uploaded_files = {};
 let uploaded_selected_files = {};
+let user_files = {};
 
 $(document).ready(function () {
   // const handler = new UploadHandler()
@@ -14,6 +15,38 @@ $(document).ready(function () {
       }
     },
   });
+
+  $.ajax({
+    type: "GET",
+    url: "/harrow/model/get_file_user.php",
+
+    success: function (response) {
+      let files = JSON.parse(response);
+      for (const f in files) {
+        const file = files[f];
+        let current_id = new Date().valueOf();
+
+        current_id = current_id + Math.floor(Math.random() * 10000000);
+
+        harFile = new HARfile(
+          current_id,
+          file.name,
+          file.size,
+          JSON.parse(file.contents).contents,
+          1
+        );
+        user_files[current_id] = harFile;
+        harFile.db_id = file.db_id;
+        let html = harFile.displayHTML();
+        $("#old-files-table").append(html);
+      }
+    },
+
+    error: function (response) {
+      console.log(response);
+    },
+  });
+
   let select_all = 0;
   $(document).on("click", "#select-all", function () {
     if (select_all == 0) {
@@ -59,11 +92,8 @@ $(document).ready(function () {
     checkNewFilesBtn();
   });
 
-  
-
   $(document).on("click", "#hidden-display", function () {
     $(".no-files").hide();
-    $(".new-files").show();
   });
 
   $("#upload-btn").change(function () {
@@ -108,8 +138,13 @@ $(document).ready(function () {
 
   $(document).on("click", ".file-dow-btn", function () {
     let id = $(this).attr("id");
+    try {
+      uploaded_files[id].download();
+    } catch (e) {}
 
-    uploaded_files[id].download();
+    try {
+      user_files[id].download();
+    } catch (e) {}
   });
 
   $(document).on("click", ".file-dlt-btn", function () {
@@ -139,7 +174,8 @@ function uploadFile(file) {
         current_id,
         file.name,
         file.size,
-        JSON.parse(fr.result)
+        JSON.parse(fr.result),
+        0
       );
       notify("success", `<b>Successfully uploaded</b> ${file.name}`);
       uploaded_files[current_id] = harFile;
@@ -162,9 +198,11 @@ function uploadFile(file) {
 }
 
 function deleteFile(file_id) {
-  let file_name = uploaded_files[file_id].name;
+  let file_name = "";
   try {
+    file_name = uploaded_files[file_id].name;
     delete uploaded_files[file_id];
+    notify("delete", `Localy uploaded file <b>${file_name}</b> deleted.`);
   } catch (e) {}
 
   try {
@@ -172,7 +210,25 @@ function deleteFile(file_id) {
     let count = get_json_len(uploaded_selected_files);
     $("#selected-uploaded-files-number").html(count);
   } catch (e) {}
-  notify("delete", `File <b>${file_name}</b> deleted.`);
+
+  try {
+    file_name = user_files[file_id].name;
+    file_db_id = user_files[file_id].db_id;
+    $.ajax({
+      type: "POST",
+      data: { file_id: file_db_id },
+      url: "/harrow/model/delete_file_user.php",
+      success: function (response) {
+        console.log("ok");
+        delete user_files[file_id];
+        notify("delete", `File <b>${file_name}</b> deleted from server.`);
+        console.log(response);
+      },
+      error: function (error) {
+        console.error(error);
+      },
+    });
+  } catch (e) {}
 }
 
 function get_json_len(json) {
@@ -180,11 +236,17 @@ function get_json_len(json) {
 }
 
 class HARfile {
-  constructor(id, name, size, contents) {
+  constructor(id, name, size, contents, is_cleaned) {
     this.id = id;
     this.name = name;
     this.size = size;
-    this.contents = this.clean_contents(contents.log.entries);
+
+    if (is_cleaned == 0) {
+      this.contents = this.clean_contents(contents.log.entries);
+    } else {
+      this.contents = contents;
+    }
+    this.db_id = 0;
     this.shown = 0;
     this.selected = 0;
   }
@@ -207,6 +269,7 @@ class HARfile {
       a.href = dataStr;
       a.download = "cleaned_" + this.name;
       a.click();
+      a.remove();
     } catch (e) {
       notify("error", `<b>Unable to download file</b>. <br> Error: ${e}`);
     }
