@@ -59,13 +59,14 @@ function notify(type, msg) {
     css_class = "error";
   }
 
-  if (type == "tip") {
-    icon = '<i class="fas fa-question"></i>';
-    css_class = "tip";
-  }
-
   if (type == "upload") {
     icon = `<i class="fas fa-cloud-upload"></i>`;
+    css_class = "upload";
+  }
+
+  if (type == "delete") {
+    icon = '<i class="fas fa-trash"></i>';
+    css_class = "delete";
   }
 
   let notification_id = new Date().valueOf();
@@ -95,5 +96,19 @@ function notification_glow() {
     $(".notification-list-btn").css({ color: "black" });
   } else {
     $(".notification-list-btn").css({ color: "green" });
+  }
+}
+
+function checkNewFilesBtn() {
+  let count = get_json_len(uploaded_selected_files);
+
+  if (count > 0) {
+    $("#delete-multiple-new-btn").removeAttr("disabled");
+    $("#download-multiple-new-btn").removeAttr("disabled");
+    $("#save-to-server-btn").removeAttr("disabled");
+  } else {
+    $("#delete-multiple-new-btn").attr("disabled", true);
+    $("#download-multiple-new-btn").attr("disabled", true);
+    $("#save-to-server-btn").attr("disabled", true);
   }
 }

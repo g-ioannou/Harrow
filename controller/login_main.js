@@ -12,6 +12,7 @@ $(document).ready(function () {
 
   //validation and log in
   $("#login_btn").click(function () {
+    console.log("ok");
     let email_log = $("#email_log").val();
     let password_log = $("#password_log").val();
     let email_regex = /^[\w%_\-.\d]+@[\w.\-]+.[A-Za-z]{2,6}$/; // regex email check
@@ -20,6 +21,7 @@ $(document).ready(function () {
 
     if (email_log == "" || password_log == "") {
       $("#login_error").html("Please fill all the fields.");
+      console.log("ok");
       $("#email_log,#password_log").css({ border: "1px solid red" });
     } else {
       if (!email_regex.test(email_log)) {
@@ -34,6 +36,7 @@ $(document).ready(function () {
             password: password_log,
           },
           success: function (response) {
+            console.log(response);
             if (response == "success") {
               window.location.replace("/harrow/view/home_user/home.php");
             }
@@ -156,8 +159,9 @@ $(document).ready(function () {
             $("#register_error").show();
           } else {
             $("#register_error").html(
-              "Registration success. You can login now."
+              "Registration success! Taking you back to log in."
             );
+            $("#register_error").css({ color: "rgb(7, 219, 7)" });
             $("#register_error").show();
 
             //clear input fields
@@ -166,6 +170,10 @@ $(document).ready(function () {
             $("#username").val("");
             $("#email_reg").val("");
             $("#password_reg").val("");
+
+            setTimeout(function () {
+              window.location.replace("/harrow/view/login/login.html");
+            }, 2000);
           }
         },
         error: function (error) {

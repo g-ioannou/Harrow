@@ -11,7 +11,7 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-    <script src="../../controller/login_main.js"></script>
+    <script src="/harrow/controller/login_main.js"></script>
     <script src="../../view/style/password.js"></script>
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.15.1/css/all.css" type="text/css">
 
@@ -117,7 +117,7 @@
             value="Sign up"
             id="register_btn"
           />
-          or <a href="login.html">Log In</a>
+          or <a id="login-redirect" href="login.html">Log In</a>
         </div>
       </form>
     </div>
@@ -178,7 +178,7 @@
           <br />
           <div id="login_error"></div>
           <input
-            type="button"
+            type='button'
             name="login"
             class="btn btn-primary"
             value="Sign in"

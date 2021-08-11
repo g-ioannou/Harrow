@@ -148,9 +148,7 @@ function add_headers($conn, $type, $r_id, $headers)
         }
 
         if ($all_null == 0) {
-            continue;
+            $sql = mysqli_query($conn, "INSERT INTO headers ($type,content_type,pragma,expires,age,last_modified,host,cache_control) VALUES ($r_id,$_content_type,$_pragma,$_expires,$_age,$_last_modified, $_host, $_cache_control)") or die(mysqli_error($conn));
         }
-
-        $sql = mysqli_query($conn, "INSERT INTO headers ($type,content_type,pragma,expires,age,last_modified,host,cache_control) VALUES ($r_id,$_content_type,$_pragma,$_expires,$_age,$_last_modified, $_host, $_cache_control)") or die(mysqli_error($conn));
     }
 }

@@ -14,41 +14,52 @@ $(document).ready(function () {
       }
     },
   });
+  let select_all = 0;
+  $(document).on("click", "#select-all", function () {
+    if (select_all == 0) {
+      let ctr = 0;
+      $(".file-list")
+        .find(":checkbox")
+        .each(function () {
+          $(":checkbox").prop("checked", true);
+          ctr++;
+        });
 
-  $(document).on("change", ".file-select", function (event) {
-    event.preventDefault();
-
-    let id = $(this).parent().parent().attr("id");
-
-    let is_selected = uploaded_files[id].selected;
-
-    if (is_selected == 0) {
-      uploaded_files[id].select = 1;
-      uploaded_selected_files[id] = uploaded_files[id];
+      $("#selected-uploaded-files-number").html(ctr);
+      if (ctr > 0) {
+        uploaded_selected_files = uploaded_files;
+        $("#select-all").html("Unselect all");
+      }
+      select_all = 1;
     } else {
-      uploaded_files[id].select = 0;
-      delete uploaded_selected_files[id];
+      $(".file-list")
+        .find(":checkbox")
+        .each(function () {
+          $(":checkbox").prop("checked", false);
+        });
+      $("#select-all").html("Select all");
+      select_all = 0;
+      uploaded_selected_files = {};
+      $("#selected-uploaded-files-number").html("0");
     }
-
-    let select_files_cnt = get_json_len(uploaded_selected_files);
-    if (select_files_cnt == 0) {
-      $("#delete-multiple-new-btn").attr("disabled", true);
-      $("#download-multiple-new-btn").attr("disabled", true);
-      $("#save-to-server-btn").attr("disabled", true);
-      $("#selected-uploaded-files-msg").css({
-        color: "gray",
-      });
-    } else {
-      $("#delete-multiple-new-btn").removeAttr("disabled");
-      $("#download-multiple-new-btn").removeAttr("disabled");
-      $("#save-to-server-btn").removeAttr("disabled");
-      $("#selected-uploaded-files-msg").css({
-        color: "green",
-      });
-    }
-
-    $("#selected-uploaded-files-number").html(select_files_cnt);
+    checkNewFilesBtn();
   });
+
+  $(document).on("change", ".new-files :checkbox", function () {
+    uploaded_selected_files = {};
+    $(".file-list")
+      .find(":checkbox:checked")
+      .each(function () {
+        let id = $(this).attr("id");
+        uploaded_selected_files[id] = uploaded_files[id];
+      });
+
+    let selected_files_ctr = get_json_len(uploaded_selected_files);
+    $("#selected-uploaded-files-number").html(selected_files_ctr);
+    checkNewFilesBtn();
+  });
+
+  
 
   $(document).on("click", "#hidden-display", function () {
     $(".no-files").hide();
@@ -151,13 +162,17 @@ function uploadFile(file) {
 }
 
 function deleteFile(file_id) {
+  let file_name = uploaded_files[file_id].name;
   try {
     delete uploaded_files[file_id];
   } catch (e) {}
 
   try {
     delete uploaded_selected_files[file_id];
+    let count = get_json_len(uploaded_selected_files);
+    $("#selected-uploaded-files-number").html(count);
   } catch (e) {}
+  notify("delete", `File <b>${file_name}</b> deleted.`);
 }
 
 function get_json_len(json) {

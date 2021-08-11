@@ -1,7 +1,7 @@
 body {
   padding: 0;
   margin: 0;
-  font-size: 1.2em;
+  font-size: 1em;
 }
 
 .logo {
@@ -77,12 +77,13 @@ a:active {
 
 .no-files {
   font-size: 0.8em;
-  top: 50%;
+  position: relative;
   width: 100%;
   text-align: center;
   vertical-align: middle;
   color: rgb(168, 168, 168);
   z-index: -1;
+  margin-top: 1em;
 }
 
 .import-icon {
@@ -133,7 +134,8 @@ a:active {
   border-collapse: collapse;
   border: 1px solid none;
   overflow: auto;
-  height: 20em;
+  min-height: max-content;
+  max-height: 20em;
 }
 
 .file-table {
@@ -148,6 +150,7 @@ a:active {
   overflow: hidden;
   border: 1em transparent;
   border-radius: 0.2em;
+  font-size: 0.8em;
 }
 
 .file-table tr {
@@ -155,13 +158,15 @@ a:active {
 }
 
 .file-table th {
-  background: rgb(164, 207, 164);
+  color: white;
+  background: rgb(65, 65, 65);
   border: 1em transparent;
   border-radius: 0.4em;
   position: sticky;
   top: 0;
   height: fixed;
   z-index: 0;
+  overflow: hidden;
 }
 
 .file-table th:nth-of-type(2) {
@@ -208,7 +213,8 @@ tr:nth-child(odd) {
 
 #save-to-server-btn,
 #delete-multiple-new-btn,
-#download-multiple-new-btn {
+#download-multiple-new-btn,
+#select-all {
   float: right;
   font-size: 1em;
   background-color: white;
@@ -218,6 +224,12 @@ tr:nth-child(odd) {
   margin-top: 0.5em;
   margin-left: 0.5em;
   border: 1px solid gray;
+}
+
+#select-all {
+  float: left;
+  margin-left: 0;
+  margin-right: 0.5em;
 }
 
 .fa-exclamation,
@@ -238,7 +250,8 @@ tr:nth-child(odd) {
   width: 20em;
 }
 
-#fake-upload:hover {
+#fake-upload:hover,
+#select-all:hover {
   border: 1px solid green;
   color: green;
 }
@@ -292,9 +305,14 @@ tr:nth-child(odd) {
   background: rgba(149, 246, 118, 0.5);
 }
 
-.tip {
+.upload {
   background: rgba(91, 147, 238, 0.5);
 }
+
+.delete {
+  background: rgba(68, 67, 67, 0.5);
+}
+
 .notification-sign {
   color: black;
   margin-right: 0.9em;

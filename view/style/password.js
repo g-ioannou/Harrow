@@ -5,10 +5,12 @@ $(document).ready(function () {
     if (showpass == 0) {
       $("#password_log,#password_reg").attr("type", "text");
       $(".show-pass-btn").css({ color: "white" });
+      $(".show-pass-btn").html('<i class="fas fa-eye"></i>');
       showpass = 1;
     } else {
       $("#password_log,#password_reg").attr("type", "password");
       $(".show-pass-btn").css({ color: "black" });
+      $(".show-pass-btn").html('<i class="fas fa-eye-slash"></i>');
       showpass = 0;
     }
   });

@@ -93,23 +93,29 @@ if (!isset($_SESSION['email'])) {
                     <th>Size</th>
                     <th>Delete</th>
                     <th>Download Cleaned</th>
+
                 </table>
+                <div class="no-files">
+                    No files imported yet. Click button or drop to upload.<br>
+                    <i class="fal fa-file-import import-icon"></i>
+
+                </div>
             </div>
 
-            <div class="no-files">
-                No files imported yet. Click button or drop to upload.<br>
-                <i class="fal fa-file-import import-icon"></i>
 
-            </div>
-
+            <button id="select-all" class="btn">Select all</button>
             <div class="upload-btn">
+
                 <input type="file" id="upload-btn" accept=".json, .har" hidden multiple>
+
                 <button id="fake-upload"><i class="fas fa-upload"></i> Upload</button>
             </div>
+
             <button id="delete-multiple-new-btn" class="btn" disabled='disabled'><i class="fas fa-trash-alt"></i> Delete </button>
             <button id="download-multiple-new-btn" class="btn" disabled='disabled'><i class="fas fa-download"></i> Download </button>
             <button id="save-to-server-btn" class="btn" disabled='disabled'><i class="fas fa-cloud-upload"></i> Save</button>
             <div id='selected-uploaded-files-msg'><span id="selected-uploaded-files-number">0</span> files selected </div>
+
         </div>
 
 
