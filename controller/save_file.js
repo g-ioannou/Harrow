@@ -1,4 +1,5 @@
 $(document).ready(function () {
+  console.log("ok");
   $("#save-to-server-btn").click(function (e) {
     for (const id in uploaded_selected_files) {
       const file = uploaded_selected_files[id];
@@ -9,6 +10,7 @@ $(document).ready(function () {
 
 function upload_file_to_server(file) {
   notify("upload", `<b>Uploading file: ${file.name}`);
+
   $.ajax({
     type: "POST",
     url: "/harrow/model/save_file.php",

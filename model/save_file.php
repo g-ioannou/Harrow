@@ -29,12 +29,16 @@ foreach ($entries as $entry) {
     } else {
         $_startedDateTime = "NULL";
     }
-
-    if (array_key_exists('serverIpAddress', $entry)) {
-        $_serverIpAddress = "$entry->serverIpAddress";
+    var_dump($entry);
+    if (array_key_exists('serverIPAddress', $entry)) {
+        $_serverIpAddress = "'$entry->serverIPAddress'";
+        echo $_serverIpAddress;
     } else {
         $_serverIpAddress = "NULL";
+        echo $_serverIpAddress;
     }
+
+
 
     if (array_key_exists('wait', $entry)) {
         $_wait = $entry->wait;

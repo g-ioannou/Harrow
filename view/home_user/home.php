@@ -64,6 +64,8 @@ if (!isset($_SESSION['email'])) {
 
             <a href="/harrow/view/home_user/home.php" class="btn action-btn"><i class="fal fa-home"></i></a>
 
+            <a href="/harrow/view/home_user/heatmap.php" class="btn action-btn"><i class="fal fa-map-marked-alt"></i></a>
+
             <button class="nav-btn notification-list-btn btn"><i class="fas fa-bell"></i></button>
 
             <!--user logout-->
@@ -86,6 +88,7 @@ if (!isset($_SESSION['email'])) {
             <div id="ready-to-upload-msg"><span><b>Newly uploaded files</b></span><br><span style="font-size:0.8em;color:rgb(149, 157, 165)">All sensitive data will removed during upload and you may download the sanitized file :)</span></div>
             <br>
             <div class="file-list">
+                
                 <table id="new-files-table" class="file-table">
 
                     <th></th>
