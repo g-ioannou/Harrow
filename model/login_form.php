@@ -8,8 +8,14 @@ if ($_POST['type'] == "login") {
     $query = mysqli_query($conn, "CALL validate_login('$email','$password')");
     $row = mysqli_fetch_array($query);
     if ($row['email'] == $email) {
+        $query->close();
+        $conn->next_result();
+
+
         $_SESSION['email'] = $row['email'];
         $_SESSION['user_id'] = $row['user_id'];
+        $_SESSION['username'] = $row['username'];
+        
         echo 'success';
     } else {
         session_destroy();
@@ -34,10 +40,13 @@ if ($_POST['type'] == "register") {
     } else {
         $query->close();
         $conn->next_result();
+
+        $sql = mysqli_query($conn, "CALL add_user('$email','$username','$password','$firstname','$lastname') ");
+
         if (!$sql = mysqli_query($conn, "CALL add_user('$email','$username','$password','$firstname','$lastname') ")) {
             echo mysqli_error(($conn));
         } else {
-            
+            $_SESSION['username'] = $username;
             $_SESSION['email'] = $email;
             echo 'success';
         }

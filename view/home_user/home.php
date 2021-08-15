@@ -1,10 +1,9 @@
 <?php
 session_start();
-include "../../model/connection_db.php";
-
 if (!isset($_SESSION['email'])) {
     header('location: ../../view/login/login.html');
 }
+include "../../model/connection_db.php";
 
 ?>
 
@@ -13,11 +12,13 @@ if (!isset($_SESSION['email'])) {
 
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/ip-geolocation-api-jquery-sdk@1.1.0/ipgeolocation.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.15.1/css/all.css" type="text/css">
+    <link rel="stylesheet" href="/harrow/view/style/topbar.css">
+    <link rel="stylesheet" href="/harrow/view/style/home.css">
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
 
 
@@ -26,120 +27,106 @@ if (!isset($_SESSION['email'])) {
             font-family: 'Ubuntu', sans-serif;
         }
     </style>
-    <script type="text/javascript" src="/harrow/controller/save_file.js"></script>
-    <script type="text/javascript" src="/harrow/controller/geolocator.js"></script>
-    <script type="text/javascript" src="/harrow/controller/home.js"></script>
     <script type="text/javascript" src="/harrow/view/style/home.js"></script>
-
-
-
-    <link rel="stylesheet" href="/harrow/view/style/user.css">
-
-
-
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.15.1/css/all.css" type="text/css">
-    <title>Harrow</title>
+    <title>Document</title>
 </head>
 
 <body>
-    <div class='notifications-side' hidden>
-        <div class="notification-actions">
+    <div class="top-bar">
+        <div class="logo">Homepage</div>
 
-            <button id="clear-notifications"><i class="fas fa-trash-alt"></i></button>
-            <button id="close-side-notifications"><i class="fas fa-times"></i></button>
+        <a href="/harrow/view/home_user/home.php" class="btn action-btn"><i class="fal fa-home"></i></a>
 
+        <a href="/harrow/view/home_user/files.php" class="btn action-btn"><i class="fal fa-file"></i></a>
 
-        </div>
-        <div class="notifications"></div>
+        <a href="/harrow/view/home_user/heatmap.php" class="btn action-btn"><i class="fal fa-map-marked-alt"></i></a>
 
+        <!--user logout-->
+        <a class='nav-btn' id='logout-btn' href="/harrow/controller/logout.php"><i class="fal fa-door-open"></i></a>
+        <!--Edit profile-->
+        <a class='nav-btn' href="profile.php"><i class="fal fa-user"></i></a>
+
+        <!-- Admin dashboard -->
+        <button class='btn' id='admin-btn' type="button" hidden>Admin Dashboard</button>
     </div>
-
-
-
-
     <div class="page">
+        <div class="spacer"></div>
+        <span id="welcome-icon"><i class="fad fa-grin-hearts"></i></span>
 
-        <div class="top-bar">
-            <div class="logo">Homepage</div>
-
-            <a href="/harrow/view/home_user/home.php" class="btn action-btn"><i class="fal fa-home"></i></a>
-
-            <a href="/harrow/view/home_user/heatmap.php" class="btn action-btn"><i class="fal fa-map-marked-alt"></i></a>
-
-            <button class="nav-btn notification-list-btn btn"><i class="fas fa-bell"></i></button>
-
-            <!--user logout-->
-            <a class='nav-btn' id='logout-btn' href="/harrow/controller/logout.php"><i class="fal fa-door-open"></i></a>
-            <!--Edit profile-->
-            <a class='nav-btn' href="profile.php"><i class="fal fa-user"></i></a>
-
-            <!-- Admin dashboard -->
-            <button class='btn' id='admin-btn' type="button" hidden>Admin Dashboard</button>
-
-
-
-        </div>
-
+        <span id="hello-msg">Hi <?php echo $_SESSION['username'] ?>!</span>
         <div class="spacer"></div>
 
-        <!-- New files area -->
-        <div class="new-files">
-            <button id="hidden-display" hidden></button>
-            <div id="ready-to-upload-msg"><span><b>Newly uploaded files</b></span><br><span style="font-size:0.8em;color:rgb(149, 157, 165)">All sensitive data will removed during upload and you may download the sanitized file :)</span></div>
-            <br>
-            <div class="file-list">
-                
-                <table id="new-files-table" class="file-table">
-
-                    <th></th>
-                    <th><i class="fas fa-file"></i></th>
-                    <th><i class="fas fa-save"></i></th>
-                    <th><i class="fas fa-trash-alt"></i></th>
-                    <th><i class="fas fa-download"></i></th>
-
+        <div class="statistics">
+            <div class="isp-table">
+                Number of files you uploaded from the specific ISP
+                <table id="isp-count-table">
+                    <tr>
+                        <th>ISP</th>
+                        <th># </th>
+                    </tr>
                 </table>
-                <div class="no-files">
-                    No files imported yet. Click button or drop to upload.<br>
-                    <i class="fal fa-file-import import-icon"></i>
-
-                </div>
             </div>
 
+            <div class="files-count">
+                <table id="files-count">
+                    <tr>
+                        <th># Files uploaded</th>
+                    </tr>
+                    <tr>
+                        <td>
 
-            <button id="select-all" class="btn">Select all</button>
-            <div class="upload-btn">
+                            <?
 
-                <input type="file" id="upload-btn" accept=".json, .har" hidden multiple>
-
-                <button id="fake-upload"><i class="fas fa-upload"></i> Upload</button>
-            </div>
-
-            <button id="delete-multiple-new-btn" class="btn" disabled='disabled'><i class="fas fa-trash-alt"></i> Delete </button>
-            <button id="download-multiple-new-btn" class="btn" disabled='disabled'><i class="fas fa-download"></i> Download </button>
-            <button id="save-to-server-btn" class="btn" disabled='disabled'><i class="fas fa-cloud-upload"></i> Save</button>
-            <div id='selected-uploaded-files-msg'><span id="selected-uploaded-files-number">0</span> files selected </div>
-
-        </div>
-        <div class="spacer"></div>
-        <!-- old files area -->
-        <div class="old-files">
-            <div id="already-uploaded-msg"><span><b>Your files</b></span></div><br>
-            <div class="file-list">
-                <table class="file-table" id='old-files-table'>
-
-                    <th></th>
-                    <th><i class="fas fa-file"></i></th>
-                    <th><i class="fas fa-save"></i></th>
-                    <th><i class="fas fa-trash-alt"></i></th>
-                    <th><i class="fas fa-download"></i></th>
-
+                            $user_id = $_SESSION['user_id'];
+                            $sql = mysqli_query($conn, "SELECT COUNT(file_id) AS file_count FROM files WHERE user_id=$user_id ") or die(mysqli_error($conn));
+                            $row = mysqli_fetch_row($sql);
+                            echo $row[0];
+                            ?>
+                        </td>
+                    </tr>
                 </table>
-
             </div>
+            <div class="city-count">
+                Number of files by the place you were at the time of upload
+                <table id="city-count">
+                    <tr>
+                        <th>Place</th>
+                        <th>#</th>
+                    </tr>
+                    <?
+                    $user_id = $_SESSION['user_id'];
+
+                    $sql = mysqli_query($conn, "SELECT upload_location,COUNT(file_id) AS file_count FROM files WHERE user_id=$user_id GROUP BY upload_location ORDER BY file_count DESC") or die(mysqli_error($conn));
+
+                    while ($row = mysqli_fetch_row($sql)) {
+
+                        $place = $row[0];
+                        $file_count = $row[1];
+                        echo '<tr><td>' . $place . '</td><td>' . $file_count . '</td></tr>';
+                    }
+                    ?>
+                </table>
+            </div>
+
+            Other statistics:
+            <table id="other-statistics">
+                <tr>
+                    <th></th>
+                    <th></th>
+                </tr>
+                <?
+                $user_id = $_SESSION['user_id'];
+
+                $sql = mysqli_query($conn, "SELECT COUNT(entries.entry_id) AS entries_count FROM entries INNER JOIN files ON files.user_id = $user_id AND files.file_id = entries.file_id") or die(mysqli_error($conn));
+
+                $result = mysqli_fetch_row($sql);
+                echo '<tr><td> Number of total entries</td><td>' . $result[0] . '</td></tr>';
+
+                $sql = mysqli_query($conn, "SELECT COUNT(responses.response_id) AS response_count FROM responses INNER JOIN (SELECT entries.entry_id FROM entries INNER JOIN files ON files.user_id = $user_id AND files.file_id = entries.file_id) AS user_entries ON responses.entry_id = user_entries.entry_id") 
+                ?>
+            </table>
         </div>
     </div>
-
-
 </body>
 
 </html>

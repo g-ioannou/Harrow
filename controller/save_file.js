@@ -1,5 +1,4 @@
 $(document).ready(function () {
-  console.log("ok");
   $("#save-to-server-btn").click(function (e) {
     for (const id in uploaded_selected_files) {
       const file = uploaded_selected_files[id];

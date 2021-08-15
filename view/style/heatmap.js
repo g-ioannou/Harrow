@@ -143,7 +143,7 @@ function displayOnHeatmap(heat) {
                 success: function (response) {
                   let latidude = response["latitude"];
                   let longitude = response["longitude"];
-                  let strength = ip_addresses_count[ip]["count"] / entry_ctr;
+                  let strength = ip_addresses_count[ip]["count"];
 
                   heat.addLatLng([latidude, longitude, strength]);
                 },

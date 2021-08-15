@@ -48,20 +48,20 @@ $(document).ready(function () {
   });
 
   let select_all = 0;
-  $(document).on("click", "#select-all", function () {
+  $(document).on("click", "#select-all-new", function () {
     if (select_all == 0) {
       let ctr = 0;
-      $(".file-list")
+      $(".new-files")
         .find(":checkbox")
         .each(function () {
-          $(":checkbox").prop("checked", true);
+          $(".new-files :checkbox").prop("checked", true);
           ctr++;
         });
 
       $("#selected-uploaded-files-number").html(ctr);
       if (ctr > 0) {
         uploaded_selected_files = uploaded_files;
-        $("#select-all").html("Unselect all");
+        $("#select-all-new").html("Unselect all");
       }
       select_all = 1;
     } else {
@@ -70,7 +70,7 @@ $(document).ready(function () {
         .each(function () {
           $(":checkbox").prop("checked", false);
         });
-      $("#select-all").html("Select all");
+      $("#select-all-new").html("Select all");
       select_all = 0;
       uploaded_selected_files = {};
       $("#selected-uploaded-files-number").html("0");
@@ -80,7 +80,7 @@ $(document).ready(function () {
 
   $(document).on("change", ".new-files :checkbox", function () {
     uploaded_selected_files = {};
-    $(".file-list")
+    $(".new-files")
       .find(":checkbox:checked")
       .each(function () {
         let id = $(this).attr("id");

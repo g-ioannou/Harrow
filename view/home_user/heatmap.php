@@ -40,10 +40,13 @@ session_start();
 
         <button id="close-side-panel"><i class="fas fa-times"></i></button><br>
         <span id='select-msg'>Select files to display on map.</span>
-        <table class="file-list">
-            <th></th>
-            <th><i class="fas fa-file"></i></th>
-        </table>
+        <div class="file-list-container">
+            <table class="file-list">
+                <th></th>
+                <th><i class="fas fa-file"></i></th>
+            </table>
+        </div>
+
         <button id="select-all" class="btn">select all</button>
     </div>
 
