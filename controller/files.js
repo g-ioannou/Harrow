@@ -21,6 +21,7 @@ $(document).ready(function () {
     url: "/harrow/model/get_file_user.php",
 
     success: function (response) {
+      
       let files = JSON.parse(response);
       for (const f in files) {
         const file = files[f];

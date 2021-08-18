@@ -21,11 +21,12 @@ $(document).ready(function () {
 
     if (email_log == "" || password_log == "") {
       $("#login_error").html("Please fill all the fields.");
-      console.log("ok");
       $("#email_log,#password_log").css({ border: "1px solid red" });
     } else {
       if (!email_regex.test(email_log)) {
         $("#login_error").html("Invalid e-mail");
+      } else if (!password_regex.test(password_log)) {
+        $("#login_error").html("Invalid password");
       } else {
         $.ajax({
           method: "POST",
@@ -39,6 +40,8 @@ $(document).ready(function () {
             console.log(response);
             if (response == "success") {
               window.location.replace("/harrow/view/home_user/home.php");
+            } else {
+              $("#login_error").html("E-mail not found.");
             }
           },
           error: function (error) {
