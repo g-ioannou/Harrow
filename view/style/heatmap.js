@@ -82,6 +82,7 @@ $(document).ready(function () {
     $(".side-panel").fadeIn(300);
   });
 
+  clearHeatmap();
   $(document).on("change", ".side-panel :checkbox", function () {
     selected_files = {};
     heat = clearHeatmap(heat);

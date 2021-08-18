@@ -75,7 +75,7 @@ include "../../model/connection_db.php";
                     <tr>
                         <td>
 
-                            <?
+                            <?php
 
                             $user_id = $_SESSION['user_id'];
                             $sql = mysqli_query($conn, "SELECT COUNT(file_id) AS file_count FROM files WHERE user_id=$user_id ") or die(mysqli_error($conn));
@@ -93,7 +93,7 @@ include "../../model/connection_db.php";
                         <th>Place</th>
                         <th>#</th>
                     </tr>
-                    <?
+                    <?php
                     $user_id = $_SESSION['user_id'];
 
                     $sql = mysqli_query($conn, "SELECT upload_location,COUNT(file_id) AS file_count FROM files WHERE user_id=$user_id GROUP BY upload_location ORDER BY file_count DESC") or die(mysqli_error($conn));
@@ -114,7 +114,7 @@ include "../../model/connection_db.php";
                     <th></th>
                     <th></th>
                 </tr>
-                <?
+                <?php
                 $user_id = $_SESSION['user_id'];
 
                 $sql = mysqli_query($conn, "SELECT COUNT(entries.entry_id) AS entries_count FROM entries INNER JOIN files ON files.user_id = $user_id AND files.file_id = entries.file_id") or die(mysqli_error($conn));
@@ -122,7 +122,7 @@ include "../../model/connection_db.php";
                 $result = mysqli_fetch_row($sql);
                 echo '<tr><td> Number of total entries</td><td>' . $result[0] . '</td></tr>';
 
-                $sql = mysqli_query($conn, "SELECT COUNT(responses.response_id) AS response_count FROM responses INNER JOIN (SELECT entries.entry_id FROM entries INNER JOIN files ON files.user_id = $user_id AND files.file_id = entries.file_id) AS user_entries ON responses.entry_id = user_entries.entry_id") 
+                $sql = mysqli_query($conn, "SELECT COUNT(responses.response_id) AS response_count FROM responses INNER JOIN (SELECT entries.entry_id FROM entries INNER JOIN files ON files.user_id = $user_id AND files.file_id = entries.file_id) AS user_entries ON responses.entry_id = user_entries.entry_id")
                 ?>
             </table>
         </div>

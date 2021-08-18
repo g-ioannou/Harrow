@@ -1,4 +1,4 @@
-<?
+<?php
 session_start();
 include "../model/connection_db.php";
 
