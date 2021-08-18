@@ -41,7 +41,7 @@ $(document).ready(function () {
             if (response == "success") {
               window.location.replace("/harrow/view/home_user/home.php");
             } else {
-              $("#login_error").html("E-mail not found.");
+              $("#login_error").html("E-mail and password don't match.");
             }
           },
           error: function (error) {
