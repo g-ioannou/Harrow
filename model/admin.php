@@ -12,3 +12,4 @@ if ($num == 1) {
 } else {
     echo "fail";
 }
+?>

@@ -156,3 +156,4 @@ function add_headers($conn, $type, $r_id, $headers)
         }
     }
 }
+?>

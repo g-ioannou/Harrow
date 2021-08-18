@@ -1,4 +1,4 @@
-<?
+<?php
 session_start();
 include "../model/connection_db.php";
 
@@ -8,3 +8,4 @@ $sql = mysqli_query($conn, "CALL delete_file($user_id,$file_id)") or die(mysqli_
 
 echo 'ok';
 
+?>

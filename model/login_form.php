@@ -52,3 +52,4 @@ if ($_POST['type'] == "register") {
         }
     }
 }
+?>

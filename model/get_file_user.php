@@ -1,4 +1,4 @@
-<?
+<?php
 session_start();
 include "../model/connection_db.php";
 $user_id = $_SESSION['user_id'];
@@ -23,3 +23,4 @@ echo json_encode($file);
 
 $sql->close();
 $conn->next_result();
+?>
