@@ -12,6 +12,7 @@ $(document).ready(function () {
 
   //validation and log in
   $("#login_btn").click(function () {
+    console.log("ok");
     let email_log = $("#email_log").val();
     let password_log = $("#password_log").val();
     let email_regex = /^[\w%_\-.\d]+@[\w.\-]+.[A-Za-z]{2,6}$/; // regex email check
@@ -19,31 +20,34 @@ $(document).ready(function () {
       /^(?=.*\d)(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,32}$/; //regex password check
 
     if (email_log == "" || password_log == "") {
-      $("#login_error").html("Please fill the fields.");
+      $("#login_error").html("Please fill all the fields.");
+      $("#email_log,#password_log").css({ border: "1px solid red" });
     } else {
       if (!email_regex.test(email_log)) {
-        $("#login_error").html("Please fill correct the email.");
+        $("#login_error").html("Invalid e-mail");
+      } else if (!password_regex.test(password_log)) {
+        $("#login_error").html("Invalid password");
       } else {
         $.ajax({
-          method: "post",
+          method: "POST",
           url: "/harrow/model/login_form.php",
           data: {
-            type: 1,
+            type: "login",
             email: email_log,
             password: password_log,
           },
-          //dataType: "json",
           success: function (response) {
-            // $("#login_error").html(data);
+            console.log(response);
             if (response == "success") {
-              console.log("OOOOOOOOOOOOOK");
-              window.location.href = "/harrow/view/home_user/home.php";
+              window.location.replace("/harrow/view/home_user/home.php");
             } else {
-              $("#login_error").html("Invalid email or password.");
+              $("#login_error").html("E-mail and password don't match.");
             }
           },
+          error: function (error) {
+            console.log(error);
+          },
         });
-        //return true;
       }
     }
   });
@@ -76,34 +80,53 @@ $(document).ready(function () {
       email == "" ||
       password == ""
     ) {
-      $("#register_error").html("Please fill the fields.");
+      $("#register_error").html("Please fill all the fields.");
       $("#register_error").show();
+      $("#firstname,#lastname,#username,#email_reg,#password_reg").css({
+        border: "1px solid red",
+      });
+
+      setTimeout(function () {
+        $("#firstname,#lastname,#username,#email_reg,#password_reg").css({
+          border: "none",
+        });
+        $("#register_error").fadeOut(3000);
+      }, 3000);
       valid = false;
     } else {
       if (username.length < 6 || username.indexOf(" ") !== -1) {
         $("#username_error_message").html(
-          "Invalid username. Username must contain at least 6 characters and no space."
+          "Username must be longer than 6 characters."
         );
         $("#username_error_message").show();
+        $("#username").css({ border: "1px solid red" });
         valid = false;
       }
       if (!email_regex.test(email)) {
-        $("#email_error_message").html("Invalid email.");
+        $("#email_error_message").html("Invalid email form.");
         $("#email_error_message").show();
+        $("#email_reg").css({ border: "1px solid red" });
         valid = false;
       }
       if (!password_regex.test(password)) {
         $("#password_error_message").html("Invalid password.");
         $("#password_error_message").show();
+        $("#password_reg").css({ border: "1px solid red" });
         valid = false;
       }
       if (!regName.test(firstname)) {
-        $("#firstname_error_message").html("Invalid firstname.");
+        $("#firstname_error_message").html(
+          "Firstname can't contain invalid characters."
+        );
         $("#firstname_error_message").show();
+        $("#firstname").css({ border: "1px solid red" });
         valid = false;
       }
       if (!regName.test(lastname)) {
-        $("#lastname_error_message").html("Invalid lastname.");
+        $("#lastname_error_message").html(
+          "Lastname can't contain invalid characters."
+        );
+        $("#lastname").css({ border: "1px solid red" });
         $("#lastname_error_message").show();
         valid = false;
       }
@@ -118,7 +141,7 @@ $(document).ready(function () {
         method: "post",
         url: "/harrow/model/login_form.php",
         data: {
-          type: 2,
+          type: "register",
           firstname: firstname,
           lastname: lastname,
           username: username,
@@ -128,17 +151,21 @@ $(document).ready(function () {
         success: function (response) {
           console.log(response);
           if (response == "fail_user") {
-            $("#register_error").html("Username ID already exists.");
+            $("#register_error").html(
+              "An account with this username already exists."
+            );
             $("#register_error").show();
           } else if (response == "fail_email") {
-            $("#register_error").html("Email ID already exists.");
+            $("#register_error").html(
+              "An account with this e-mail already exists."
+            );
             $("#register_error").show();
           } else {
-            if (response == "success") {
-              window.location.href = "/harrow/view/home_user/home.php";
-            }
-            //$("#register_error").html("Registration success. You can login now.");
-            //$("#register_error").show();
+            $("#register_error").html(
+              "Registration success! Taking you back to log in."
+            );
+            $("#register_error").css({ color: "rgb(7, 219, 7)" });
+            $("#register_error").show();
 
             //clear input fields
             $("#firstname").val("");
@@ -146,7 +173,14 @@ $(document).ready(function () {
             $("#username").val("");
             $("#email_reg").val("");
             $("#password_reg").val("");
+
+            setTimeout(function () {
+              window.location.replace("/harrow/view/login/login.html");
+            }, 2000);
           }
+        },
+        error: function (error) {
+          console.log(error);
         },
       });
     }

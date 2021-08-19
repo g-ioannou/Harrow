@@ -1,22 +1,16 @@
 $(document).ready(function () {
-  let height = $(".top-bar").height();
-  let margin = parseInt($(".top-bar").css("padding-bottom"));
+  $.ajax({
+    type: "GET",
+    url: "/harrow/model/get_user_isps.php",
+    success: function (response) {
+      let upload_isps_count = JSON.parse(response);
 
-  if (height > 0) {
-    $(".main").css("padding-top", height + 3 * margin);
-  }
+      for (let i = 0; i < upload_isps_count.length; i++) {
+        const isp = upload_isps_count[i];
+        let html = `<tr> <td>${isp["isp"]}</td><td>${isp["file_count"]}</td></tr>`;
 
-  $("#fake-upload").click(function (e) {
-    $("#upload-btn").click();
-  });
-
-  $("#hidden-display").click(function (e) {
-    e.preventDefault();
-    for (let i = 0; i < har_list.length; i++) {
-      const file = har_list[i];
-        if (file.shown==0){
-            $(".file-table").append(file.displayHTML());
-        }
-    }
+        $("#isp-count-table").append(html);
+      }
+    },
   });
 });
