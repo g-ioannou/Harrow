@@ -11,11 +11,14 @@ $upload_location = $_SESSION['city'];
 $text_contents = $_POST['contents'];
 
 
+
+
 $query = mysqli_query($conn, "CALL add_file('$user_id','$file_name','$file_size','$upload_isp','$upload_location','$text_contents')") or die(mysqli_error($conn));
 
 $result = mysqli_fetch_array($query);
 
 $file_id =  $result['file_id'];
+
 
 $query->close();
 $conn->next_result();
@@ -23,37 +26,26 @@ $conn->next_result();
 $json_contents = json_decode($text_contents);
 $entries = $json_contents->contents;
 
+
+
 foreach ($entries as $entry) {
-    if (array_key_exists('startedDateTime', $entry)) {
-        $_startedDateTime = "$entry->startedDateTime";
-    } else {
-        $_startedDateTime = "NULL";
-    }
-    var_dump($entry);
-    if (array_key_exists('serverIPAddress', $entry)) {
-        $_serverIpAddress = "'$entry->serverIPAddress'";
-        echo $_serverIpAddress;
-    } else {
-        $_serverIpAddress = "NULL";
-        echo $_serverIpAddress;
-    }
 
+    $_startedDateTime = checkIfKeyExists('startedDateTime',$entry,0);
+    
+    $_serverIpAddress = checkIfKeyExists('serverIPAddress',$entry,1);
+    
+    $_wait = checkIfKeyExists('wait', $entry,0);
 
-
-    if (array_key_exists('wait', $entry)) {
-        $_wait = $entry->wait;
-    } else {
-        $_wait = "NULL";
-    }
-
-    // ------------===--- ADD ENTRY ----------------
+    // ------------------ ADD ENTRY ----------------
     $sql = mysqli_query($conn, "CALL add_entry('$file_id','$_startedDateTime',$_serverIpAddress,$_wait)") or die(mysqli_error($conn));
-
+    
     $res = mysqli_fetch_array($sql);
     $entry_id = $res['entry_id'];
 
     $sql->close();
     $conn->next_result();
+
+    
     // ----------------ADD ENTRY'S REQUEST ---------
 
     $_method = $entry->request->method;
@@ -76,15 +68,13 @@ foreach ($entries as $entry) {
     $_statusText = $entry->response->statusText;
 
 
-    if ($_statusText == "") {
-        $_statusText = "Invalid response";
-    }
+    $_statusText = checkIfKeyExists('statusText',$entry->response,1);
     if ($_status == 0) {
         $_status = "NULL";
     }
 
-
-    $sql = mysqli_query($conn, "CALL add_response('$entry_id',$_status,'$_statusText')") or die(mysqli_error($conn));
+    
+    $sql = mysqli_query($conn, "CALL add_response($entry_id,$_status,$_statusText)") or die(mysqli_error($conn));
 
     $res = mysqli_fetch_array($sql);
     $response_id = $res['response_id'];
@@ -99,61 +89,40 @@ foreach ($entries as $entry) {
 
 function add_headers($conn, $type, $r_id, $headers)
 {
-    $all_null = 1;
+    $all_null = 0;
     foreach ($headers as $header) {
-        if (array_key_exists('content_type', $header)) {
-            $_content_type = "'$header->content_type'";
-            $all_null = 0;
-        } else {
-            $_content_type = "NULL";
-        }
+        
+        $_content_type = checkIfKeyExists('content_type', $header,1);
+        $_cache_control = checkIfKeyExists('cache_control', $header,1);
+        $_pragma = checkIfKeyExists('pragma', $header,1);
+        $_expires = checkIfKeyExists("expires", $header,1);
+        $_age = checkIfKeyExists('age', $header,0);
+        $_last_modified = checkIfKeyExists('last_modified', $header,1);
+        $_host = checkIfKeyExists('host', $header,1);
 
-        if (array_key_exists('cache_control', $header)) {
-            $_cache_control = "'$header->cache_control'";
-            $all_null = 0;
-        } else {
-            $_cache_control = "NULL";
-        }
-
-        if (array_key_exists('pragma', $header)) {
-            $_pragma = "'$header->pragma'";
-            $all_null = 0;
-        } else {
-            $_pragma = "NULL";
-        }
-
-        if (array_key_exists('expires', $header)) {
-            $_expires = "'$header->expires'";
-            $all_null = 0;
-        } else {
-            $_expires = "NULL";
-        }
-
-        if (array_key_exists('age', $header)) {
-            $_age = $header->age;
-            $all_null = 0;
-        } else {
-            $_age = "NULL";
-        }
-
-        if (array_key_exists('last_modified', $header)) {
-            $_last_modified = "'$header->last_modified'";
-            $all_null = 0;
-        } else {
-            $_last_modified = "NULL";
-        }
-
-
-        if (array_key_exists('host', $header)) {
-            $_host = "'$header->host'";
-            $all_null = 0;
-        } else {
-            $_host = "NULL";
+        if($_content_type=="NULL" and $_cache_control=="NULL" and $_pragma=="NULL" and $_expires=="NULL" and $_age=="NULL" and $_last_modified=="NULL" and $_host=="NULL"){
+            $all_null =1 ;
         }
 
         if ($all_null == 0) {
             $sql = mysqli_query($conn, "INSERT INTO headers ($type,content_type,pragma,expires,age,last_modified,host,cache_control) VALUES ($r_id,$_content_type,$_pragma,$_expires,$_age,$_last_modified, $_host, $_cache_control)") or die(mysqli_error($conn));
         }
     }
+}
+
+function checkIfKeyExists($key,$obj,$str){
+    if (isset($obj->$key) and $obj->$key!='') {
+        $_key = $obj->$key;
+        if($str==1){
+            $_key = "'$_key'";
+        }
+    }
+    else {
+        $_key = "NULL";
+    }
+
+    
+
+    return $_key;
 }
 ?>

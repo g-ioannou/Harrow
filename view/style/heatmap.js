@@ -82,9 +82,10 @@ $(document).ready(function () {
     $(".side-panel").fadeIn(300);
   });
 
-  clearHeatmap();
+  let heat=1;
   $(document).on("change", ".side-panel :checkbox", function () {
     selected_files = {};
+    
     heat = clearHeatmap(heat);
     $(".side-panel")
       .find(":checkbox:checked")
@@ -106,16 +107,17 @@ function displayOnHeatmap(heat) {
 
     for (const id in selected_files) {
       const file = selected_files[id];
+      
 
       $.ajax({
-        type: "GET",
+        type: "POST",
         url: "/harrow/model/get_file_ip.php",
         data: { file_id: file.db_id },
         success: function (response) {
           ctr++;
-
+          console.log(response);
           let ip_addresses = JSON.parse(response);
-
+         
           for (let i = 0; i < ip_addresses.length; i++) {
             const ip_obj = ip_addresses[i];
             unique_addresses.add(ip_obj["serverIpAddress"]);
@@ -124,7 +126,7 @@ function displayOnHeatmap(heat) {
           }
 
           if (ctr == get_json_len(selected_files)) {
-            let ip_addresses_count = {};
+            let ip_addresses_count = {}
 
             for (const ip of unique_addresses) {
               ip_addresses_count[ip] = { count: 0 };
@@ -145,7 +147,7 @@ function displayOnHeatmap(heat) {
                   let latidude = response["latitude"];
                   let longitude = response["longitude"];
                   let strength = ip_addresses_count[ip]["count"];
-
+                  
                   heat.addLatLng([latidude, longitude, strength]);
                 },
               });
@@ -166,6 +168,7 @@ function get_json_keys(json) {
 
 function clearHeatmap(heat) {
   try {
+    
     mymap.removeLayer(heat);
   } catch (e) {}
   let new_heat = L.heatLayer([], {
