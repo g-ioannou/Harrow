@@ -6,7 +6,7 @@ $passworddb = "";
 $dbname = "harrow";
 
 // Create connection
-$conn = new mysqli($servername, $username, $passworddb, $dbname);
+$conn = new mysqli($servername, $username, $passworddb,$dbname);
 
 // Check connection
 if ($conn->connect_error) {

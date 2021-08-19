@@ -80,10 +80,20 @@
 <div class="cardBox">
     <div class="card">
        <div>
+           
+           <div class="regUsers" > Registered users</div>
            <span class="numbers" id="numbers"></span>
-           <div class="regUsers"> Registered users</div>
        </div>
+       <div class="iconBox"><i class="fas fa-users"></i></div>
     </div>
+    <div class="card">
+        <div>
+            <div class="mpourdes">Mpourdes </div>
+            <span class="numbers" id="mpourdes"></span>
+         
+        </div>
+        <div class="iconBox"><i class="fas fa-users"></i></div>
+     </div>
 </div>
 
         
