@@ -11,6 +11,7 @@ $(document).ready(function () {
     url: "/harrow/model/get_file_user.php",
 
     success: function (response) {
+      console.log(response);
       let files = JSON.parse(response);
       for (const f in files) {
         const file = files[f];
@@ -337,7 +338,10 @@ class HARfile {
           name == "last-modified" ||
           name == "host"
         ) {
-          cleaned_header[name] = header["value"].replace("-", "_");
+          
+          cleaned_header[name] = (header["value"].replace("-", "_")).split(";")[0];
+          console.log(cleaned_header);
+          
           cleaned_headers.push(cleaned_header);
         }
       }
