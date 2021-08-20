@@ -92,6 +92,7 @@ $(document).ready(function () {
       .each(function () {
         let id = $(this).attr("id");
         selected_files[id] = user_files[id];
+        
       });
     displayOnHeatmap(heat);
   });

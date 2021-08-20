@@ -18,6 +18,7 @@ function upload_file_to_server(file) {
       size: file.size,
       contents: JSON.stringify({ contents: file.contents }),
     },
+    
     success: function (response) {
       notify("success", `<b>File ${file.name} uploaded.</b>`);
       console.log(response);

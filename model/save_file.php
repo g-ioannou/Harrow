@@ -10,9 +10,6 @@ $upload_isp = $_SESSION['isp'];
 $upload_location = $_SESSION['city'];
 $text_contents = $_POST['contents'];
 
-
-
-
 $query = mysqli_query($conn, "CALL add_file('$user_id','$file_name','$file_size','$upload_isp','$upload_location','$text_contents')") or die(mysqli_error($conn));
 
 $result = mysqli_fetch_array($query);
@@ -25,7 +22,6 @@ $conn->next_result();
 
 $json_contents = json_decode($text_contents);
 $entries = $json_contents->contents;
-
 
 
 foreach ($entries as $entry) {

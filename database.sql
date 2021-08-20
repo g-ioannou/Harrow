@@ -35,7 +35,7 @@ CREATE TABLE files(
 CREATE TABLE entries(
 	file_id BIGINT,
 	entry_id BIGINT AUTO_INCREMENT,
-	serverIpAddress VARCHAR(20),
+	serverIpAddress VARCHAR(255),
 	startedDateTime DATETIME DEFAULT NULL,
 	wait INT,
 	PRIMARY KEY (entry_id),
@@ -145,7 +145,7 @@ DELIMITER $
 CREATE PROCEDURE `add_entry`(
 	IN `inp_file_id` BIGINT,
 	IN `inp_startedDateTime` VARCHAR(255),
-	IN `inp_serverIpAddress` VARCHAR(20),
+	IN `inp_serverIpAddress` VARCHAR(255),
 	IN `inp_wait` INT(11)
 )
 
