@@ -139,12 +139,16 @@ function displayOnHeatmap(heat) {
             }
 
             for (const ip in ip_addresses_count) {
-              let url = `http://api.ipstack.com/${ip}?access_key=29e960169862b3a0809ce40d9bb6acbc`;
+              let ip = '[2a05:d018:76c:b685:3b38:679d:2640:1ced]'
+              let cleaned_ip = (ip.replace('[','')).replace(']','');
+  
+              let url = `http://api.ipstack.com/${cleaned_ip}?access_key=29e960169862b3a0809ce40d9bb6acbc`;
               $.ajax({
                 type: "GET",
                 url: url,
 
                 success: function (response) {
+                 
                   try {
 
 
@@ -153,7 +157,7 @@ function displayOnHeatmap(heat) {
                   let strength = ip_addresses_count[ip]["count"];
                   heat.addLatLng([latidude, longitude, strength]);
                   }catch(e){
-                    
+                    console.log(e);
                   }
                  
                 },
