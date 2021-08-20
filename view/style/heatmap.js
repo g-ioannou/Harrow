@@ -145,11 +145,17 @@ function displayOnHeatmap(heat) {
                 url: url,
 
                 success: function (response) {
+                  try {
+
+
                   let latidude = response["latitude"];
                   let longitude = response["longitude"];
                   let strength = ip_addresses_count[ip]["count"];
-                  
                   heat.addLatLng([latidude, longitude, strength]);
+                  }catch(e){
+                    
+                  }
+                 
                 },
               });
             }
