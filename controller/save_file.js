@@ -18,10 +18,13 @@ function upload_file_to_server(file) {
       size: file.size,
       contents: JSON.stringify({ contents: file.contents }),
     },
+    
     success: function (response) {
       notify("success", `<b>File ${file.name} uploaded.</b>`);
+      console.log(response);
     },
     error: function (error) {
+      console.log(error);
       notify(
         "error",
         `<b>Couldn't upload ${file.name}</b> <br> Error 500 (internal server error): ${error}`

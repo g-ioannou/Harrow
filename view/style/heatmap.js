@@ -82,15 +82,17 @@ $(document).ready(function () {
     $(".side-panel").fadeIn(300);
   });
 
-  clearHeatmap();
+  let heat=1;
   $(document).on("change", ".side-panel :checkbox", function () {
     selected_files = {};
+    
     heat = clearHeatmap(heat);
     $(".side-panel")
       .find(":checkbox:checked")
       .each(function () {
         let id = $(this).attr("id");
         selected_files[id] = user_files[id];
+        
       });
     displayOnHeatmap(heat);
   });
@@ -106,16 +108,17 @@ function displayOnHeatmap(heat) {
 
     for (const id in selected_files) {
       const file = selected_files[id];
+      
 
       $.ajax({
-        type: "GET",
+        type: "POST",
         url: "/harrow/model/get_file_ip.php",
         data: { file_id: file.db_id },
         success: function (response) {
           ctr++;
-
+          console.log(response);
           let ip_addresses = JSON.parse(response);
-
+         
           for (let i = 0; i < ip_addresses.length; i++) {
             const ip_obj = ip_addresses[i];
             unique_addresses.add(ip_obj["serverIpAddress"]);
@@ -124,7 +127,7 @@ function displayOnHeatmap(heat) {
           }
 
           if (ctr == get_json_len(selected_files)) {
-            let ip_addresses_count = {};
+            let ip_addresses_count = {}
 
             for (const ip of unique_addresses) {
               ip_addresses_count[ip] = { count: 0 };
@@ -136,17 +139,27 @@ function displayOnHeatmap(heat) {
             }
 
             for (const ip in ip_addresses_count) {
-              let url = `http://api.ipstack.com/${ip}?access_key=29e960169862b3a0809ce40d9bb6acbc`;
+              let ip = '[2a05:d018:76c:b685:3b38:679d:2640:1ced]'
+              let cleaned_ip = (ip.replace('[','')).replace(']','');
+  
+              let url = `http://api.ipstack.com/${cleaned_ip}?access_key=29e960169862b3a0809ce40d9bb6acbc`;
               $.ajax({
                 type: "GET",
                 url: url,
 
                 success: function (response) {
+                 
+                  try {
+
+
                   let latidude = response["latitude"];
                   let longitude = response["longitude"];
                   let strength = ip_addresses_count[ip]["count"];
-
                   heat.addLatLng([latidude, longitude, strength]);
+                  }catch(e){
+                    console.log(e);
+                  }
+                 
                 },
               });
             }
@@ -166,6 +179,7 @@ function get_json_keys(json) {
 
 function clearHeatmap(heat) {
   try {
+    
     mymap.removeLayer(heat);
   } catch (e) {}
   let new_heat = L.heatLayer([], {

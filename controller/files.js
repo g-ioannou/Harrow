@@ -4,7 +4,6 @@ let user_files = {};
 
 $(document).ready(function () {
   // const handler = new UploadHandler()
-  
 
   $.ajax({
     type: "GET",
@@ -233,8 +232,25 @@ class HARfile {
 
     if (is_cleaned == 0) {
       this.contents = this.clean_contents(contents.log.entries);
+      let current_size = (this.size / Math.pow(10, 6)).toFixed(1);
+      this.size_display = `${current_size} MB`;
+      if (this.size <= 1) {
+        current_size = this.size / Math.pow(10, 3);
+        this.size_display = `${current_size} KB`;
+      }
     } else {
       this.contents = contents;
+      let size_calc = new TextEncoder().encode(this.contents).length;
+      this.size = size_calc;
+      let current_size = (this.size / Math.pow(10, 6));
+      this.size_display = `${current_size} MB`;
+      
+      if (current_size <=10000) {
+        current_size = this.size / Math.pow(10, 3);
+        this.size_display = `${current_size.toFixed(1)} KB`;
+        console.log(this.size_display);
+      }
+      
     }
     this.db_id = 0;
     this.shown = 0;
@@ -247,6 +263,11 @@ class HARfile {
 
   set select(value) {
     this.selected = value;
+  }
+
+  get file_size(){
+    let size = new TextEncoder().encode(JSON.stringify(this.contents)).length;
+    return size;
   }
 
   download() {
@@ -268,17 +289,11 @@ class HARfile {
   displayHTML() {
     this.shown = 1;
     let html = `<tr id="${this.id}" class="uploaded-file">
-                <td><input type="checkbox" class="file-select" id="${
-                  this.id
-                }" ></td>
+                <td><input type="checkbox" class="file-select" id="${this.id}" ></td>
                 <td><i class="fal fa-file"></i>&nbsp;&nbsp; ${this.name}</td>
-                <td>${(this.size / Math.pow(10, 6)).toFixed(1)} MB</td>
-                <td><button class="btn file-dlt-btn" id="${
-                  this.id
-                }"><i class="fal fa-trash-alt"></i></button></td>
-                <td><button class="btn file-dow-btn" id="${
-                  this.id
-                }"><i class="fal fa-file-download"></i></button></td>
+                <td>${this.size_display}</td>
+                <td><button class="btn file-dlt-btn" id="${this.id}"><i class="fal fa-trash-alt"></i></button></td>
+                <td><button class="btn file-dow-btn" id="${this.id}"><i class="fal fa-file-download"></i></button></td>
             </tr>
             `;
     return html;
@@ -337,7 +352,10 @@ class HARfile {
           name == "last-modified" ||
           name == "host"
         ) {
-          cleaned_header[name] = header["value"].replace("-", "_");
+          cleaned_header[name] = header["value"]
+            .replace("-", "_")
+            .split(";")[0];
+
           cleaned_headers.push(cleaned_header);
         }
       }
