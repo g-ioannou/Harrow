@@ -355,7 +355,10 @@ class HARfile {
           cleaned_header[name] = header["value"]
             .replace("-", "_")
             .split(";")[0];
-
+          
+          cleaned_header[name] = cleaned_header[name].replace("[","");
+          cleaned_header[name] = cleaned_header[name].replace("]","");
+          
           cleaned_headers.push(cleaned_header);
         }
       }

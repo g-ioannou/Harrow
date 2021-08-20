@@ -41,8 +41,6 @@ if ($_POST['type'] == "register") {
         $query->close();
         $conn->next_result();
 
-        $sql = mysqli_query($conn, "CALL add_user('$email','$username','$password','$firstname','$lastname') ");
-
         if (!$sql = mysqli_query($conn, "CALL add_user('$email','$username','$password','$firstname','$lastname') ")) {
             echo mysqli_error(($conn));
         } else {
