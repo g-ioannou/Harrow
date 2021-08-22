@@ -248,7 +248,7 @@ class HARfile {
       if (current_size <=10000) {
         current_size = this.size / Math.pow(10, 3);
         this.size_display = `${current_size.toFixed(1)} KB`;
-        console.log(this.size_display);
+        
       }
       
     }
@@ -334,7 +334,6 @@ class HARfile {
       };
       cleaned_entries.push(cleaned_entry);
     }
-
     return cleaned_entries;
 
     function cleanHeaders(headers) {
