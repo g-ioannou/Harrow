@@ -1,0 +1,381 @@
+body {
+  padding: 0;
+  margin: 0;
+  font-size: 1em;
+  overflow: auto;
+}
+
+
+
+.notification {
+  position: relative;
+  display: flex;
+  float: right;
+  align-items: center;
+  background: rgba(149, 157, 165, 0.5);
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  margin-right: 0.2em;
+  padding: 0.7em;
+  padding-left: 0.3m;
+  border-radius: 0.4em;
+  width: 92%;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  min-height: min-content;
+  min-width: 0;
+  backdrop-filter: blur(5px);
+  z-index: 200;
+}
+
+.notification-perma {
+  padding: 0.7em;
+  align-items: center;
+  display: flex;
+  margin: 0.5em;
+  border-radius: 0.4em;
+  backdrop-filter: blur(5px);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  min-height: min-content;
+  min-width: 0;
+  font-size: 0.8em;
+}
+
+.no-files {
+  font-size: 0.8em;
+  position: relative;
+  width: 100%;
+  text-align: center;
+  vertical-align: middle;
+  color: rgb(168, 168, 168);
+  z-index: -1;
+  margin-top: 1em;
+}
+
+.import-icon {
+  padding: 20px;
+  font-size: 2em;
+}
+
+.upload-btn {
+  text-align: center;
+  background: white;
+}
+
+.file-dlt-btn,
+.file-dow-btn {
+  border: none;
+}
+
+.btn {
+  
+  background: none;
+  cursor: pointer;
+  border: none;
+}
+
+
+
+.new-files,
+.old-files {
+  margin: 0 auto;
+  width: 95%;
+
+  border-radius: 0.4em;
+  padding: 0.2em;
+}
+
+.file-list,
+.old-files {
+  color: rgb(63, 63, 63);
+  border-collapse: collapse;
+
+  overflow: auto;
+  min-height: max-content;
+  max-height: 20em;
+}
+.old-files {
+  overflow: hidden;
+  height: max-content;
+}
+
+table {
+  text-align: center;
+  table-layout: fixed;
+  margin: 0px; /*min-height: 2em;*/
+  width: 100%;
+}
+
+td {
+  white-space: nowrap;
+  overflow: hidden;
+  border: 1em transparent;
+  border-radius: 0.2em;
+  font-size: 0.8em;
+}
+
+tr {
+  width: 100%;
+}
+
+th {
+  color: white;
+  background: rgb(65, 65, 65);
+  border: 1em transparent;
+  border-radius: 0.4em;
+  position: sticky;
+  top: 0;
+  height: fixed;
+  z-index: 0;
+  overflow: hidden;
+  padding: 0.3em;
+}
+
+th:nth-of-type(1) {
+  width: 3%;
+}
+
+th:nth-of-type(2) {
+  width: 79%;
+  padding-left: 1em;
+}
+
+th:nth-of-type(3) {
+  width: 5%;
+}
+
+th:nth-of-type(4) {
+  width: 5%;
+}
+
+th:nth-of-type(5) {
+  width: 5%;
+}
+
+td:nth-of-type(2) {
+  max-width: 65em;
+  text-align: left;
+  padding-left: 1em;
+}
+
+tr:nth-child(even) {
+  background: rgb(245, 245, 245);
+}
+
+tr:nth-child(odd) {
+  background: #e1e1e1;
+}
+
+#ready-to-upload-msg,
+#already-uploaded-msg {
+  text-align: center;
+  background: rgba(149, 157, 165, 0.2);
+  border-radius: 0.4em;
+  padding: 0.5em; /*white-space: nowrap;*/
+}
+
+#save-to-server-btn,
+#delete-multiple-new-btn,
+#download-multiple-new-btn,
+#select-all-new {
+  float: right;
+  font-size: 1em;
+  background-color: white;
+  color: black;
+  padding: 0.5em;
+  border-radius: 0.4em;
+  margin-top: 0.5em;
+  margin-left: 0.5em;
+  border: 1px solid gray;
+}
+
+#select-all-new {
+  float: left;
+  margin-left: 0;
+  margin-right: 0.5em;
+}
+
+.fa-exclamation,
+.fa-question {
+  margin-left: 0.5em;
+}
+
+#fake-upload {
+  float: left;
+  font-size: 1em;
+  background: none;
+  padding: 0.5em;
+  margin-top: 0.5em;
+  cursor: pointer;
+  border-radius: 0.4em;
+  text-align: center;
+  border: 1px solid gray;
+  width: 20em;
+}
+
+#fake-upload:hover,
+#select-all-new:hover {
+  border: 1px solid green;
+  color: green;
+}
+
+#save-to-server-btn {
+  width: 15em;
+}
+
+#save-to-server-btn:disabled,
+#delete-multiple-new-btn:disabled,
+#download-multiple-new-btn:disabled {
+  background-color: gray;
+  color: white;
+}
+
+#save-to-server-btn:enabled,
+#delete-multiple-new-btn:enabled,
+#download-multiple-new-btn:enabled {
+  background-color: white;
+  color: black;
+}
+
+#delete-multiple-new-btn:hover {
+  color: red;
+  border: 1px solid red;
+}
+
+#download-multiple-new-btn:hover {
+  color: blue;
+  border: 1px solid blue;
+}
+
+#save-to-server-btn:hover {
+  color: blueviolet;
+  border: 1px solid blueviolet;
+}
+
+#selected-uploaded-files-msg {
+  margin-top: 0.5em;
+  vertical-align: middle;
+  text-align: center;
+  float: right;
+  padding: 0.5em;
+}
+
+.error {
+  background: rgba(236, 120, 120, 0.5);
+}
+
+.success {
+  background: rgba(149, 246, 118, 0.5);
+}
+
+.upload {
+  background: rgba(91, 147, 238, 0.5);
+}
+
+.delete {
+  background: rgba(68, 67, 67, 0.5);
+}
+
+.notification-sign {
+  color: black;
+  margin-right: 0.9em;
+  font-size: 2em;
+  vertical-align: middle;
+}
+
+.close-notification {
+  color: rgba(89, 89, 89, 0.5);
+  right: 0px;
+  font-size: 0.9em;
+  border: none;
+  top: 25em;
+  vertical-align: middle;
+}
+
+.file-list::-webkit-scrollbar {
+  width: 0.2em;
+}
+
+.notifications::-webkit-scrollbar {
+  background: none;
+  width: 0.3em;
+}
+
+.notifications::-webkit-scrollbar-thumb {
+  background: rgba(89, 89, 89, 0.5);
+  border-radius: 0.4em;
+}
+
+::-webkit-scrollbar {
+  width: 0.4em;
+  height: 0.4em;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(89, 89, 89, 0.2);
+  border-radius: 0.4em;
+}
+
+::-webkit-scrollbar-thumb {
+  background: black;
+  border-radius: 0.4em;
+}
+
+.notification-list-btn {
+  font-size: 1em;
+  z-index: 500;
+}
+
+.notifications-side {
+  position: fixed;
+  right: 0;
+
+  height: 100%;
+  width: 20em;
+  background: none;
+  z-index: 300;
+
+  overflow: hidden;
+}
+
+.notification-actions {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+  background: rgba(149, 157, 165, 0.2);
+  margin: 0.5em;
+  backdrop-filter: blur(5px);
+  vertical-align: middle;
+  height: 2em;
+  border-radius: 0.4em;
+  text-align: center;
+}
+
+#close-side-notifications,
+#clear-notifications {
+  background: none;
+  border: none;
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+}
+
+.notifications {
+  height: 92%;
+
+  background: rgba(149, 157, 165, 0.2);
+  margin: 0.5em;
+  border-radius: 0.4em;
+  backdrop-filter: blur(5px);
+  overflow: auto;
+}
+
+#close-side-notifications:hover,
+#clear-notifications:hover {
+  color: rgb(1, 211, 60);
+
+  cursor: pointer;
+}
