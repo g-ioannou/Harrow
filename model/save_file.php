@@ -47,8 +47,6 @@ foreach ($entries as $entry) {
     $_method = $entry->request->method;
     $_url = $entry->request->url;
 
-    echo $_method;
-
     $sql = mysqli_query($conn, "CALL add_request('$entry_id','$_method','$_url')") or die(mysqli_error(($conn)));
 
     $res = mysqli_fetch_array($sql);

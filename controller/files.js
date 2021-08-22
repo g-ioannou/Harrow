@@ -360,7 +360,6 @@ class HARfile {
           cleaned_header[name] = cleaned_header[name].replace("[","");
           cleaned_header[name] = cleaned_header[name].replace("]","");
           
-          
           cleaned_headers.push(cleaned_header);
         }
       }
