@@ -1,5 +1,9 @@
 <?php
-  session_destroy();
+ try{
+    session_destroy();
+ }catch(Exception $e){
+
+ }
 ?>
 
 <!DOCTYPE html>
