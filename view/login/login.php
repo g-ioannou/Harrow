@@ -1,10 +1,3 @@
-<?php
- try{
-    session_destroy();
- }catch(Exception $e){
-
- }
-?>
 
 <!DOCTYPE html>
 <html lang="en">

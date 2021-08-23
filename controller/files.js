@@ -314,13 +314,17 @@ class HARfile {
       hours = hours.split("+")[0].split(".")[0];
 
       let final_date_time = year_date + " " + hours;
+      // let temp_IP = entry.serverIPAddress.replace("[", "");
+      // temp_IP = temp_IP.replace("]", "");
 
+ 
+    
       let cleaned_entry = {
         startedDateTime: final_date_time,
         timings: {
           wait: entry.timings.wait,
         },
-        serverIPAddress: entry.serverIPAddress,
+        serverIPAddress: entry.serverIPAddress.replace("[",'').replace(']',''),
         request: {
           method: entry.request.method,
           url: getHostName(entry.request.url),
@@ -332,6 +336,8 @@ class HARfile {
           headers: cleanHeaders(entry.response.headers),
         },
       };
+
+      console.log(cleaned_entry);
       cleaned_entries.push(cleaned_entry);
     }
     return cleaned_entries;
@@ -356,7 +362,7 @@ class HARfile {
             .split(";")[0]
             
           
-          cleaned_header[name] = cleaned_header[name].replace("[","");
+          cleaned_header[name] = cleaned_header[name].replace("[", "");
           cleaned_header[name] = cleaned_header[name].replace("]","");
           
           cleaned_headers.push(cleaned_header);
