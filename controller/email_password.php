@@ -1,6 +1,5 @@
 <?php
 
-
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\SMTP;
@@ -19,10 +18,12 @@ if (isset($_POST["email"])) {
     $emailTo = $_POST["email"];
     $code = uniqid(true);
 
-    $query = mysqli_query($conn, "UPDATE user SET user.token ='$code' WHERE email='$emailTo'");
+    $query = mysqli_query($conn, "UPDATE users SET users.token ='$code' WHERE email='$emailTo'") or die(mysqli_error($conn));
 
-    $query_email = mysqli_query($conn, "SELECT email FROM user WHERE email='$emailTo'");
+   
+    $query_email = mysqli_query($conn, "SELECT email FROM users WHERE email='$emailTo'") or die(mysqli_error($conn));
 
+    
 
     if (mysqli_num_rows($query_email) == 0) {
         echo '<p style="color:  rgb(116, 17, 0);text-align: center;margin: 10%;font-size:x-large;">We do not have an account with this email.</p>';
@@ -35,8 +36,6 @@ if (isset($_POST["email"])) {
             $url = 'http://' . $_SERVER['SERVER_NAME'] . '/harrow/controller/reset_password.php?code=' . $code;
 
             $output = "<h3>You requested a password reset.</h3> Click <a href='$url'>this link.</a>";
-
-
 
             $mail = new PHPMailer(true);
 
@@ -60,18 +59,15 @@ if (isset($_POST["email"])) {
                 $mail->Subject = 'Reset Password ';
                 $mail->Body    = $output;
                 $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
-
-
-
+                
                 $mail->send();
                 echo '<p style="color:   rgb(0, 41, 51);text-align: center;margin: 10%;font-size:x-large;">Reset password link has been sent to your email.</p>';
             } catch (Exception $e) {
-                echo '<p style="color:  rgb(116, 17, 0);text-align: center;margin: 10%;font-size:x-large;">Message could not be sent. Mailer Error: {$mail->ErrorInfo}</p>' . $mail->ErrorInfo;
+                echo '<p style="color:  rgb(116, 17, 0);text-align: center;margin: 10%;font-size:x-large;">Message could not be sent. Mailer Error:</p>'. $mail->ErrorInfo ;
             }
         }
     }
 
-    
+
     exit();
 }
-?>
