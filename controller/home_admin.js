@@ -2,53 +2,83 @@ $(document).ready(function()
 {
 
     console.log("ok");
-var number = $("#numbers").val()
+   var number = $("#numbers").val();
 
-}
-);
 
-function regNumbers(){
+
+   console.log("ok");
+
     var regs;
-
-$.ajax({
-    type: "post",
+    console.log("ok");
+ $.ajax({
+    method: "POST",
     url: "../../model/admininfo.php",
-    data: "regs",
+    data:{ 
+        type:   "regs"},
+  
     success: function (response) {
-        alert(response);
+        console.log("ok");
+        $('#numbers').html(response).show;
+    },
+    error: function () {
+        alert('Not Okay');
     }
-});
-}
+      });
+                        
 
-function methodNumbers(){
+
     var methods;
 
 $.ajax({
-    type: "post",
+    method: "POST",
     url: "../../model/admininfo.php",
-    data: "methods",
+    data:
+    { type: "methods"},
     success: function (response) {
-        alert(response);
+        $('#methods').html(response).show;
     }
-});
-}
-// $.ajax({
-//     type: "GET",
-//     url: "../../model/admininfo.php",
-//     datatype:"html",
-//         success: function (response) {
-//         $("#numbers").append(response);
-              
-//     }
-// });
-    
+      });
 
-// $.ajax({
 
-// $(document).ready(function(){
-// $('#numbers').load("../../model/admininfo.php");
-//     }
-        
-//     );
+      $.ajax({
+        method: "POST",
+        url: "../../model/admininfo.php",
+        data:
+        { type: "status"},
+        success: function (response) {
+                    
+            $('#status').html(response).show;
+        }
+          });    
 
-// });
+          $.ajax({
+            method: "POST",
+            url: "../../model/admininfo.php",
+            data:
+            { type: "domain"},
+            success: function (response) {
+                        
+                $('#domain').html(response).show;
+            },
+            error: function () {
+                alert('Not Okay');
+            }
+              });   
+
+              $.ajax({
+                method: "POST",
+                url: "../../model/admininfo.php",
+                data:
+                { type: "isps"},
+                success: function (response) {
+                            
+                    $('#isps').html(response).show;
+                },
+                error: function () {
+                    alert('Not Okay');
+                }
+                  });   
+
+                      
+                    }
+)
