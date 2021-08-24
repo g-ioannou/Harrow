@@ -22,6 +22,7 @@ CREATE TABLE files(
 	file_id BIGINT AUTO_INCREMENT,
 	name VARCHAR(255),
 	size BIGINT,
+	upload_ip VARCHAR(255),
 	upload_isp VARCHAR(255),
 	upload_location VARCHAR(255),
 	full_file LONGTEXT,
@@ -47,7 +48,7 @@ CREATE TABLE requests(
 	entry_id BIGINT,
 	request_id BIGINT AUTO_INCREMENT,
 	url VARCHAR(255),
-	method VARCHAR(5),
+	method VARCHAR(255),
 	PRIMARY KEY (request_id),
 	CONSTRAINT request_entry_fk FOREIGN KEY (entry_id) REFERENCES entries(entry_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
@@ -128,13 +129,14 @@ DELIMITER $
 CREATE PROCEDURE `add_file`(
 	IN `inp_user_id` BIGINT,
 	IN `inp_name` VARCHAR(255),
-	IN `inp_size` VARCHAR(20),
+	IN `inp_size` BIGINT,
 	IN `inp_upload_isp` VARCHAR(255),
 	IN `inp_upload_location` VARCHAR(255),
-	IN `inp_full_file` LONGTEXT
+	IN `inp_full_file` LONGTEXT,
+	IN `inp_upload_ip` VARCHAR(255)
 )
 BEGIN 
-	INSERT INTO files(user_id,name,size,upload_isp,upload_location,full_file) VALUES (inp_user_id,inp_name,inp_size,inp_upload_isp,inp_upload_location,inp_full_file);
+	INSERT INTO files(user_id,name,size,upload_isp,upload_location,full_file,upload_ip) VALUES (inp_user_id,inp_name,inp_size,inp_upload_isp,inp_upload_location,inp_full_file,inp_upload_ip);
 
 	SELECT MAX(file_id) AS file_id FROM files WHERE name = `inp_name` AND user_id=`inp_user_id`;
 END$
@@ -160,7 +162,7 @@ DROP PROCEDURE IF EXISTS add_request;
 DELIMITER $
 CREATE PROCEDURE `add_request`(
 	IN `inp_entry_id` BIGINT,
-	IN `inp_method` VARCHAR(5),
+	IN `inp_method` VARCHAR(255),
 	IN `inp_url` VARCHAR(255)
 )
 BEGIN

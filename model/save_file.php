@@ -4,13 +4,14 @@ session_start();
 include "../model/connection_db.php";
 
 $user_id = $_SESSION['user_id'];
+$upload_ip = $_SESSION['ip'];
 $file_name = $_POST['name'];
 $file_size = $_POST['size'];
 $upload_isp = $_SESSION['isp'];
 $upload_location = $_SESSION['city'];
 $text_contents = $_POST['contents'];
 
-$query = mysqli_query($conn, "CALL add_file('$user_id','$file_name','$file_size','$upload_isp','$upload_location','$text_contents')") or die(mysqli_error($conn));
+$query = mysqli_query($conn, "CALL add_file('$user_id','$file_name','$file_size','$upload_isp','$upload_location','$text_contents','$upload_ip')") or die(mysqli_error($conn));
 
 $result = mysqli_fetch_array($query);
 
@@ -29,6 +30,8 @@ foreach ($entries as $entry) {
     $_startedDateTime = checkIfKeyExists('startedDateTime',$entry,0);
     
     $_serverIpAddress = checkIfKeyExists('serverIPAddress',$entry,1);
+    var_dump($entry);
+    exit();
     
     $_wait = checkIfKeyExists('wait', $entry,0);
 
@@ -55,9 +58,13 @@ foreach ($entries as $entry) {
     $sql->close();
     $conn->next_result();
     $column_name = "request_id";
-    $headers = $entry->request->headers;
-    add_headers($conn, $column_name, $request_id, $headers);
 
+
+    
+    $headers = $entry->request->headers;
+    
+    add_headers($conn, $column_name, $request_id, $headers);
+    
     // ----------------ADD ENTRY'S RESPONSE ---------
 
     $_status = $entry->response->status;
@@ -80,6 +87,7 @@ foreach ($entries as $entry) {
 
     $column_name = "response_id";
     $headers = $entry->response->headers;
+   
     add_headers($conn, $column_name, $response_id, $headers);
 }
 
@@ -88,12 +96,13 @@ function add_headers($conn, $type, $r_id, $headers)
     $all_null = 0;
     foreach ($headers as $header) {
         
-        $_content_type = checkIfKeyExists('content_type', $header,1);
-        $_cache_control = checkIfKeyExists('cache_control', $header,1);
+        $_content_type = checkIfKeyExists('content-type', $header,1);
+        
+        $_cache_control = checkIfKeyExists('cache-control', $header,1);
         $_pragma = checkIfKeyExists('pragma', $header,1);
         $_expires = checkIfKeyExists("expires", $header,1);
         $_age = checkIfKeyExists('age', $header,0);
-        $_last_modified = checkIfKeyExists('last_modified', $header,1);
+        $_last_modified = checkIfKeyExists('last-modified', $header,1);
         $_host = checkIfKeyExists('host', $header,1);
 
         if($_content_type=="NULL" and $_cache_control=="NULL" and $_pragma=="NULL" and $_expires=="NULL" and $_age=="NULL" and $_last_modified=="NULL" and $_host=="NULL"){

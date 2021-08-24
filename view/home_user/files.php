@@ -3,7 +3,7 @@ session_start();
 include "../../model/connection_db.php";
 
 if (!isset($_SESSION['email'])) {
-    header('location: ../../view/login/login.html');
+    header('location: ../../view/login/login.php');
 }
 
 ?>
