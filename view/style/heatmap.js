@@ -118,8 +118,7 @@ function displayOnHeatmap(heat) {
         success: function (response) {
           ctr++;
           let ip_addresses = JSON.parse(response);
-          
-         
+        
           for (let i = 0; i < ip_addresses.length; i++) {
             const ip_obj = ip_addresses[i];
             unique_addresses.add(ip_obj["serverIpAddress"]);
@@ -139,17 +138,15 @@ function displayOnHeatmap(heat) {
               ip_addresses_count[ip]["count"]++;
             }
 
-            for (const ip in ip_addresses_count) {
-             
-              console.log(ip_addresses_count);
-              exit();
+            for (let ip in ip_addresses_count) {
+              ip = ip.replace("[", "").replace("]", "");
               let url = `http://api.ipstack.com/${ip}?access_key=29e960169862b3a0809ce40d9bb6acbc`;
               $.ajax({
                 type: "GET",
                 url: url,
 
                 success: function (response) {
-                 
+                
                   try {
 
                     
@@ -162,7 +159,7 @@ function displayOnHeatmap(heat) {
                     console.log(e);
                     
                   }
-                 
+                
                 },
               });
             }
@@ -184,7 +181,7 @@ function clearHeatmap(heat) {
   try {
     mymap.removeLayer(heat);
   } catch (e) {}
-  let new_heat = L.heatLayer([], {
+  let new_heat = L.heatLayer([[50, 50]], {
     minOpacity: 1,
     gradient: {
       0.05: "lightgreen",

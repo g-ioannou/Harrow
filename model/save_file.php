@@ -30,6 +30,8 @@ foreach ($entries as $entry) {
     $_startedDateTime = checkIfKeyExists('startedDateTime',$entry,0);
     
     $_serverIpAddress = checkIfKeyExists('serverIPAddress',$entry,1);
+    var_dump($entry);
+    exit();
     
     $_wait = checkIfKeyExists('wait', $entry,0);
 
