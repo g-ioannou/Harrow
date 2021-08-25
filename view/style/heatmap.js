@@ -41,6 +41,7 @@ $(document).ready(function () {
       heat = clearHeatmap();
       $("input:checkbox").prop("checked", true);
       selected_files = user_files;
+      
       displayOnHeatmap(heat);
       all_selected = 1;
       $(this).html("Unselect all");
@@ -117,6 +118,7 @@ function displayOnHeatmap(heat) {
         success: function (response) {
           ctr++;
           let ip_addresses = JSON.parse(response);
+          
          
           for (let i = 0; i < ip_addresses.length; i++) {
             const ip_obj = ip_addresses[i];
@@ -139,7 +141,8 @@ function displayOnHeatmap(heat) {
 
             for (const ip in ip_addresses_count) {
              
-      
+              console.log(ip_addresses_count);
+              exit();
               let url = `http://api.ipstack.com/${ip}?access_key=29e960169862b3a0809ce40d9bb6acbc`;
               $.ajax({
                 type: "GET",
@@ -179,7 +182,6 @@ function get_json_keys(json) {
 
 function clearHeatmap(heat) {
   try {
-    
     mymap.removeLayer(heat);
   } catch (e) {}
   let new_heat = L.heatLayer([], {

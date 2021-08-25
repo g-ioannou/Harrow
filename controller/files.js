@@ -315,6 +315,7 @@ class HARfile {
 
       let final_date_time = year_date + " " + hours;
 
+      let temp_serverIpAddress
       let cleaned_entry = {
         startedDateTime: final_date_time,
         timings: {
