@@ -11,6 +11,7 @@
 
 .body
 {
+
     overflow-x: hidden;
 }
 
@@ -22,10 +23,11 @@
 
 .navigation
 {
+    
     position: fixed;
     width: 300px;
     height: 100%;
-    background: rgba(27, 20, 116, 0.87);
+    background:#ad2144;
     transition: 0.5s;
     overflow: hidden;
 }
@@ -45,14 +47,23 @@
 
 .navigation ul li
 {
+
     position: relative;
     width: 100%;
     list-style: none;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+.navigation ul li.active
+{
+    background: #ffff;
+  
 }
 
 .navigation ul li:hover
 {
- background: #03a9f5;
+ background: #77216F;
+
 
 }
 .navigation ul li:nth-child(1)
@@ -73,6 +84,12 @@
     display: flex;
     text-decoration: none;
     color: #fff;
+
+}
+.navigation ul li.active a
+{
+   color:rgb(44, 41, 41);
+  
 }
 
 .navigation ul li a .icon
@@ -107,7 +124,7 @@
     width: calc(100% - 300px);
     left: 300px;
     min-height: 100vh;
-    background: #f5f5f5;
+    background-image: linear-gradient(315deg, #ad2144 20%, #77216F 80%);
     transition: 0.5s;
 }
 
@@ -120,7 +137,7 @@
 .main .topbar
 {
     width: 100%;
-    background: #fff;
+    background: linear-gradient(to left, #ad2144 , #77216F);
     height: 60px;
     padding: 0 10px;
     display: flex;
@@ -195,25 +212,55 @@
 {
 
     position: relative;
-    width: 100%;
-    height: auto;
+    width: 80%;
+    left: 10%;
     padding: 20px;
     display: grid;
-    grid-template-columns: repeat(4,1fr);
+    grid-template-columns: repeat(3,30%);
     grid-gap:20px
 }
 
 .cardBox .card
 {
     border-radius: 25px;
-    border: 2px solid #73AD21;  
+    border: 2px solid #ad2144;  
     position: relative;
     background: #fff;
     padding: 20px;
     display: flex;
     justify-content: space-between;
     cursor: pointer;
+    
 
+}
+
+.cardBox .card .content{
+    max-height: min-content;
+}
+
+.cardBox .card:hover
+{
+    animation: bounce 1s linear;
+}
+
+@keyframes bounce
+{
+    20%,50%,80%, to
+    {
+        transform: translateY(0);
+    }
+    40%
+    {
+        transform: translateY(-30px);
+    }
+    70%
+    {
+        transform: translateY(-15px);
+    }
+    90%
+    {
+        transform: translateY(-4px);
+    }
 }
 
 .cardBox .card .numbers
@@ -234,7 +281,7 @@
 .cardBox .card .iconBox
 {
     font-size: 2.5em;
-    color: #03a9f5 ;
+    color: #77216F ;
     padding: 15px;
 }
 
