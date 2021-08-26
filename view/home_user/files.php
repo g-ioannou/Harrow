@@ -58,7 +58,7 @@ if (!isset($_SESSION['email'])) {
     <div class="page">
 
         <div class="top-bar">
-            <div class="logo">Homepage</div>
+            <a class="logo"><img id="the-logo" src="/harrow/view/images/logo_white_color.png" alt=""></a>
 
             <a href="/harrow/view/home_user/home.php" class="btn action-btn"><i class="fal fa-home"></i></a>
 
@@ -110,7 +110,7 @@ if (!isset($_SESSION['email'])) {
 
             <div class="upload-btn">
                 <input type="file" id="upload-btn" accept=".json, .har" hidden multiple>
-                <button id="fake-upload"><i class="fas fa-upload"></i> Upload</button>
+                <button class="btn" id="fake-upload"><i class="fas fa-upload"></i> Upload</button>
             </div>
 
             <button id="delete-multiple-new-btn" class="btn" disabled='disabled'><i class="fas fa-trash-alt"></i> Delete </button>

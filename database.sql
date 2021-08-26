@@ -38,7 +38,7 @@ CREATE TABLE entries(
 	entry_id BIGINT AUTO_INCREMENT,
 	serverIpAddress VARCHAR(255),
 	startedDateTime DATETIME DEFAULT NULL,
-	wait INT,
+	wait FLOAT(5,5),
 	PRIMARY KEY (entry_id),
 	CONSTRAINT entry_file_fk FOREIGN KEY (file_id) REFERENCES files(file_id)
 	ON DELETE CASCADE ON UPDATE CASCADE
@@ -148,7 +148,7 @@ CREATE PROCEDURE `add_entry`(
 	IN `inp_file_id` BIGINT,
 	IN `inp_startedDateTime` VARCHAR(255),
 	IN `inp_serverIpAddress` VARCHAR(255),
-	IN `inp_wait` INT(11)
+	IN `inp_wait` FLOAT(5,5)
 )
 
 BEGIN 

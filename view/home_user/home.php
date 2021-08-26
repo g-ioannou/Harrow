@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['email'])) {
-    header('location: ../../view/login/login.php');
+    header('location: ../../view/login/login.html');
 }
 include "../../model/connection_db.php";
 ?>
@@ -32,7 +32,7 @@ include "../../model/connection_db.php";
 
 <body>
     <div class="top-bar">
-        <div class="logo">Homepage</div>
+        <a class="logo"><img id="the-logo" src="/harrow/view/images/logo_white_color.png" alt=""></a>
 
         <a href="/harrow/view/home_user/home.php" class="btn action-btn"><i class="fal fa-home"></i></a>
 
@@ -41,7 +41,7 @@ include "../../model/connection_db.php";
         <a href="/harrow/view/home_user/heatmap.php" class="btn action-btn"><i class="fal fa-map-marked-alt"></i></a>
 
         <!--user logout-->
-        <a class='nav-btn' id='logout-btn' href="/harrow/controller/logout.php"><i class="fal fa-door-open"></i></a>
+        <a class='nav-btn' id='logout-btn' href="/harrow/controller/logout.html"><i class="fal fa-door-open"></i></a>
         <!--Edit profile-->
         <a class='nav-btn' href="profile.php"><i class="fal fa-user"></i></a>
 
