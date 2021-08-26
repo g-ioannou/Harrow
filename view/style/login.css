@@ -1,8 +1,21 @@
 body {
+  padding: 0;
+  margin: 0;
+  font-size: 1em;
+  overflow: auto;
   font-family: "Ubuntu", sans-serif;
   font-size: 1em;
-  margin: 0;
-  color: #ffffff;
+  color: rgb(198, 198, 198);
+}
+
+.logo{
+    position:fixed;
+    
+    left:20%;
+    top:40%;
+    transform: translate(-40%,-40%);
+    transform: scale(1.5);
+    
 }
 
 .background {
@@ -10,7 +23,7 @@ body {
   width: 105%;
   height: 105%;
   transform: scale(1.1);
-  background: url(/harrow/view/images/map.jpg) no-repeat center center fixed;
+  background: url(/harrow/view/images/map.png) no-repeat center center fixed;
   background-size: cover;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -20,21 +33,25 @@ body {
   -o-filter: blur(5px);
   -ms-filter: blur(5px);
   filter: blur(3px);
+  z-index: -2;
 }
 
-.form-user {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-  text-align: center;
-  width: 20em;
-  padding: 1em;
-  background: rgba(75, 75, 75, 0.7);
-  border-radius: 0.4em;
-  border: none;
+.forms{
+    position: absolute;
+    height: 100%;
+    background: linear-gradient(to right, transparent,30%,rgba(48, 6, 57, 0.827));
+    
+    right: 0;
+    width: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
+
+
+
+
 
 .login-msg {
   font-size: 2em;
@@ -45,18 +62,19 @@ body {
 }
 
 input {
-  width: 50%;
-  background: rgba(223, 223, 223, 0.7);
+  width: 10em;
+  background: rgba(50, 50, 50, 0.423);
   font-size: 1em;
   margin-top: 0.5em;
   padding: 0.5em;
   border: none;
   border-radius: 0.4em;
+  color:white;
 }
 
 input:focus {
   outline: none;
-  border: 1px solid rgba(0, 0, 0, 0.7);
+  
 }
 
 #show-pass {
@@ -94,14 +112,14 @@ input:focus {
 }
 
 #login_btn {
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(80, 80, 80, 0.786);
 }
 
 #login_btn:hover,
 #main_register:hover,
 #register_btn:hover {
-  color: rgb(0, 0, 0);
-  border: 0.5px solid rgb(0, 0, 0);
+  color: rgb(210, 58, 190);
+  
   cursor: pointer;
 }
 
@@ -111,7 +129,7 @@ input:focus {
   border-radius: 0.4em;
   border: none;
   font-size: 0.7em;
-  background: rgba(223, 223, 223, 0.7);
+  background: rgba(80, 80, 80, 0.786);
 }
 
 #register-title {

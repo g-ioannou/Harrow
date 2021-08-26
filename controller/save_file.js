@@ -29,6 +29,7 @@ function upload_file_to_server(file) {
         "error",
         `<b>Couldn't upload ${file.name}</b> <br> Error 500 (internal server error): ${error}`
       );
+      notifications_timeout;
     },
   });
 }

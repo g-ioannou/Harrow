@@ -2,7 +2,7 @@ var mymap = L.map("map", { zoomControl: false }).setView([0, 0], 3);
 let selected_files = {};
 let user_files = {};
 L.tileLayer(
-  "https://api.mapbox.com/styles/v1/gioannou/cks8ff9v377p418kczsuiexno/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiZ2lvYW5ub3UiLCJhIjoiY2tzOGVuZWhmMTlyMDMxczN4aXhlaTFvbSJ9.orSKOqbjH3hFv4LAPLJqRw",
+  "https://api.mapbox.com/styles/v1/gioannou/cksrvxxau2j6l18o5z2pjigy0/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiZ2lvYW5ub3UiLCJhIjoiY2tzOGVuZWhmMTlyMDMxczN4aXhlaTFvbSJ9.orSKOqbjH3hFv4LAPLJqRw",
   {
     maxZoom: 18,
     tileSize: 512,

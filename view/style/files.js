@@ -1,6 +1,4 @@
-let notifications_timeout = setTimeout(function () {
-  $(".notifications-side").fadeOut(300);
-}, 5000);
+
 
 $(document).ready(function () {
   $("#fake-upload").click(function (e) {
@@ -17,9 +15,7 @@ $(document).ready(function () {
     notification_glow();
   });
 
-  $(".notifications-side").hover(function (e) {
-    clearTimeout(notifications_timeout);
-  });
+  
 
   $(document).on("click", "#clear-notifications", function () {
     $(".notifications").empty();
@@ -87,6 +83,9 @@ function notify(type, msg) {
 
   notifications_timeout;
   notification_glow();
+  setTimeout(function () {
+    $(".notifications-side").fadeOut(300);
+  }, 2000);
 
   return `perm_${notification_id}`;
 }
