@@ -46,7 +46,7 @@
                 <a href="/harrow/view/home_admin/heatmap_admin.php">
                 <span class="icon"><i class="fas fa-map-marked"></i>
                 </span>
-                <span class="title">Data Optimization</span>
+                <span class="title">Heatmap</span>
                 </a>
             </li>
             <li>
@@ -75,11 +75,15 @@
             <div class="panel-heading">
                 <div class="row">
                     <div class="col-md-9">
-                        <h3 class="panel-title">Dkjnckjnsc</h3>
+                        <h3 class="panel-title">Choose filter</h3>
                     </div>
                     <div class="col-md-3">
                         <select name="data" class="form-control" id="data">
                             <option value="">SELECT</option>
+                            <option value="content-type">CONTENT-TYPE</option>
+                            <option value="day">DAY OF THE WEEK</option>
+                            <option value="http">HTTP request method</option>
+                            <option value="isp">ISP</option>
                         </select>
                     </div>
                 </div>

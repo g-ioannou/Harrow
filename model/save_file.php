@@ -33,11 +33,12 @@ foreach ($entries as $entry) {
     var_dump($entry);
     exit();
     
-    $_wait = checkIfKeyExists('wait', $entry,0);
+    $_wait = checkIfKeyExists('wait', $entry->timings,0);
+    echo $_wait;
 
     // ------------------ ADD ENTRY ----------------
     $sql = mysqli_query($conn, "CALL add_entry('$file_id','$_startedDateTime',$_serverIpAddress,$_wait)") or die(mysqli_error($conn));
-    
+
     $res = mysqli_fetch_array($sql);
     $entry_id = $res['entry_id'];
 
@@ -120,6 +121,7 @@ function checkIfKeyExists($key,$obj,$str){
         $_key = $obj->$key;
         if($str==1){
             $_key = "'$_key'";
+         
         }
     }
     else {

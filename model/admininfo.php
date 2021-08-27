@@ -137,7 +137,15 @@ if ($_POST['type'] == "isps")
     $isp_count = $isp_count["isp_count"];
     echo $isp_count;
 }
-
+if ($_POST['type'] == "isp")
+{
+   
+    $query = "SELECT COUNT(DISTINCT upload_isp ) AS isp_count FROM files;";
+    $query_run = mysqli_query($conn, $query);
+    $isp_count = mysqli_fetch_array($query_run);
+    $isp_count = $isp_count["isp_count"];
+    echo $isp_count;
+}
 
 // if ($_POST['type']=="data")
 // {

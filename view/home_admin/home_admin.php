@@ -46,7 +46,7 @@
                 <a href="/harrow/view/home_admin/heatmap_admin.php">
                 <span class="icon"><i class="fas fa-map-marked"></i>
                 </span>
-                <span class="title">Data Optimization</span>
+                <span class="title">Heatmap</span>
                 </a>
             </li>
             <li>

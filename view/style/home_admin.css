@@ -15,10 +15,21 @@
     overflow-x: hidden;
 }
 
+
 .container
 {
     position: relative;
     width: 100%;
+}
+.navigation ul li a .logo
+{
+    position: relative;
+    display: block;
+    min-width: 200px;
+    height: 200px;
+    left: 40px;
+    line-height: 60px;
+    text-align:center   ;
 }
 
 .navigation
@@ -214,7 +225,7 @@
     position: relative;
     width: 80%;
     left: 10%;
-    padding: 20px;
+    padding: 10px;
     display: grid;
     grid-template-columns: repeat(3,30%);
     grid-gap:20px
