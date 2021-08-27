@@ -1,15 +1,14 @@
 $(document).ready(function()
 {
 
-    console.log("ok");
+
    var number = $("#numbers").val();
 
 
 
-   console.log("ok");
 
     var regs;
-    console.log("ok");
+
  $.ajax({
     method: "POST",
     url: "../../model/admininfo.php",
@@ -78,6 +77,16 @@ $.ajax({
                     alert('Not Okay');
                 }
                   });   
+                  $.ajax({
+                    method: "POST",
+                    url: "../../model/admininfo.php",
+                    data:
+                    { type: "average"},
+                    success: function (response) {
+                        console.log(response);
+                        // $('#average').html(response).show;
+                    }
+                      });   
 
                       
                     }

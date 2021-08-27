@@ -121,7 +121,7 @@ echo "500:",  $status6_count, "\r\n" ;
 if ($_POST['type'] == "domain")
 {
    
-    $query = "SELECT COUNT(DISTINCT url ) AS domain_count FROM requests;";
+    $query = "SELECT COUNT(DISTINCT url ) AS domain_count FROM requests";
     $query_run = mysqli_query($conn, $query);
     $domain_count = mysqli_fetch_array($query_run);
     $domain_count = $domain_count["domain_count"];
@@ -131,7 +131,7 @@ if ($_POST['type'] == "domain")
 if ($_POST['type'] == "isps")
 {
    
-    $query = "SELECT COUNT(DISTINCT upload_isp ) AS isp_count FROM files;";
+    $query = "SELECT COUNT(DISTINCT upload_isp ) AS isp_count FROM files";
     $query_run = mysqli_query($conn, $query);
     $isp_count = mysqli_fetch_array($query_run);
     $isp_count = $isp_count["isp_count"];
@@ -140,11 +140,42 @@ if ($_POST['type'] == "isps")
 if ($_POST['type'] == "isp")
 {
    
-    $query = "SELECT COUNT(DISTINCT upload_isp ) AS isp_count FROM files;";
+    $query = "SELECT COUNT(DISTINCT upload_isp ) AS isp_count FROM files";
     $query_run = mysqli_query($conn, $query);
     $isp_count = mysqli_fetch_array($query_run);
     $isp_count = $isp_count["isp_count"];
     echo $isp_count;
+}
+if ($_POST['type'] == "average")
+{
+   
+    $query = "SELECT DISTINCT content_type  AS content_type FROM headers WHERE content_type IS NOT NULL";
+    $query_run = mysqli_query($conn, $query);
+    $cont=[];
+    while($content_type = mysqli_fetch_array($query_run))
+       {
+         $cont[]=$content_type['content_type'];
+       }
+  
+    foreach($cont as &$value)
+    {
+  
+  
+
+      $query = "SELECT AVG(age) AS avrg FROM headers WHERE content_type ='$value'";
+      $query_run = mysqli_query($conn, $query);
+      if (!$query_run)
+       {
+        printf("Error: %s\n", mysqli_error($conn));
+        exit();
+    }
+      $avrg = mysqli_fetch_array($query_run);
+      $avrg=$avrg["avrg"];
+      echo $value, ":", $avrg;
+      echo "\n";
+     
+    }
+
 }
 
 // if ($_POST['type']=="data")

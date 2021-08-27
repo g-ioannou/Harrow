@@ -78,14 +78,14 @@
            <div class="admin"><img src="../images/admin.png" ></div>
         </div>
         <div class="cardBox">
-            <div class="card">
-            <div class ="content">
+        <div class="card">
+                <div class="content">
+                    <div class="title">Average age of Content-Type  </div>
+                    <span class="numbers" id="average"></span>
                 
-                <div class="title" > Registered users</div>
-                <span class="numbers" id="numbers"></span>
-            </div>
-            <div class="iconBox"><i class="fas fa-users"></i></div>
-            </div>
+                </div>
+                <div class="iconBox"><i class="fas fa-clock"></i></div>
+            </div>      
             <div class="card">
                 <div class="content">
                     <div class="title">Types of Requests </div>
@@ -118,6 +118,15 @@
                 
                 </div>
                 <div class="iconBox"><i class="fas fa-broadcast-tower"></i></div>
+            </div>
+            
+            <div class="card">
+            <div class ="content">
+                
+                <div class="title" > Registered users</div>
+                <span class="numbers" id="numbers"></span>
+            </div>
+            <div class="iconBox"><i class="fas fa-users"></i></div>
             </div>
 
         </div>

@@ -277,7 +277,7 @@
 .cardBox .card .numbers
 {
     position: relative;
-    font-size: 2em;
+    font-size: 25px;
     font-weight: 500;
     padding: 20px;
     display: grid;
