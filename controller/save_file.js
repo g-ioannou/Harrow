@@ -10,7 +10,7 @@ $(document).ready(function () {
 function upload_file_to_server(file) {
   
   notify("upload", `<b>Uploading file: ${file.name}`);
-  
+
   $.ajax({
     type: "POST",
     url: "/harrow/model/save_file.php",

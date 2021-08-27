@@ -4,11 +4,15 @@ body {
 
 .page {
   
+    text-align: center;
+    justify-content: center;
+  
 }
 
 .action-buttons{
     width: 100%;
     text-align: center;
+    
 }
 
 .btn-sm, .btn-primary{

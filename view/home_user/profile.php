@@ -80,14 +80,15 @@ if (!isset($_SESSION['email'])) {
             <div class="form-user">
                 <label for="password">Password</label><br>
                 <input type="password" class="form-control" id="password_user" placeholder="password" name="password_user" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,32}" title="Your password must be at least 8 characters long, contain at least one number, one symbol and have a mixture of uppercase and lowercase letters." required="">
+                <br>
                 <span class="error_form" id="pass_error_message"></span>
-
+                <br>
                 <!-- An element to toggle between password visibility -->
                 <input type="checkbox" onchange="document.getElementById('password_user').type = this.checked ? 'text' : 'password'" /> Show password
                 <br>
-
+                <br>
                 <input type="button" name="save_username_edit" class="btn btn-primary" value="Save changes" id="edit_user_btn">
-
+                <br>
             </div>
         </form>
 
@@ -103,13 +104,13 @@ if (!isset($_SESSION['email'])) {
             <div id="pass_error"></div>
 
             <div class="form-user">
-                <label for="username">Username:</label>
+                <label for="username">Username</label><br>
                 <input type="text" class="form-control" id="username_p" placeholder="username" name="username_p" required="">
                 <span class="error_form" id="username_error_mess"></span>
             </div>
 
             <div class="form-user">
-                <label for="password">Old password:</label>
+                <label for="password">Old password</label><br>
                 <input type="password" class="form-control" id="old_password" placeholder="Old password" name="old_password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,32}" title="Your password must be at least 8 characters long, contain at least one number, one symbol and have a mixture of uppercase and lowercase letters." required="">
                 <span class="error_form" id="old_pass_error"></span>
 
@@ -120,7 +121,7 @@ if (!isset($_SESSION['email'])) {
             </div>
 
             <div class="form-user">
-                <label for="password">New password:</label>
+                <label for="password">New password</label><br>
                 <input type="password" class="form-control" id="new_password" placeholder="new password" name="new_password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,32}" required="">
                 <span class="error_form" id="new_pass_error"></span>
 
@@ -131,7 +132,7 @@ if (!isset($_SESSION['email'])) {
             </div>
 
             <div class="form-user">
-                <label for="password">Re enter password:</label>
+                <label for="password">Re enter password</label><br>
                 <input type="password" class="form-control" id="password_re" placeholder="re enter password" name="password_re" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,32}" title="Your password must be at least 8 characters long, contain at least one number, one symbol and have a mixture of uppercase and lowercase letters." required="">
                 <span class="error_form" id="re_pass_error"></span>
 
