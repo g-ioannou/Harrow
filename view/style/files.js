@@ -81,7 +81,7 @@ function notify(type, msg) {
   $(".notifications").prepend(html_perma_notification);
   $(".notifications-side").fadeIn(300);
 
-  notifications_timeout;
+ 
   notification_glow();
   setTimeout(function () {
     $(".notifications-side").fadeOut(300);

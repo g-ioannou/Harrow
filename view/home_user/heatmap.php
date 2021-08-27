@@ -30,7 +30,7 @@ session_start();
 
     <div id="map"></div>
     <button id="back-to-home" class='btn'><i class="fas fa-home"></i></button>
-    <button id="open-panel" class="btn"><i class="fas fa-cog"></i></button>
+    <button id="open-panel" class="btn"><i class="fas fa-file"></i></button>
     <div class="legend">less <span id="more">more</span> </div>
     <button id="legend-tip" class="btn"><i class="fas fa-question"></i></button>
 

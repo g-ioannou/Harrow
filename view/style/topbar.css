@@ -3,20 +3,17 @@ body {
   margin: 0;
   font-size: 1em;
   overflow: auto;
-  background:rgb(14, 1, 17);
+  background: rgb(24, 0, 27);
   color: rgb(226, 226, 226);
+  font-family: "Ubuntu", sans-serif;
 }
 
-.logo{
-  
- 
+.logo {
   width: max-content;
-  margin:0;
-
-  
+  margin: 0;
 }
 
-#the-logo{
+#the-logo {
   width: 7em;
 }
 
@@ -34,37 +31,39 @@ a:active {
   margin: 0em;
   padding-left: 1em;
   width: 100%;
-  
+  min-width: max-content;
 }
 
 .nav-btn {
   position: relative;
   right: 5%;
-  top:1em;
+  top: 1em;
   padding-left: 20px;
   float: right;
   text-align: right;
 }
 
-
-
 .action-btn {
-  
   position: relative;
-  top:-80px;
+  top: -80px;
   padding-left: 20px;
 }
 
 .action-btn:hover {
   color: rgb(217, 2, 217);
+  transition: 0.1s all 0.1s;
 }
 
 .nav-btn:hover {
   color: rgb(217, 2, 217);
+  transition: 0.1s all 0.1s;
 }
 
 .btn {
+  color: rgb(226, 226, 226);
   font-size: 1.2em;
+  background:none;
+  border:none;
 }
 
 .spacer {

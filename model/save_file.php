@@ -30,10 +30,11 @@ foreach ($entries as $entry) {
     $_startedDateTime = checkIfKeyExists('startedDateTime',$entry,0);
     
     $_serverIpAddress = checkIfKeyExists('serverIPAddress',$entry,1);
-    var_dump($entry);
-    exit();
+    ;
     
-    $_wait = checkIfKeyExists('wait', $entry,0);
+    $_wait = checkIfKeyExists('wait', $entry->timings,0);
+    $_wait = number_format($_wait, 5);
+    echo $_wait;
 
     // ------------------ ADD ENTRY ----------------
     $sql = mysqli_query($conn, "CALL add_entry('$file_id','$_startedDateTime',$_serverIpAddress,$_wait)") or die(mysqli_error($conn));

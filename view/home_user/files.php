@@ -77,9 +77,7 @@ if (!isset($_SESSION['email'])) {
             <button class='btn' id='admin-btn' type="button" hidden>Admin Dashboard</button>
         </div>
 
-        <div class="spacer">
-
-        </div>
+        <div class="spacer"></div>
 
         <!-- New files area -->
         <div class="new-files">
