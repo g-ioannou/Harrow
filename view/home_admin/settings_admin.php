@@ -21,7 +21,7 @@
                 
             </a>
             </li>
-            <li class ="active">
+            <li >
                 <a href="/harrow/view/home_admin/home_admin.php">
                 <span class="icon"><i class="fas fa-home"></i></i>
                 </span>
@@ -46,10 +46,10 @@
                 <a href="/harrow/view/home_admin/heatmap_admin.php">
                 <span class="icon"><i class="fas fa-map-marked"></i>
                 </span>
-                <span class="title">Data Optimization</span>
+                <span class="title">Heatmap</span>
                 </a>
             </li>
-            <li>
+            <li class ="active">
                 <a href="/harrow/view/home_admin/settings_admin.php">
                 <span class="icon"><i class="fas fa-cog"></i>
                 </span>
@@ -77,50 +77,7 @@
            </div>
            <div class="admin"><img src="../images/admin.png" ></div>
         </div>
-        <div class="cardBox">
-            <div class="card">
-            <div class ="content">
-                
-                <div class="title" > Registered users</div>
-                <span class="numbers" id="numbers"></span>
-            </div>
-            <div class="iconBox"><i class="fas fa-users"></i></div>
-            </div>
-            <div class="card">
-                <div class="content">
-                    <div class="title">Types of Requests </div>
-                    <span class="numbers" id="methods"></span>
-                
-                </div>
-                <div class="iconBox"><i class="fas fa-hand-pointer"></i></div>
-            </div>
-            <div class="card">
-                <div class="content">
-                    <div class="title">Νumber of entries in the database per status</div>
-                    <span class="numbers" id="status"></span>
-                
-                </div>
-                <div class="iconBox"><i class="fas fa-file-import"></i></div>
-            </div>
-            <div class="card">
-                <div class="content">
-                    <div class="title">Number of different domains used  </div>
-                    <span class="numbers" id="domain"></span>
-                
-                </div>
-                <div class="iconBox"><i class="fas fa-globe"></i></div>
-            </div>
-
-            <div class="card">
-                <div class="content">
-                    <div class="title">Number of different ISPS used  </div>
-                    <span class="numbers" id="isps"></span>
-                
-                </div>
-                <div class="iconBox"><i class="fas fa-broadcast-tower"></i></div>
-            </div>
-
-        </div>
+       
 
         
     </div>
