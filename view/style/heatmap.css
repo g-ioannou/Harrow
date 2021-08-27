@@ -13,7 +13,7 @@
 .side-panel {
   position: fixed;
   margin: 2em;
-  background: rgba(94, 98, 102, 0.2);
+  background: rgba(102, 62, 116, 0.2);
   right: 0;
   height: 80em;
   width: 30%;
@@ -21,7 +21,7 @@
   border-radius: 0.4em;
   padding: 1.5em;
   text-align: center;
-
+  color:rgb(203, 203, 203);
   height: 60%;
   overflow: auto;
 }
@@ -33,8 +33,9 @@
 }
 
 .btn {
+  color: rgb(203, 203, 203);
   position: fixed;
-  background: white;
+  background: rgb(203, 203, 203);
   font-size: 1.5em;
   width: max-content;
 }
@@ -42,7 +43,8 @@
 .btn:hover,
 #close-side-panel:hover {
   cursor: pointer;
-  color: white;
+  color: rgb(210, 58, 190);
+  transition: 0.1s all 0.1s;
 }
 
 #back-to-home,
@@ -62,6 +64,7 @@
 
 .leaflet-control-zoom-in,
 .leaflet-control-zoom-out {
+  color: rgb(203, 203, 203) !important;
   border: none;
   background-color: rgba(94, 98, 102, 0.2) !important;
   backdrop-filter: blur(5px);
@@ -70,7 +73,12 @@
 
 .leaflet-control-zoom-in:hover,
 .leaflet-control-zoom-out:hover {
-  color: white !important;
+  color: rgb(210, 58, 190) !important;
+  transition: 0.1s all 0.1s;
+}
+
+.leaflet-disabled{
+  color:black !important;
 }
 
 table {
@@ -89,7 +97,7 @@ table {
 
 th {
   padding: 0.3em;
-  color: black;
+  color: rgb(180, 180, 180);
   position: sticky;
   text-align: center;
   border-bottom: 1px solid black;
@@ -117,6 +125,7 @@ td:nth-of-type(2) {
 
 #close-side-panel {
   background-color: #ddd;
+  color: blanchedalmond;
   position: fixed;
   padding: 0.4em;
   right: 1em;
@@ -127,7 +136,7 @@ td:nth-of-type(2) {
 }
 
 .panel-icon {
-  color: rgba(0, 0, 0, 0.3);
+  color: rgba(161, 161, 161, 0.3);
 }
 
 .leaflet-control-attribution {
@@ -183,7 +192,7 @@ td:nth-of-type(2) {
 #select-all {
   position: relative;
   margin: 0.5em;
-  padding: 0.2em;
+  padding: 0.4em;
   border-radius: 0.4em;
   border: none;
   background: rgba(118, 121, 124, 0.287);

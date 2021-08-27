@@ -337,7 +337,7 @@ class HARfile {
         },
       };
 
-      console.log(cleaned_entry);
+
       cleaned_entries.push(cleaned_entry);
     }
     return cleaned_entries;

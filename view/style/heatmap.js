@@ -181,7 +181,7 @@ function clearHeatmap(heat) {
   try {
     mymap.removeLayer(heat);
   } catch (e) {}
-  let new_heat = L.heatLayer([[50, 50]], {
+  let new_heat = L.heatLayer([], {
     minOpacity: 1,
     gradient: {
       0.05: "lightgreen",
