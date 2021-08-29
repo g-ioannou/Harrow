@@ -12,7 +12,7 @@ body {
   display: flex;
   float: right;
   align-items: center;
-  background: rgba(149, 157, 165, 0.5);
+  background: rgba(108, 108, 108, 0.5);
   margin-top: 0.5em;
   margin-bottom: 0.5em;
   margin-right: 0.2em;
@@ -50,7 +50,7 @@ body {
   width: 100%;
   text-align: center;
   vertical-align: middle;
-  color: rgb(168, 168, 168);
+  color: rgb(203, 203, 203);
   z-index: -1;
   margin-top: 1em;
 }
@@ -62,7 +62,7 @@ body {
 
 .upload-btn {
   text-align: center;
-  background: white;
+  background: rgb(203, 203, 203);
 }
 
 .file-dlt-btn,
@@ -71,13 +71,16 @@ body {
 }
 
 .btn {
-  
   background: none;
   cursor: pointer;
   border: none;
+  color:rgb(203, 203, 203);
 }
 
-
+.btn:hover {
+  color: rgb(210, 58, 190);
+  transition: 0.1s all 0.1s;
+}
 
 .new-files,
 .old-files {
@@ -119,11 +122,12 @@ td {
 
 tr {
   width: 100%;
+  color: rgb(203, 203, 203);
 }
 
 th {
-  color: white;
-  background: rgb(65, 65, 65);
+  color: rgb(203, 203, 203);
+  background: rgba(64, 12, 60, 0.45);
   border: 1em transparent;
   border-radius: 0.4em;
   position: sticky;
@@ -162,11 +166,11 @@ td:nth-of-type(2) {
 }
 
 tr:nth-child(even) {
-  background: rgb(245, 245, 245);
+  background: rgba(70, 33, 73, 0.485);
 }
 
 tr:nth-child(odd) {
-  background: #e1e1e1;
+  background: #5f1c6076;
 }
 
 #ready-to-upload-msg,
@@ -175,6 +179,7 @@ tr:nth-child(odd) {
   background: rgba(149, 157, 165, 0.2);
   border-radius: 0.4em;
   padding: 0.5em; /*white-space: nowrap;*/
+  color: rgb(203, 203, 203);
 }
 
 #save-to-server-btn,
@@ -183,8 +188,8 @@ tr:nth-child(odd) {
 #select-all-new {
   float: right;
   font-size: 1em;
-  background-color: white;
-  color: black;
+  color: rgb(203, 203, 203);
+  
   padding: 0.5em;
   border-radius: 0.4em;
   margin-top: 0.5em;
@@ -212,14 +217,15 @@ tr:nth-child(odd) {
   cursor: pointer;
   border-radius: 0.4em;
   text-align: center;
-  border: 1px solid gray;
+  border: 1px solid rgb(203, 203, 203);
   width: 20em;
+  color: rgb(203, 203, 203);
 }
 
 #fake-upload:hover,
 #select-all-new:hover {
-  border: 1px solid green;
-  color: green;
+  border: 1px solid rgb(210, 58, 190);
+  color: rgb(210, 58, 190);
 }
 
 #save-to-server-btn {
@@ -229,15 +235,15 @@ tr:nth-child(odd) {
 #save-to-server-btn:disabled,
 #delete-multiple-new-btn:disabled,
 #download-multiple-new-btn:disabled {
-  background-color: gray;
-  color: white;
+  background-color: transparent;
+  color: gray;
 }
 
 #save-to-server-btn:enabled,
 #delete-multiple-new-btn:enabled,
 #download-multiple-new-btn:enabled {
-  background-color: white;
-  color: black;
+  border:1px solid white;
+  color: white;
 }
 
 #delete-multiple-new-btn:hover {
@@ -246,8 +252,8 @@ tr:nth-child(odd) {
 }
 
 #download-multiple-new-btn:hover {
-  color: blue;
-  border: 1px solid blue;
+  color: rgb(210, 58, 190);
+  border: 1px solid rgb(210, 58, 190);
 }
 
 #save-to-server-btn:hover {
@@ -353,6 +359,7 @@ tr:nth-child(odd) {
   height: 2em;
   border-radius: 0.4em;
   text-align: center;
+  color:rgb(203, 203, 203);
 }
 
 #close-side-notifications,
@@ -361,12 +368,13 @@ tr:nth-child(odd) {
   border: none;
   margin-left: 0.5em;
   margin-right: 0.5em;
+  color:rgb(203, 203, 203);
 }
 
 .notifications {
   height: 92%;
 
-  background: rgba(149, 157, 165, 0.2);
+  background: rgba(135, 145, 154, 0.2);
   margin: 0.5em;
   border-radius: 0.4em;
   backdrop-filter: blur(5px);
@@ -375,7 +383,7 @@ tr:nth-child(odd) {
 
 #close-side-notifications:hover,
 #clear-notifications:hover {
-  color: rgb(1, 211, 60);
+  color: rgb(210, 58, 190);
 
   cursor: pointer;
 }

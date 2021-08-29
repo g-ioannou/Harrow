@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['email'])) {
-    header('location: ../../view/login/login.php');
+    header('location: ../../view/login/login.html');
 }
 include "../../model/connection_db.php";
 ?>
@@ -32,7 +32,7 @@ include "../../model/connection_db.php";
 
 <body>
     <div class="top-bar">
-        <div class="logo">Homepage</div>
+        <a class="logo"><img id="the-logo" src="/harrow/view/images/logo_white_color.png" alt=""></a>
 
         <a href="/harrow/view/home_user/home.php" class="btn action-btn"><i class="fal fa-home"></i></a>
 

@@ -208,7 +208,7 @@ function deleteFile(file_id) {
       data: { file_id: file_db_id },
       url: "/harrow/model/delete_file_user.php",
       success: function (response) {
-        console.log("ok");
+        
         delete user_files[file_id];
         notify("delete", `File <b>${file_name}</b> deleted from server.`);
         console.log(response);
@@ -337,17 +337,20 @@ class HARfile {
         },
       };
 
-      console.log(cleaned_entry);
+
       cleaned_entries.push(cleaned_entry);
     }
     return cleaned_entries;
 
     function cleanHeaders(headers) {
       let cleaned_headers = [];
+      
       for (let i = 0; i < headers.length; i++) {
         const header = headers[i];
+        
         let name = header.name.toLowerCase();
         let cleaned_header = {};
+        
         if (
           name == "content-type" ||
           name == "cache-control" ||
@@ -357,13 +360,12 @@ class HARfile {
           name == "last-modified" ||
           name == "host"
         ) {
+          
+         
           cleaned_header[name] = header["value"]
             .replace("-", "_")
             .split(";")[0]
-            
           
-          cleaned_header[name] = cleaned_header[name].replace("[", "");
-          cleaned_header[name] = cleaned_header[name].replace("]","");
           
           cleaned_headers.push(cleaned_header);
         }

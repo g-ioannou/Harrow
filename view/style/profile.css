@@ -1,0 +1,43 @@
+body {
+  color:  rgb(198, 198, 198);
+}
+
+.page {
+  
+    text-align: center;
+    justify-content: center;
+  
+}
+
+.action-buttons{
+    width: 100%;
+    text-align: center;
+    
+}
+
+.btn-sm, .btn-primary{
+    border:1px solid  rgb(198, 198, 198);
+    padding:0.4em;
+    border-radius: 0.4em;
+}
+
+.btn-sm:hover, .btn-primary:hover{
+    cursor: pointer;
+    color: rgb(217, 2, 217);
+    transition: 0.1s all 0.1s;
+    border:1px solid rgb(217, 2, 217);
+    
+}
+
+input{
+    background:rgba(50, 50, 50, 0.423);
+    border:none;
+    padding:0.2em;
+    border-radius: 0.4em;
+    color: white;
+    margin:0.2em;
+}
+
+input:focus{
+    outline: none;
+}
