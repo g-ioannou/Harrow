@@ -223,12 +223,13 @@
 {
 
     position: relative;
-    width: 80%;
-    left: 10%;
+    width: 95%;
+    left: 5%;
     padding: 10px;
     display: grid;
     grid-template-columns: repeat(3,30%);
-    grid-gap:20px
+    grid-gap:20px;
+
 }
 
 .cardBox .card
@@ -241,6 +242,7 @@
     display: flex;
     justify-content: space-between;
     cursor: pointer;
+    
     
 
 }
@@ -274,16 +276,66 @@
     }
 }
 
-.cardBox .card .numbers
+.cardBox .card .numbers1
 {
     position: relative;
-    font-size: 25px;
+    font-size: 14px;
     font-weight: 500;
-    padding: 20px;
+    padding: 10px;
     display: grid;
     grid-template-columns: repeat(1 ,1fr);
 }
 
+
+.cardBox .card .numbers2
+{
+    position: relative;
+    font-size: 25px;
+    font-weight: 500;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: repeat(1 ,1fr);
+}
+
+.cardBox .card .numbers3
+{
+    position: relative;
+    font-size: 25px;
+    font-weight: 500;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: repeat(1 ,1fr);
+}
+
+.cardBox .card .numbers4
+{
+    position: relative;
+    font-size: 25px;
+    font-weight: 500;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: repeat(1 ,1fr);
+}
+
+.cardBox .card .numbers5
+{
+    position: relative;
+    font-size: 25px;
+    font-weight: 500;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: repeat(1 ,1fr);
+}
+
+.cardBox .card .numbers6
+{
+    position: relative;
+    font-size: 25px;
+    font-weight: 500;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: repeat(1 ,1fr);
+}
 
 .cardBox .card .title
 {
