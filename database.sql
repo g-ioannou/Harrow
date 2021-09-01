@@ -18,6 +18,8 @@ CREATE TABLE users(
 	PRIMARY KEY(user_id, email)
 );
 
+
+
 CREATE TABLE files(
 	user_id BIGINT,
 	file_id BIGINT AUTO_INCREMENT,
@@ -208,3 +210,6 @@ BEGIN
 	DELETE FROM files WHERE user_id = `inp_user_id` AND file_id = `inp_file_id`;
 END $
 DELIMITER $
+
+
+INSERT INTO users(email,username,password,firstname,lastname,is_admin) VALUES ('admin@admin.com',admin, 'd250739b03c87588573822520f65d74fbbe9743f','admin','admin',1);

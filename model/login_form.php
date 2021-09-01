@@ -5,7 +5,7 @@ include '../model/connection_db.php';
 if ($_POST['type'] == "login") {
     $email = $_POST['email'];
     $password = sha1(md5($_POST['password'])); //encrypt password
-    $query = mysqli_query($conn, "CALL validate_login('$email','$password')");
+    $query = mysqli_query($conn, "CALL validate_login('$email','$password')") or die(mysqli_error($conn));
     $row = mysqli_fetch_array($query);
     if ($row['email'] == $email) {
         $query->close();
