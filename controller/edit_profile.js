@@ -30,7 +30,7 @@ $(document).ready(function () {
             $("#username_error").show();
           
       } else if(username == new_username) {
-        $("#username_error").html("You can't put the same username.");
+        $("#username_error").html("New and old usernames are the same.");
         
         
       } else {
@@ -57,6 +57,7 @@ $(document).ready(function () {
                 $("#username_error").html("Username already exists.");
             }else {
                 $("#username_error").html("Invalid username or password.");
+                $("#username_error").css({color:"red"});
             }
           },
         });
@@ -79,14 +80,17 @@ $(document).ready(function () {
       new_password == "" ||
       password_re == ""
     ) {
-      $("#pass_error").html("Please fill the fields.");
+      $("#pass_error").html("Please fill all the fields.");
       $("#pass_error").show();
+      $("#pass_error").css({color:"red"});
     } else if (old_password == new_password) {
-      $("#pass_error").html("Please put a different password");
+      $("#pass_error").html("Please use a different password");
       $("#pass_error").show();
+      $("#pass_error").css({color:"red"});
     } else if (new_password != password_re) {
-      $("#pass_error").html("Different new and re enter password");
+      $("#pass_error").html("New password and re-enter password fields don't match");
       $("#pass_error").show();
+      $("#pass_error").css({color:"red"});
     } else {
       $.ajax({
         method: "post",
@@ -100,12 +104,14 @@ $(document).ready(function () {
         },
         success: function (response) {
           if (response == "fail_pass") {
-            $("#pass_error").html("Invalid password");
+            $("#pass_error").html("Invalid username or password");
             $("#pass_error").show();
+            $("#pass_error").css({color:"red"});
           } else {
             if (response == "success") {
-              $("#pass_error").html("Password changed");
+              $("#pass_error").html("Password changed successfully");
               $("#pass_error").show();
+              $("#pass_error").css({color:"green"});
             }
           }
         },

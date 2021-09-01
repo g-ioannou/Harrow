@@ -17,6 +17,7 @@ if (!isset($_SESSION['email'])) {
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.15.1/css/all.css" type="text/css">
     <script src="/harrow/controller/edit_profile.js"></script>
     <script src="/harrow/view/style/home.js"></script>
+    <script src="/harrow/view/style/pass_box.js"></script>
 
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
 
@@ -41,8 +42,6 @@ if (!isset($_SESSION['email'])) {
         <!--Edit profile-->
         <a class='nav-btn' href="profile.php"><i class="fal fa-user"></i></a>
 
-        <!-- Admin dashboard -->
-        <button class='btn' id='admin-btn' type="button" hidden>Admin Dashboard</button>
     </div>
 
     <div class="spacer"></div>
@@ -63,7 +62,7 @@ if (!isset($_SESSION['email'])) {
 
             <h3>Change your username</h3>
 
-            <div id="username_error"></div>
+
 
             <div class="form-user">
                 <label for="username">Username</label><br>
@@ -83,13 +82,15 @@ if (!isset($_SESSION['email'])) {
                 <br>
                 <span class="error_form" id="pass_error_message"></span>
                 <br>
-                <!-- An element to toggle between password visibility -->
+                <!-- An button to toggle between password visibility -->
 
-                <input type="checkbox" onchange="document.getElementById('password_user').type = this.checked ? 'text' : 'password'" /> Show password
+
+                Show password <button class="show-pass-btn"><i class="fas fa-eye-slash"></i></button>
                 <br>
-                <br>
+                
                 <input type="button" name="save_username_edit" class="btn btn-primary" value="Save changes" id="edit_user_btn">
-                <br>
+                
+                <div id="username_error"></div>
             </div>
         </form>
 
@@ -102,7 +103,7 @@ if (!isset($_SESSION['email'])) {
 
             <h3>Change your password</h3>
 
-            <div id="pass_error"></div>
+
 
             <div class="form-user">
                 <label for="username">Username</label><br>
@@ -131,15 +132,17 @@ if (!isset($_SESSION['email'])) {
             </div>
 
             <div class="form-user">
-                <label for="password">Re enter password</label><br>
-                <input type="password" class="form-control" id="password_re" name="password_re" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,32}" title="Your password must be at least 8 characters long, contain at least one number, one symbol and have a mixture of uppercase and lowercase letters." required="">
+                <label for="password">Re-enter password</label><br>
+                <input type="password" class="form-control" id="password_re" placeholder="Re-enter password" name="password_re" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,32}" title="Your password must be at least 8 characters long, contain at least one number, one symbol and have a mixture of uppercase and lowercase letters." required="">
                 <span class="error_form" id="re_pass_error"></span>
                 <br>
-                <span>Show password</span><button id="show-new-pass"><i class="fas fa-eye-slash"></i></button>
+                <span>Show password</span><button class="show-pass-btn-chpass"><i class="fas fa-eye-slash"></i></button>
 
                 <br>
 
                 <input type="button" name="save_password_edit" class="btn btn-primary" value="Save changes" id="edit_pass_btn">
+                <br>
+                <div id="pass_error"></div>
             </div>
 
         </form>
