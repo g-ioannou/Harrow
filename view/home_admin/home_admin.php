@@ -46,7 +46,7 @@
                 <a href="/harrow/view/home_admin/heatmap_admin.php">
                 <span class="icon"><i class="fas fa-map-marked"></i>
                 </span>
-                <span class="title">Data Optimization</span>
+                <span class="title">Heatmap</span>
                 </a>
             </li>
             <li>
@@ -69,27 +69,22 @@
     <div class="main">
         <div class="topbar">
             <div class="toggle" onclick="toggleMenu()"></div>
-            <div class="search">
-                <label >
-                    <input type="text" placeholder="search here">
-                    <i class="fas fa-search"></i>
-                </label>
-           </div>
+            
            <div class="admin"><img src="../images/admin.png" ></div>
         </div>
         <div class="cardBox">
-            <div class="card">
-            <div class ="content">
+          <div class="card">
+                <div class="content" id="average">
+                    <div class="title">Average age of Content-Type  </div>
+                   
                 
-                <div class="title" > Registered users</div>
-                <span class="numbers" id="numbers"></span>
-            </div>
-            <div class="iconBox"><i class="fas fa-users"></i></div>
-            </div>
+                </div>
+                <div class="iconBox"><i class="fas fa-clock"></i></div>
+            </div>      
             <div class="card">
                 <div class="content">
                     <div class="title">Types of Requests </div>
-                    <span class="numbers" id="methods"></span>
+                    <span class="numbers2" id="methods"></span>
                 
                 </div>
                 <div class="iconBox"><i class="fas fa-hand-pointer"></i></div>
@@ -97,7 +92,7 @@
             <div class="card">
                 <div class="content">
                     <div class="title">Νumber of entries in the database per status</div>
-                    <span class="numbers" id="status"></span>
+                    <span class="numbers3" id="status"></span>
                 
                 </div>
                 <div class="iconBox"><i class="fas fa-file-import"></i></div>
@@ -105,7 +100,7 @@
             <div class="card">
                 <div class="content">
                     <div class="title">Number of different domains used  </div>
-                    <span class="numbers" id="domain"></span>
+                    <span class="numbers4" id="domain"></span>
                 
                 </div>
                 <div class="iconBox"><i class="fas fa-globe"></i></div>
@@ -114,11 +109,21 @@
             <div class="card">
                 <div class="content">
                     <div class="title">Number of different ISPS used  </div>
-                    <span class="numbers" id="isps"></span>
+                    <span class="numbers5" id="isps"></span>
                 
                 </div>
                 <div class="iconBox"><i class="fas fa-broadcast-tower"></i></div>
             </div>
+            
+         <div class="card">
+                <div class ="content">
+                  <div class="title" > Registered users</div>
+                  <span class="numbers6" id="numbers"></span>
+                </div>
+             <div class="iconBox"><i class="fas fa-users"></i></div>
+          </div>
+      
+
 
         </div>
 
