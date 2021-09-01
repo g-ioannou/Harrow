@@ -1,3 +1,14 @@
+.page {
+  display: flex;
+  position: relative;
+  top: 10em;
+  padding: 2em;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: stretch;
+  
+}
+
 #welcome-icon {
   position: relative;
   left: 0.2em;
@@ -5,17 +16,46 @@
 }
 
 #hello-msg {
-  position: relative;
   left: 5em;
   font-size: 2em;
   top: 0;
 }
 
-table {
+.break{
+  flex-basis: 100%;
+}
 
+.card {
+  
+  margin: 0.4em;
+  padding: 0.4em;
+  background: rgb(65, 65, 65);
+  border-radius: 0.4em;
+  text-align: center;
+}
+
+.card:hover{
+  background: rgba(102, 62, 116);
+  transition: 0.1s all 0.1s;
+}
+
+
+
+#home-msg-1 {
+  width: 100%;
+  height: 100%;
+  line-height: 100%;
+  
+  
+}
+
+#hello{
+  height: 20%;
+}
+
+table {
   text-align: center;
   table-layout: fixed;
- 
   margin: 0px; /*min-height: 2em;*/
   width: 30%;
 }
@@ -71,4 +111,15 @@ tr:nth-child(odd) {
   background: #e1e1e1;
 }
 
+.avatar {
+  height: max-content;
+  width: 100%;
+  padding: 0.4em;
+  border-radius: 0.4em;
+  background: rgb(65, 65, 65);
+  text-align: center;
+}
 
+.avatar-img{
+  height:5em;
+}

@@ -15,6 +15,24 @@ $(document).ready(function () {
     notification_glow();
   });
 
+
+  $(document).on("change",".file-table :checkbox", function () {
+    
+    $(".file-list").find(":checkbox:checked").each(function () {
+      let id = $(this).attr('id');
+      $(this).parent().parent().css({color:"orange"});
+      $(`#${id}`).css({color:"orange"});
+
+
+    });
+    $(".file-list")
+      .find(":checkbox:not(:checked)")
+      .each(function () {
+        let id = $(this).attr("id");
+        $(this).parent().parent().css({ color: "white" });
+        $(`#${id}`).css({ color: "white" });
+      });
+  });
   
 
   $(document).on("click", "#clear-notifications", function () {
@@ -94,7 +112,7 @@ function notification_glow() {
   if ($(".notifications").is(":empty")) {
     $(".notification-list-btn").css({ color: "black" });
   } else {
-    $(".notification-list-btn").css({ color: "green" });
+    $(".notification-list-btn").css({ color: "orange" });
   }
 }
 

@@ -1,5 +1,6 @@
 * {
   margin: 0;
+  
   padding: 0;
 }
 
@@ -24,6 +25,14 @@
   color:rgb(203, 203, 203);
   height: 60%;
   overflow: auto;
+  font-size: 0.8em;
+}
+
+#the-logo{
+  position:fixed;
+  width: 4em;
+  top:0.5em;
+  left:0.5em;
 }
 
 .file-list-containter {
@@ -95,6 +104,10 @@ table {
   overflow-y: scroll;
 }
 
+tr {
+  font-size: 0.8em;
+}
+
 th {
   padding: 0.3em;
   color: rgb(180, 180, 180);
@@ -161,6 +174,7 @@ td:nth-of-type(2) {
   padding: 0.1em;
   backdrop-filter: blur(2px);
   color: blanchedalmond;
+  font-size: 0.8em;
 }
 
 #more {

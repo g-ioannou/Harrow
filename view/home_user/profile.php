@@ -29,7 +29,7 @@ if (!isset($_SESSION['email'])) {
 <body>
 
     <div class="top-bar">
-        <a class="logo"><img id="the-logo" src="/harrow/view/images/logo_white_color.png" alt=""></a>
+        <a class="logo"><img id="the-logo" src="/harrow/view/images/logo.png" alt=""></a>
 
         <a href="/harrow/view/home_user/home.php" class="btn action-btn"><i class="fal fa-home"></i></a>
 
@@ -84,6 +84,7 @@ if (!isset($_SESSION['email'])) {
                 <span class="error_form" id="pass_error_message"></span>
                 <br>
                 <!-- An element to toggle between password visibility -->
+
                 <input type="checkbox" onchange="document.getElementById('password_user').type = this.checked ? 'text' : 'password'" /> Show password
                 <br>
                 <br>
@@ -113,31 +114,29 @@ if (!isset($_SESSION['email'])) {
                 <label for="password">Old password</label><br>
                 <input type="password" class="form-control" id="old_password" placeholder="Old password" name="old_password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,32}" title="Your password must be at least 8 characters long, contain at least one number, one symbol and have a mixture of uppercase and lowercase letters." required="">
                 <span class="error_form" id="old_pass_error"></span>
-
-                <!-- An element to toggle between password visibility -->
-                <input type="checkbox" onchange="document.getElementById('old_password').type = this.checked ? 'text' : 'password'" /> Show password
                 <br>
+
+
 
             </div>
 
             <div class="form-user">
                 <label for="password">New password</label><br>
-                <input type="password" class="form-control" id="new_password" placeholder="new password" name="new_password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,32}" required="">
+                <input type="password" class="form-control" id="new_password" placeholder="New password" name="new_password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,32}" required="">
                 <span class="error_form" id="new_pass_error"></span>
 
                 <!-- An element to toggle between password visibility -->
-                <input type="checkbox" onchange="document.getElementById('new_password').type = this.checked ? 'text' : 'password'" /> Show password
                 <br>
 
             </div>
 
             <div class="form-user">
                 <label for="password">Re enter password</label><br>
-                <input type="password" class="form-control" id="password_re" placeholder="re enter password" name="password_re" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,32}" title="Your password must be at least 8 characters long, contain at least one number, one symbol and have a mixture of uppercase and lowercase letters." required="">
+                <input type="password" class="form-control" id="password_re" name="password_re" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,32}" title="Your password must be at least 8 characters long, contain at least one number, one symbol and have a mixture of uppercase and lowercase letters." required="">
                 <span class="error_form" id="re_pass_error"></span>
+                <br>
+                <span>Show password</span><button id="show-new-pass"><i class="fas fa-eye-slash"></i></button>
 
-                <!-- An element to toggle between password visibility -->
-                <input type="checkbox" onchange="document.getElementById('password_re').type = this.checked ? 'text' : 'password'" /> Show password
                 <br>
 
                 <input type="button" name="save_password_edit" class="btn btn-primary" value="Save changes" id="edit_pass_btn">

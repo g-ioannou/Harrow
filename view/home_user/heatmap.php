@@ -33,7 +33,7 @@ session_start();
     <button id="open-panel" class="btn"><i class="fas fa-file"></i></button>
     <div class="legend">less <span id="more">more</span> </div>
     <button id="legend-tip" class="btn"><i class="fas fa-question"></i></button>
-
+    <div class="icon"><img id="the-logo" src="/harrow/view/images/logo_white_color.png" alt=""></div>
     <div class="legend-info" hidden>Color is adjusted based on the percentage of appearances of an IP address to the total ammount of IP addresses given. <br><br> Zoom in for better results.</div>
     <div class="side-panel">
         <div class="panel-icon"><i class="fas fa-cog"></i></div>

@@ -12,6 +12,7 @@ CREATE TABLE users(
 	firstname VARCHAR(255),
 	lastname VARCHAR(255),
 	token VARCHAR(255),
+	avatar_seed BIGINT DEFAULT 0,
 	reg_date DATETIME DEFAULT CURRENT_TIMESTAMP(),
 	is_admin TINYINT DEFAULT 0,
 	PRIMARY KEY(user_id, email)

@@ -3,7 +3,7 @@ body {
   margin: 0;
   font-size: 1em;
   overflow: auto;
-  background: rgb(24, 0, 27);
+  background: rgb(223, 217, 223);
   color: rgb(226, 226, 226);
   font-family: "Ubuntu", sans-serif;
 }
@@ -11,16 +11,18 @@ body {
 .logo {
   width: max-content;
   margin: 0;
+  
 }
 
 #the-logo {
   width: 7em;
+  padding-top:0.2em;
 }
 
 a:link,
 a:visited,
 a:active {
-  color: rgb(226, 226, 226);
+  color: rgb(41, 6, 44);
 }
 
 .top-bar {
@@ -32,6 +34,8 @@ a:active {
   padding-left: 1em;
   width: 100%;
   min-width: max-content;
+  background: linear-gradient(to bottom,rgb(223, 217, 223) 85%,  transparent  );
+  z-index: 50;
 }
 
 .nav-btn {
@@ -60,7 +64,7 @@ a:active {
 }
 
 .btn {
-  color: rgb(226, 226, 226);
+  color: rgb(41, 6, 44);
   font-size: 1.2em;
   background:none;
   border:none;

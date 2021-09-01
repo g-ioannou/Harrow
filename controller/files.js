@@ -44,6 +44,7 @@ $(document).ready(function () {
         .find(":checkbox")
         .each(function () {
           $(".new-files :checkbox").prop("checked", true);
+          
           ctr++;
         });
 
@@ -292,8 +293,8 @@ class HARfile {
                 <td><input type="checkbox" class="file-select" id="${this.id}" ></td>
                 <td><i class="fal fa-file"></i>&nbsp;&nbsp; ${this.name}</td>
                 <td>${this.size_display}</td>
-                <td><button class="btn file-dlt-btn" id="${this.id}"><i class="fal fa-trash-alt"></i></button></td>
-                <td><button class="btn file-dow-btn" id="${this.id}"><i class="fal fa-file-download"></i></button></td>
+                <td><button class="btn file-dlt-btn" id="${this.id}" class="${this.id}"><i class="fal fa-trash-alt"></i></button></td>
+                <td><button class="btn file-dow-btn" id="${this.id}" class="${this.id}"><i class="fal fa-file-download"></i></button></td>
             </tr>
             `;
     return html;

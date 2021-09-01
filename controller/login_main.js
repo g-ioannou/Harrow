@@ -1,4 +1,10 @@
 $(document).ready(function () {
+  $(document).on("keypress", function (e) {
+    if (e.which == 13) {
+      $("#login_btn").click();
+    }
+  });
+
   // for choosing login or registration
   $("#registration").hide();
   $("#main_login").on("click", function () {

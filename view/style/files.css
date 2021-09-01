@@ -27,6 +27,11 @@ body {
   min-width: 0;
   backdrop-filter: blur(5px);
   z-index: 200;
+  color:rgb(41, 6, 44);
+}
+
+.notification_msg{
+  color:rgb(41, 6, 44);
 }
 
 .notification-perma {
@@ -50,7 +55,7 @@ body {
   width: 100%;
   text-align: center;
   vertical-align: middle;
-  color: rgb(203, 203, 203);
+  color: rgb(139, 138, 138);
   z-index: -1;
   margin-top: 1em;
 }
@@ -62,19 +67,20 @@ body {
 
 .upload-btn {
   text-align: center;
-  background: rgb(203, 203, 203);
+  background: rgb(41, 6, 44);
 }
 
 .file-dlt-btn,
 .file-dow-btn {
   border: none;
+  color:white;
 }
 
 .btn {
   background: none;
   cursor: pointer;
   border: none;
-  color:rgb(203, 203, 203);
+  color:white;
 }
 
 .btn:hover {
@@ -122,7 +128,7 @@ td {
 
 tr {
   width: 100%;
-  color: rgb(203, 203, 203);
+  color: white;
 }
 
 th {
@@ -179,7 +185,7 @@ tr:nth-child(odd) {
   background: rgba(149, 157, 165, 0.2);
   border-radius: 0.4em;
   padding: 0.5em; /*white-space: nowrap;*/
-  color: rgb(203, 203, 203);
+  color: rgb(41, 6, 44);
 }
 
 #save-to-server-btn,
@@ -188,13 +194,13 @@ tr:nth-child(odd) {
 #select-all-new {
   float: right;
   font-size: 1em;
-  color: rgb(203, 203, 203);
+  color: rgb(41, 6, 44);
   
   padding: 0.5em;
   border-radius: 0.4em;
   margin-top: 0.5em;
   margin-left: 0.5em;
-  border: 1px solid gray;
+  border: 1px solid rgb(41, 6, 44);
 }
 
 #select-all-new {
@@ -217,9 +223,9 @@ tr:nth-child(odd) {
   cursor: pointer;
   border-radius: 0.4em;
   text-align: center;
-  border: 1px solid rgb(203, 203, 203);
+  border: 1px solid rgb(41, 6, 44);
   width: 20em;
-  color: rgb(203, 203, 203);
+  color: rgb(41, 6, 44);
 }
 
 #fake-upload:hover,
@@ -242,8 +248,8 @@ tr:nth-child(odd) {
 #save-to-server-btn:enabled,
 #delete-multiple-new-btn:enabled,
 #download-multiple-new-btn:enabled {
-  border:1px solid white;
-  color: white;
+  border:1px solid rgb(41, 6, 44);
+  color: rgb(41, 6, 44);
 }
 
 #delete-multiple-new-btn:hover {
@@ -267,6 +273,7 @@ tr:nth-child(odd) {
   text-align: center;
   float: right;
   padding: 0.5em;
+  color:rgb(41, 6, 44);
 }
 
 .error {
@@ -321,12 +328,12 @@ tr:nth-child(odd) {
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(89, 89, 89, 0.2);
+  background: rgb(41, 6, 44);
   border-radius: 0.4em;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: black;
+  background: rgb(41, 6, 44);
   border-radius: 0.4em;
 }
 
@@ -359,7 +366,7 @@ tr:nth-child(odd) {
   height: 2em;
   border-radius: 0.4em;
   text-align: center;
-  color:rgb(203, 203, 203);
+  color:rgb(41, 6, 44);
 }
 
 #close-side-notifications,
@@ -368,17 +375,17 @@ tr:nth-child(odd) {
   border: none;
   margin-left: 0.5em;
   margin-right: 0.5em;
-  color:rgb(203, 203, 203);
+  color:rgb(41, 6, 44);
 }
 
 .notifications {
   height: 92%;
-
   background: rgba(135, 145, 154, 0.2);
   margin: 0.5em;
   border-radius: 0.4em;
   backdrop-filter: blur(5px);
   overflow: auto;
+  z-index: 510;
 }
 
 #close-side-notifications:hover,

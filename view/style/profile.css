@@ -1,5 +1,5 @@
 body {
-  color:  rgb(198, 198, 198);
+  color:  rgb(65, 65, 65);
 }
 
 .page {
@@ -16,7 +16,7 @@ body {
 }
 
 .btn-sm, .btn-primary{
-    border:1px solid  rgb(198, 198, 198);
+    border:1px solid  rgb(65, 65, 65);
     padding:0.4em;
     border-radius: 0.4em;
 }
@@ -30,12 +30,16 @@ body {
 }
 
 input{
-    background:rgba(50, 50, 50, 0.423);
+    background:rgb(65, 65, 65);
     border:none;
-    padding:0.2em;
+    padding:0.4em;
     border-radius: 0.4em;
     color: white;
     margin:0.2em;
+}
+
+input::placeholder{
+    color: rgb(161, 161, 161);
 }
 
 input:focus{

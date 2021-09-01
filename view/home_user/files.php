@@ -58,7 +58,7 @@ if (!isset($_SESSION['email'])) {
     <div class="page">
 
         <div class="top-bar">
-            <a class="logo"><img id="the-logo" src="/harrow/view/images/logo_white_color.png" alt=""></a>
+            <a class="logo"><img id="the-logo" src="/harrow/view/images/logo.png" alt=""></a>
 
             <a href="/harrow/view/home_user/home.php" class="btn action-btn"><i class="fal fa-home"></i></a>
 
