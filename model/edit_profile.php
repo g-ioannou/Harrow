@@ -12,14 +12,15 @@
         $password = $_POST['password'];
         $password = sha1(md5($password)); //crypt pass
 
-        $query = mysqli_query($conn, "SELECT * FROM `user` WHERE `username` = '$username'");
+        $query = mysqli_query($conn, "SELECT * FROM `users` WHERE `username` = '$username'");
         $num = mysqli_num_rows($query);
         $row = mysqli_fetch_array($query);
         
         if( $num == 1 ){ 
             $_SESSION['email'] = $row['email'];
-            $sql = mysqli_query($conn, "UPDATE `user` SET username = '$new_username' WHERE username='$username' ");
+            $sql = mysqli_query($conn, "UPDATE `users` SET username = '$new_username' WHERE username='$username' ");
             echo "success";
+            $_SESSION['username'] = $new_username;
         }
         else if ($num>1){
             echo "fail_exists";
@@ -41,13 +42,13 @@
     $password_re =$_POST['password_re'];
     $password_re = sha1(md5($password_re)); //crypt password
 
-    $query = mysqli_query($conn, "SELECT * FROM `user` WHERE `username` = '$username_p' AND `password`='$old_password' ");
+    $query = mysqli_query($conn, "SELECT * FROM `users` WHERE `username` = '$username_p' AND `password`='$old_password' ");
     $num = mysqli_num_rows($query);
     $row = mysqli_fetch_array($query);
 
     if( $num == 1 ){
         echo "success";
-        $sql = mysqli_query($conn, "UPDATE `user` SET password = '$new_password' WHERE password='$old_password' ");
+        $sql = mysqli_query($conn, "UPDATE `users` SET password = '$new_password' WHERE password='$old_password' ");
     }
     else{
         echo "fail_pass";

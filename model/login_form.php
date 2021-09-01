@@ -15,8 +15,13 @@ if ($_POST['type'] == "login") {
         $_SESSION['email'] = $row['email'];
         $_SESSION['user_id'] = $row['user_id'];
         $_SESSION['username'] = $row['username'];
+
+        if($row['is_admin']==1){
+            echo 'success_admin';
+        }else{
         
-        echo 'success';
+            echo 'success_user';
+        }
     } else {
         session_destroy();
         echo "fail";

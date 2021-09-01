@@ -18,7 +18,7 @@ $(document).ready(function () {
 
   //validation and log in
   $("#login_btn").click(function () {
-    console.log("ok");
+    
     let email_log = $("#email_log").val();
     let password_log = $("#password_log").val();
     let email_regex = /^[\w%_\-.\d]+@[\w.\-]+.[A-Za-z]{2,6}$/; // regex email check
@@ -44,14 +44,14 @@ $(document).ready(function () {
           },
           success: function (response) {
             console.log(response);
-            if (response == "success") {
+            if (response == "success_user") {
               window.location.replace("/harrow/view/home_user/home.php");
-            } else {
+            } else if(response == "success_admin"){
+              window.location.replace("/harrow/view/home_admin/diagram_admin.php");
+            }
+            else {
               $("#login_error").html("E-mail and password don't match.");
             }
-          },
-          error: function (error) {
-            console.log(error);
           },
         });
       }
@@ -184,9 +184,6 @@ $(document).ready(function () {
               window.location.replace("/harrow/view/login/login.html");
             }, 2000);
           }
-        },
-        error: function (error) {
-          console.log(error);
         },
       });
     }
