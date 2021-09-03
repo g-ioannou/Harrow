@@ -45,6 +45,7 @@ body {
     right: 0;
     width: 100vh;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
@@ -96,6 +97,7 @@ a:hover{
   cursor: pointer;
   transition: 0.15s all 0.15s;
 }
+
 
 /* .form-reset input[type="email"]{
     margin: 2%;
