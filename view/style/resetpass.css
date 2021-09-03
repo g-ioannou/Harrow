@@ -1,26 +1,103 @@
-html {
-	font-family: sans-serif;
-	-ms-text-size-adjust: 100%;
-	-webkit-text-size-adjust: 100%
-}
-body {
-    text-align: center;
-    margin: 10%;
-    font-variant: lining-nums;
-    border: 3px solid #92a89b;
-    padding: 30px;
-    width: 40%;
-    position: relative;
-    height: 200%;
-    top: 50%;
-    left: 17%;
-    font-style: italic;
-    font-family: Verdana, Tahoma, sans-serif;
 
+
+body {
+    
+  padding: 0;
+  margin: 0;
+  font-size: 1em;
+  overflow: auto;
+  font-family: "Ubuntu", sans-serif;
+  font-size: 1em;
+  color: rgb(198, 198, 198);
+}
+
+.background {
+  position: fixed;
+  width: 105%;
+  height: 105%;
+  transform: scale(1.1);
+  background: url(/harrow/view/images/map.png) no-repeat center center fixed;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  -webkit-filter: blur(5px);
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px);
+  filter: blur(3px);
+  z-index: -2;
+}
+
+.logo{
+    position:fixed;
+    left:20%;
+    top:35%;
+    transform: translate(-40%,-40%);
+    transform: scale(1.2);
     
 }
 
-.form-reset input[type="email"]{
+.forms{
+    position: absolute;
+    height: 100%;
+    background: linear-gradient(to right, transparent,30%,rgba(48, 6, 57, 0.827));
+    right: 0;
+    width: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+input {
+    margin:0.4em;
+}
+
+#email{
+    width: 80%;
+    background:none;
+    border:none;
+    border-bottom: 1px solid purple;
+    padding:0.4em;
+    outline:none;
+    color: white;
+}  
+
+#email:focus{
+    border:none;
+    border-bottom: 1px solid orange;
+    transition: 0.15s all 0.15s;
+}
+
+a {
+  color:rgb(163, 2, 163);
+}
+
+a:hover{
+    color: orange;
+    transition: 0.15s color 0.15s;
+    cursor: pointer;
+}
+
+
+#reset_btn{
+    padding:0.4em;
+    width: 50%;
+    border: none;
+    background: rgba(97, 0, 97, 0.6);
+    border-radius: 0.4em;
+    color: rgb(198, 198, 198);
+}
+
+#reset_btn:hover{
+    color:rgb(250, 180, 51);
+  background: rgba(128, 0, 128, 0.6);
+  cursor: pointer;
+  transition: 0.15s all 0.15s;
+}
+
+/* .form-reset input[type="email"]{
     margin: 2%;
     border: 1px solid #414d3a;
     padding: 2%;
@@ -48,5 +125,5 @@ body {
 h3{
     font-size: 30px;
     color: rgb(6, 43, 43);
-}
+} */
 

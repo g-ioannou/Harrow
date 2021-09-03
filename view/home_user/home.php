@@ -27,7 +27,9 @@ include "../../model/connection_db.php";
         }
     </style>
     <script type="text/javascript" src="/harrow/view/style/home.js"></script>
-    <title>Document</title>
+    <link rel="shortcut icon " type="image/x-icon" href="/harrow/view/images/tab_icon.png">
+    </link>
+    <title>Harrow - Home</title>
 </head>
 
 <body>
@@ -40,29 +42,35 @@ include "../../model/connection_db.php";
 
         <a href="/harrow/view/home_user/heatmap.php" class="btn action-btn"><i class="fal fa-map-marked-alt"></i></a>
 
+        <!--Edit profile-->
+        <a class='nav-btn' id='profile-btn' href="profile.php">
+            <?php
+            $seed = $_SESSION['avatar_seed'];
+            echo '<img class="avatar-top-bar" src="https://avatars.dicebear.com/api/avataaars/:' . $seed . '.svg?mood[]=happy" /> <br>';
+
+            ?></a>
         <!--user logout-->
         <a class='nav-btn' id='logout-btn' href="/harrow/controller/logout.php"><i class="fal fa-door-open"></i></a>
-        <!--Edit profile-->
-        <a class='nav-btn' href="profile.php"><i class="fal fa-user"></i></a>
 
-        <!-- Admin dashboard -->
-        <button class='btn' id='admin-btn' type="button" hidden>Admin Dashboard</button>
     </div>
     <div class="page">
 
         <div class="avatar card">
 
             <?php
-            $seed = $_SESSION['user_id'];
+            $seed = $_SESSION['avatar_seed'];
             echo '<img class="avatar-img" src="https://avatars.dicebear.com/api/avataaars/:' . $seed . '.svg?mood[]=happy" /> <br>';
             ?>
-            Hi <?php echo $_SESSION['username'] ?>!
+            Hi
+            <span id="username"><?php echo $_SESSION['username'] ?></span>!
+
+            <br><br>
+            Here's what we've got so far
         </div>
-        <div class="break"></div>
-        <div id="home-msg-1" class="card">Here's what we've got so far</div>
-        <div class="break"></div>
+
+
         <div class="card">
-            <b>Number of files you have uploaded</b><br>
+            <span class="info-title"><b>Number of files you have uploaded</b></span><br>
             <br>
             <i class="fas fa-tally"></i>
             <?php
@@ -70,12 +78,13 @@ include "../../model/connection_db.php";
             $user_id = $_SESSION['user_id'];
             $sql = mysqli_query($conn, "SELECT COUNT(file_id) AS file_count FROM files WHERE user_id=$user_id ") or die(mysqli_error($conn));
             $row = mysqli_fetch_row($sql);
-            echo $row[0];
+            echo '<span class="info">' . $row[0] . '</span> total files';
             ?>
         </div>
 
         <div class="card">
-            <b>Number of files uploaded by <i>place</i></b>
+            <span class="info-title"><b>Number of files uploaded by <i>place</i></b></span>
+
             <br>
             <br>
             <?php
@@ -88,14 +97,15 @@ include "../../model/connection_db.php";
                 $place = $row[0];
                 $file_count = $row[1];
 
-                echo  '<i class="fas fa-location"></i> ' . $place . ' : ' . $file_count . ' files';
+                echo  '<i class="fas fa-location"></i> ' . $place . ' : ' . $file_count . ' files<br>';
             }
             ?>
-            
+
         </div>
 
         <div class="card">
-            <b>Your files contain</b> <br><br>
+            <span class="info-title"><b>Your files contain</b> </span>
+            <br><br>
             <?php
             $user_id = $_SESSION['user_id'];
 
@@ -120,15 +130,16 @@ include "../../model/connection_db.php";
 
             $other_request_methods = $total_entries - $total_gets - $total_posts;
 
-            if ($other_request_methods>0) {
-                echo $other_request_methods . 'contain other type of request methods';
+            if ($other_request_methods > 0) {
+                echo '<br>' . $other_request_methods . ' contain other type of request methods';
             }
 
             ?>
         </div>
 
         <div class="card">
-            You've uploaded files using these <i>Internet Service Providers</i><br>
+            <span class="info-title">You've uploaded files using these <i>Internet Service Providers</i><br></span>
+
 
             <?php
             $user_id = $_SESSION['user_id'];

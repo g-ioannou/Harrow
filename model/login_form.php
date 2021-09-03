@@ -15,6 +15,7 @@ if ($_POST['type'] == "login") {
         $_SESSION['email'] = $row['email'];
         $_SESSION['user_id'] = $row['user_id'];
         $_SESSION['username'] = $row['username'];
+        $_SESSION['avatar_seed'] = $row['avatar_seed'];
 
         if($row['is_admin']==1){
             echo 'success_admin';

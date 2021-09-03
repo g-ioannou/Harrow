@@ -212,4 +212,4 @@ END $
 DELIMITER $
 
 
-INSERT INTO users(email,username,password,firstname,lastname,is_admin) VALUES ('admin@admin.com',admin, 'd250739b03c87588573822520f65d74fbbe9743f','admin','admin',1);
+INSERT INTO users(email,username,password,firstname,lastname,is_admin) VALUES ('admin@admin.com','admin', 'd250739b03c87588573822520f65d74fbbe9743f','admin','admin',1);

@@ -38,7 +38,9 @@ if (!isset($_SESSION['email'])) {
 
 
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.15.1/css/all.css" type="text/css">
-    <title>Harrow</title>
+    <link rel="shortcut icon " type="image/x-icon" href="/harrow/view/images/tab_icon.png">
+    </link>
+    <title>Harrow - Files</title>
 </head>
 
 <body>
@@ -52,32 +54,38 @@ if (!isset($_SESSION['email'])) {
 
     </div>
 
+    <div class="top-bar">
+        <a class="logo"><img id="the-logo" src="/harrow/view/images/logo.png" alt=""></a>
 
+        <a href="/harrow/view/home_user/home.php" class="btn action-btn"><i class="fal fa-home"></i></a>
+
+        <a href="/harrow/view/home_user/files.php" class="btn action-btn"><i class="fal fa-file"></i></a>
+
+        <a href="/harrow/view/home_user/heatmap.php" class="btn action-btn"><i class="fal fa-map-marked-alt"></i></a>
+
+
+        <!--Edit profile-->
+        <a class='nav-btn' id='profile-btn' href="profile.php">
+            <?php
+            $seed = $_SESSION['avatar_seed'];
+            echo '<img class="avatar-top-bar" src="https://avatars.dicebear.com/api/avataaars/:' . $seed . '.svg?mood[]=happy" /> <br>';
+
+            ?></a>
+
+
+        <!--user logout-->
+        <a class='nav-btn' id='logout-btn' href="/harrow/controller/logout.php"><i class="fal fa-door-open"></i></a>
+
+        <button class="nav-btn notification-list-btn btn"><i class="fas fa-bell"></i></button>
+
+    </div>
 
 
     <div class="page">
 
-        <div class="top-bar">
-            <a class="logo"><img id="the-logo" src="/harrow/view/images/logo.png" alt=""></a>
 
-            <a href="/harrow/view/home_user/home.php" class="btn action-btn"><i class="fal fa-home"></i></a>
 
-            <a href="/harrow/view/home_user/files.php" class="btn action-btn"><i class="fal fa-file"></i></a>
 
-            <a href="/harrow/view/home_user/heatmap.php" class="btn action-btn"><i class="fal fa-map-marked-alt"></i></a>
-
-            <button class="nav-btn notification-list-btn btn"><i class="fas fa-bell"></i></button>
-
-            <!--user logout-->
-            <a class='nav-btn' id='logout-btn' href="/harrow/controller/logout.php"><i class="fal fa-door-open"></i></a>
-            <!--Edit profile-->
-            <a class='nav-btn' href="profile.php"><i class="fal fa-user"></i></a>
-
-            <!-- Admin dashboard -->
-            <button class='btn' id='admin-btn' type="button" hidden>Admin Dashboard</button>
-        </div>
-
-        <div class="spacer"></div>
 
         <!-- New files area -->
         <div class="new-files">

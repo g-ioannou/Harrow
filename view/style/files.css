@@ -3,8 +3,18 @@ body {
   margin: 0;
   font-size: 1em;
   overflow: auto;
+  
+ 
 }
 
+.page{
+  position: relative;
+  top:5em;
+}
+
+.spacer{
+  height: 15em;
+}
 
 
 .notification {
@@ -84,7 +94,7 @@ body {
 }
 
 .btn:hover {
-  color: rgb(210, 58, 190);
+  color: darkorange;
   transition: 0.1s all 0.1s;
 }
 
@@ -230,8 +240,8 @@ tr:nth-child(odd) {
 
 #fake-upload:hover,
 #select-all-new:hover {
-  border: 1px solid rgb(210, 58, 190);
-  color: rgb(210, 58, 190);
+  border: 1px solid darkorange;
+  color: darkorange;
 }
 
 #save-to-server-btn {
@@ -258,8 +268,8 @@ tr:nth-child(odd) {
 }
 
 #download-multiple-new-btn:hover {
-  color: rgb(210, 58, 190);
-  border: 1px solid rgb(210, 58, 190);
+  color: darkorange;
+  border: 1px solid darkorange;
 }
 
 #save-to-server-btn:hover {
@@ -328,11 +338,12 @@ tr:nth-child(odd) {
 }
 
 ::-webkit-scrollbar-track {
-  background: rgb(41, 6, 44);
+  background: transparent;
   border-radius: 0.4em;
 }
 
 ::-webkit-scrollbar-thumb {
+  
   background: rgb(41, 6, 44);
   border-radius: 0.4em;
 }
@@ -390,7 +401,7 @@ tr:nth-child(odd) {
 
 #close-side-notifications:hover,
 #clear-notifications:hover {
-  color: rgb(210, 58, 190);
+  color: darkorange;
 
   cursor: pointer;
 }

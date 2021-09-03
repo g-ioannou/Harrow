@@ -1,12 +1,66 @@
 body {
   color:  rgb(65, 65, 65);
+  top:5em;
 }
 
 .page {
-  
+    position: relative;
+    top:5em;
     text-align: center;
     justify-content: center;
+    align-items: center;
   
+}
+
+.avatar-selector{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+#customize-avtr{
+    background:none;
+    border: none;
+}
+
+#customize-avtr:hover{
+    cursor: pointer;
+    color: darkorange;
+    transform: scale(1.2);
+    transition: 0.15s all 0.15s;
+}
+
+#choose-avtr-msg{
+    flex-basis: 100%;
+    margin: 0.4em;
+}
+
+.avatar{
+    margin:0.4em;
+    height:7em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.avatar-new{
+    flex-basis: 10%;
+}
+
+.avatar-new:hover{
+    cursor: pointer;
+    background: purple;
+    transition: 0.15s all 0.15s;
+}
+
+.avatar-img{
+    height: 7em;
+    margin:0.5em;
+    background: rgba(64, 12, 60, 0.45);
+    padding: 0.4em;
+    border-radius: 0.4em;
 }
 
 .action-buttons{
@@ -16,16 +70,19 @@ body {
 }
 
 .btn-sm, .btn-primary{
-    border:1px solid  rgb(65, 65, 65);
+    font-size: 1.2em;
+    border:none;
+    border-bottom:1px solid  rgb(65, 65, 65);
     padding:0.4em;
-    border-radius: 0.4em;
+    background:none;
+   
 }
 
 .btn-sm:hover, .btn-primary:hover{
     cursor: pointer;
-    color: rgb(217, 2, 217);
-    transition: 0.1s all 0.1s;
-    border:1px solid rgb(217, 2, 217);
+    color: darkorange;
+    transition: 0.15s all 0.15s;
+    border-bottom:1px solid darkorange;
     
 }
 
@@ -44,4 +101,8 @@ input::placeholder{
 
 input:focus{
     outline: none;
+}
+
+.spacer{
+    height: 2em;
 }

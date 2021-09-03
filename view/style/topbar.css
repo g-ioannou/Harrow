@@ -1,22 +1,26 @@
-body {
-  padding: 0;
-  margin: 0;
-  font-size: 1em;
-  overflow: auto;
-  background: rgb(223, 217, 223);
-  color: rgb(226, 226, 226);
-  font-family: "Ubuntu", sans-serif;
+body{
+    padding: 0;
+    margin: 0;
+    font-size: 1em;
+    background: rgb(224, 224, 224);
+    color: rgb(226, 226, 226);
+    font-family: "Ubuntu", sans-serif;
 }
+ .top-bar{
+    position: fixed;
+    
+    width: 100%;
+    
+    height: 150px;
+    
+} 
 
-.logo {
-  width: max-content;
-  margin: 0;
-  
-}
 
-#the-logo {
-  width: 7em;
-  padding-top:0.2em;
+#the-logo{
+    
+    width: 8em;
+    left:0.2em;
+    padding: 0.4em;
 }
 
 a:link,
@@ -25,52 +29,33 @@ a:active {
   color: rgb(41, 6, 44);
 }
 
-.top-bar {
-  font-family: "Ubuntu", sans-serif;
-  white-space: nowrap;
-  display: inline-block;
-  position: fixed;
-  margin: 0em;
-  padding-left: 1em;
-  width: 100%;
-  min-width: max-content;
-  background: linear-gradient(to bottom,rgb(223, 217, 223) 85%,  transparent  );
-  z-index: 50;
+.nav-btn{
+    float: right;
+    margin: 1em;
+    margin-left:0.5em;
+    
 }
 
-.nav-btn {
-  position: relative;
-  right: 5%;
-  top: 1em;
-  padding-left: 20px;
-  float: right;
-  text-align: right;
+.action-btn{
+    position: relative;
+    top:-2em;
+    margin: 1em;
 }
 
-.action-btn {
-  position: relative;
-  top: -80px;
-  padding-left: 20px;
+.nav-btn:hover,.action-btn:hover i{
+    color: darkorange;
+    cursor: pointer;
+    transform: scale(1.2);
+    transition: 0.2s all 0.2s;
 }
 
-.action-btn:hover {
-  color: rgb(217, 2, 217);
-  transition: 0.1s all 0.1s;
-}
+.avatar-top-bar{
+    position: relative;
+    width: 2.2em;
+    height: 2.2em;
+    top: -0.3em;
+    background:rgba(64, 12, 60, 0.45);
+    padding: 0.2em;
+    border-radius: 0.4em;
 
-.nav-btn:hover {
-  color: rgb(217, 2, 217);
-  transition: 0.1s all 0.1s;
-}
-
-.btn {
-  color: rgb(41, 6, 44);
-  font-size: 1.2em;
-  background:none;
-  border:none;
-}
-
-.spacer {
-  width: 100%;
-  height: 8em;
 }

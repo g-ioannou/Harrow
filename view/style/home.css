@@ -1,7 +1,7 @@
 .page {
   display: flex;
   position: relative;
-  top: 10em;
+  top:5em;
   padding: 2em;
   justify-content: center;
   flex-wrap: wrap;
@@ -26,16 +26,22 @@
 }
 
 .card {
-  
+  width: max-content;
   margin: 0.4em;
   padding: 0.4em;
-  background: rgb(65, 65, 65);
+  background: rgba(64, 12, 60, 0.45);
   border-radius: 0.4em;
   text-align: center;
 }
 
 .card:hover{
   background: rgba(102, 62, 116);
+  transition: 0.1s all 0.1s;
+}
+
+.card:hover .info-title{
+  color: orange;
+  border-bottom: 1px solid orange;
   transition: 0.1s all 0.1s;
 }
 
@@ -53,73 +59,28 @@
   height: 20%;
 }
 
-table {
-  text-align: center;
-  table-layout: fixed;
-  margin: 0px; /*min-height: 2em;*/
-  width: 30%;
+
+#username{
+  font-size: 1.2em;
+  color: darkorange;
 }
 
-td {
-  white-space: nowrap;
-  overflow: hidden;
-  border: 1em transparent;
-  border-radius: 0.2em;
-  font-size: 0.8em;
-  white-space: nowrap;
-  overflow: hidden;
-}
-
-tr {
-  width: 100%;
-}
-
-th {
-  color: white;
-  background: rgb(65, 65, 65);
-  border: 1em transparent;
-  border-radius: 0.4em;
-  position: sticky;
-  top: 0;
-  height: fixed;
-  z-index: 0;
-  overflow: hidden;
-  padding: 0.3em;
-  font-size: 0.8em;
-}
-
-th:nth-of-type(1) {
-  width: 70%;
-}
-
-th:nth-of-type(2) {
-  width: 40%;
-  padding-left: 1em;
-}
-
-td:nth-of-type(2) {
-  max-width: 65em;
-
-  padding-left: 1em;
-}
-
-tr:nth-child(even) {
-  background: rgb(245, 245, 245);
-}
-
-tr:nth-child(odd) {
-  background: #e1e1e1;
-}
 
 .avatar {
   height: max-content;
   width: 100%;
   padding: 0.4em;
   border-radius: 0.4em;
-  background: rgb(65, 65, 65);
+  
   text-align: center;
 }
 
 .avatar-img{
   height:5em;
+}
+
+.info-title{
+  color: darkmagenta;
+  
+  padding:0.2em;
 }

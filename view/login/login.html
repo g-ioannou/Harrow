@@ -13,6 +13,8 @@
   <script src="../../view/style/password.js"></script>
   <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.15.1/css/all.css" type="text/css">
 
+  <link rel="shortcut icon " type="image/x-icon" href="/harrow/view/images/tab_icon.png">
+    </link>
   <title>Harrow</title>
 </head>
 
@@ -31,32 +33,39 @@
         <div class="form-user">
           <!-- <img src="../../view/images/avatar.png" class="avatar" /> -->
           <span id="register-title">New account</span>
+          <br>
+          <br>
 
           <!-- Firstname bracker -->
-          <div id="first-name-title"><i class="fas fa-signature"></i> firstname</div>
-          <input type="text" class="form-control" id="firstname" placeholder="John" name="firstname" required="" /><br>
+          
+          <i class="fas fa-signature"></i>
+          <input type="text" class="form-control" id="firstname" placeholder="Firstname" name="firstname" required="" /><br>
           <span class="error_form" id="firstname_error_message" hidden></span>
 
           <!-- Lastname bracket -->
-          <div id="last-name-title"><i class="fas fa-signature"></i> lastname</div>
-          <input type="text" class="form-control" id="lastname" placeholder="Doe" name="lastname" required="" /><br>
+          
+          <i class="fas fa-signature"></i>
+          <input type="text" class="form-control" id="lastname" placeholder="Lastname" name="lastname" required="" /><br>
           <span class="error_form" id="lastname_error_message" hidden></span>
 
           <!-- Username bracket -->
-          <div id="user-name-title"><i class="fas fa-user"></i> username</div>
-          <input type="text" class="form-control" id="username" placeholder="JohnDoe123" name="username" required="" />
+          
+          <i class="fas fa-user"></i>
+          <input type="text" class="form-control" id="username" placeholder="Username" name="username" required="" />
           <br>
           <span class="error_form" id="username_error_message" hidden></span>
 
           <!-- email bracket -->
-          <div id="email-title"><i class="fas fa-at"></i> email</div>
-          <input type="email" class="form-control" id="email_reg" placeholder="john_doe@example.com" name="email"
+          
+          <i class="fas fa-at"></i>
+          <input type="email" class="form-control" id="email_reg" placeholder="Email" name="email"
             required="" />
           <br>
           <span class="error_form" id="email_error_message" hidden></span>
 
           <!-- password bracket -->
-          <div id="password-title"><i class="fas fa-key"></i> passoword</div>
+          
+          <i class="fas fa-key"></i>
           <input type="password" class="form-control" id="password_reg" placeholder="Password" name="password"
             pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required="" />
           <br>
@@ -71,6 +80,8 @@
           <div id="register_error"></div>
 
           <input type="button" name="register" class="btn_reg" value="Sign up" id="register_btn" />
+          <br>
+          <br>
           or <a id="login-redirect" href="login.html">Log In</a>
         </div>
       </form>
@@ -80,37 +91,40 @@
     <!--Login Form-->
 
     <div class="login">
+      
       <form action="../../model/login_form.php" id="login" name="login" method="post">
 
 
         <div class="form-user">
           <!-- <img src="../../view/images/avatar.png" class="avatar" /> -->
           <div class="login-msg">Log In</div>
-
+          <br>
           <!-- E-mail bracket -->
           <div class="email">
-            <div class="email-msg"><i class="far fa-at"></i> e-mail</div>
-            <div class="email-input"><input class="form-control" id="email_log" placeholder="Email" name="email"
-                required=""></input>
+            
+            <div class="email-input">
+              <i class="far fa-at"></i> 
+              <input class="form-control" id="email_log" placeholder="Email" name="email" required=""></input>
             </div>
           </div>
 
-
+          <br>
           <!-- Password bracket -->
-          <div class="password-msg"><i class="fas fa-key"></i> password</div>
-          <input type="password" class="form-control" id="password_log" placeholder="Password" name="password"
-            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-            title="Password must be at least 8 characters. Requirements: at least one lowercase letter, one uppercase letter, one number and one special character."
-            required="" />
-          <br />
+          
+            <i class="fas fa-key"></i> 
+            <input type="password" class="form-control" id="password_log" placeholder="Password" name="password"
+              pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+              title="Password must be at least 8 characters. Requirements: at least one lowercase letter, one uppercase letter, one number and one special character."
+              required="" />
+            <br />
           <!-- An element to toggle between password visibility -->
-          <button class="show-pass-btn" type="button"><i class="fas fa-eye-slash"></i></button>
+            <button class="show-pass-btn" type="button"><i class="fas fa-eye-slash"></i></button>
 
-          <span id="show-pass-msg">Show password</span>
+            <span id="show-pass-msg">Show password</span>
           <!-- <input type="checkbox" id="check_log">Show Password -->
-          <br />
+            <br />
 
-          <a id='forgot-pass' href="../../controller/email_password.php">Forgot Password?</a>
+            <a id='forgot-pass' href="../../controller/email_password.php">Forgot Password?</a>
 
           <br />
 
@@ -121,7 +135,7 @@
           <br />
           <br />
 
-          <p id="forReg">You still do not have an account? Create one!</p>
+          <p id="reg-msg">You still do not have an account? Create one!</p>
           <button type="button" class="toggle-btn" id="main_register">
             Create Acount
           </button>
@@ -132,7 +146,7 @@
   </div>
 
   <div id="password_reg_info" hidden>
-    <h4>Password must meet the following requirements:</h4>
+    <u>Password must meet the following requirements:</u>
     <ul>
       <li id="letter" class="invalid">
         <span id="pass-icon-lower"></span> At least <strong>one lowercase letter.</strong>
@@ -151,6 +165,8 @@
         <span id="pass-icon-eight"></span> Be at least <strong>8 characters.</strong>
       </li>
     </ul>
+
+    <span id="hide-pass-info">Click anywhere to hide this message.</span>
   </div>
 </body>
 
