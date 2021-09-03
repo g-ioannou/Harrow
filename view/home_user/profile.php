@@ -76,34 +76,34 @@ if (!isset($_SESSION['email'])) {
         <div class="action-buttons">
             Edit your credentials<br><br>
             <button type="button" class="btn btn-success btn-sm" id="main_username">Username</button>
-            <button class="btn btn-success btn-sm" id="main_email">E-mail</button>
             <button type="button" class="btn btn-success btn-sm" id="main_password">Password</button>
         </div>
         <br>
         <br>
 
         <div class="forms">
-            <form action="/harrow/model/edit_profile.php" id="change_username" name="change_username" method="post" hidden>
+            <form action="/harrow/model/edit_profile.php" id="change_username" name="change_username" method="post">
 
                 <h3>Change your username</h3>
 
 
 
                 <div class="form-user">
-                    <label for="username">Username</label><br>
-                    <input type="text" class="form-control" id="username_u" placeholder="username" name="username_u" required="">
+                    <i class="fas fa-user"></i>
+                    <input type="text" class="form-control" id="username_u" placeholder="Current username" name="username_u" required="">
                     <span class="error_form" id="username_error_message"></span>
+                    <br>
                 </div>
 
                 <div class="form-user">
-                    <label for="username">New username</label><br>
-                    <input type="text" class="form-control" id="new_username" placeholder="new username" name="new_username" required="">
+                    <i class="fas fa-user-edit"></i>
+                    <input type="text" class="form-control" id="new_username" placeholder="New username" name="new_username" required="">
                     <span class="error_form" id="new_username_error"></span>
                 </div>
 
                 <div class="form-user">
-                    <label for="password">Password</label><br>
-                    <input type="password" class="form-control" id="password_user" placeholder="password" name="password_user" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,32}" title="Your password must be at least 8 characters long, contain at least one number, one symbol and have a mixture of uppercase and lowercase letters." required="">
+                    <i class="fas fa-key"></i>
+                    <input type="password" class="form-control" id="password_user" placeholder="Password" name="password_user" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,32}" title="Your password must be at least 8 characters long, contain at least one number, one symbol and have a mixture of uppercase and lowercase letters." required="">
                     <br>
                     <span class="error_form" id="pass_error_message"></span>
                     <br>

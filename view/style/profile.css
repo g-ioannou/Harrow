@@ -87,13 +87,16 @@ body {
 }
 
 input{
-    background:rgb(65, 65, 65);
+    background:none;
     border:none;
+    border-bottom: 1px solid purple;
     padding:0.4em;
-    border-radius: 0.4em;
-    color: white;
-    margin:0.2em;
+   
+    color: black;
+    margin:0.4em;
 }
+
+
 
 input::placeholder{
     color: rgb(161, 161, 161);
@@ -101,6 +104,14 @@ input::placeholder{
 
 input:focus{
     outline: none;
+    border-bottom: 1.5px solid darkorange;
+    transition:  all 0.25s;
+    transition-timing-function: ease-in;
+}
+
+#edit_user_btn {
+    border: 1px solid black;
+    border-radius: 0.2em;
 }
 
 .spacer{

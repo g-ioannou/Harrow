@@ -8,11 +8,13 @@ body{
 }
  .top-bar{
     position: fixed;
-    
+    background: rgb(224, 224, 224);
     width: 100%;
-    
+    z-index: 200;
     height: 150px;
-    
+    height: 4em;
+    border-bottom: 1px solid white;
+   
 } 
 
 
@@ -32,13 +34,18 @@ a:active {
 .nav-btn{
     float: right;
     margin: 1em;
-    margin-left:0.5em;
+    margin-left:1em;
     
 }
 
+#logout-btn{
+    font-size: 1.2em;
+}
+
 .action-btn{
+    font-size: 1.2em;
     position: relative;
-    top:-2em;
+    top:-1em;
     margin: 1em;
 }
 
