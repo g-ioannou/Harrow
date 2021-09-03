@@ -83,6 +83,31 @@
           <br>
           <br>
           or <a id="login-redirect" href="login.html">Log In</a>
+          <br>
+          <br>
+          <div id="password_reg_info" hidden>
+        <u>Password must meet the following requirements:</u>
+        <ul>
+          <li id="letter" class="invalid">
+            <span id="pass-icon-lower"></span> At least <strong>one lowercase letter.</strong>
+          </li>
+          <li id="capital" class="invalid">
+            <span id="pass-icon-upper"></span> At least <strong>one uppercase letter.</strong>
+          </li>
+          <li id="number" class="invalid">
+            <span id="pass-icon-number"></span> At least <strong>one number.</strong>
+          </li>
+          <li id="symbol" class="invalid">
+            <span id="pass-icon-special"></span> At least
+            <strong>one spesial character e.g. (!@#$%^&*).</strong>
+          </li>
+          <li id="length" class="invalid">
+            <span id="pass-icon-eight"></span> Be at least <strong>8 characters.</strong>
+          </li>
+        </ul>
+
+        <span id="hide-pass-info">Click anywhere to hide this message.</span>
+      </div>
         </div>
       </form>
       <div class="curve"></div>
@@ -141,33 +166,12 @@
           </button>
         </div>
       </form>
+      
       <div class="curve"></div>
     </div>
   </div>
 
-  <div id="password_reg_info" hidden>
-    <u>Password must meet the following requirements:</u>
-    <ul>
-      <li id="letter" class="invalid">
-        <span id="pass-icon-lower"></span> At least <strong>one lowercase letter.</strong>
-      </li>
-      <li id="capital" class="invalid">
-        <span id="pass-icon-upper"></span> At least <strong>one uppercase letter.</strong>
-      </li>
-      <li id="number" class="invalid">
-        <span id="pass-icon-number"></span> At least <strong>one number.</strong>
-      </li>
-      <li id="symbol" class="invalid">
-        <span id="pass-icon-special"></span> At least
-        <strong>one spesial character e.g. (!@#$%^&*).</strong>
-      </li>
-      <li id="length" class="invalid">
-        <span id="pass-icon-eight"></span> Be at least <strong>8 characters.</strong>
-      </li>
-    </ul>
-
-    <span id="hide-pass-info">Click anywhere to hide this message.</span>
-  </div>
+  
 </body>
 
 </html>

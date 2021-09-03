@@ -349,8 +349,9 @@ tr:nth-child(odd) {
 }
 
 .notification-list-btn {
-  font-size: 1em;
+  font-size: 1.2em;
   z-index: 500;
+  
 }
 
 .notifications-side {
