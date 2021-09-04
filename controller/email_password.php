@@ -8,7 +8,6 @@ require 'PHPMailer-master/src/Exception.php';
 require 'PHPMailer-master/src/PHPMailer.php';
 require 'PHPMailer-master/src/SMTP.php';
 
-include '../view/login/email_password.html';
 include '../model/connection_db.php';
 
 
@@ -26,7 +25,7 @@ if (isset($_POST["email"])) {
     
 
     if (mysqli_num_rows($query_email) == 0) {
-        echo '<p style="color:  rgb(116, 17, 0);text-align: center;margin: 10%;font-size:x-large;">We do not have an account with this email.</p>';
+        echo '<p class="msg" style="color:  #FF0000;text-align: center;margin: 10%;">We do not have an account with this email.</p>';
     } else {
 
         if (!$query) {
@@ -61,9 +60,9 @@ if (isset($_POST["email"])) {
                 $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
                 
                 $mail->send();
-                echo '<p style="color:   rgb(0, 41, 51);text-align: center;margin: 10%;font-size:x-large;">Reset password link has been sent to your email.</p>';
+                echo '<p class="msg" style="color:darkorange;text-align: center; margin:10%;">Reset password link has been sent to your email.</p>';
             } catch (Exception $e) {
-                echo '<p style="color:  rgb(116, 17, 0);text-align: center;margin: 10%;font-size:x-large;">Message could not be sent. Mailer Error:</p>'. $mail->ErrorInfo ;
+                echo '<p class="msg" style="color:#FF0000;text-align: center; margin:10%;">Message could not be sent. Mailer Error:</p>'. $mail->ErrorInfo ;
             }
         }
     }
