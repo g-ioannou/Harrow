@@ -1,0 +1,19 @@
+* {
+            margin: 0;
+
+            padding: 0;
+        }
+
+        #mapid {
+            min-width: 100%;
+            min-height: 100%;
+            z-index: -5;
+            position: fixed;
+        }
+
+        #the-logo {
+            position: fixed;
+            width: 4em;
+            top: 0.5em;
+            left: 0.5em;
+        }
