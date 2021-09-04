@@ -112,7 +112,7 @@ function normalize(number, min, max) {
 
 // returns a promise
 async function getPoint(ip_address) {
-	let url = `http://api.ipstack.com/${ip_address}?access_key=edb06d9a834a9088c226875710914686`;
+	let url = `http://api.ipstack.com/${ip_address}?access_key=3c24d72f99f8afc4e2ca1a5f9199a871`;
 	return $.ajax({
 		type: "POST",
 		url: url,
