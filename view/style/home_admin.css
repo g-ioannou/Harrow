@@ -21,26 +21,38 @@
     position: relative;
     width: 100%;
 }
-.navigation ul li a .logo
+.navigation ul li a  
 {
     position: relative;
     display: block;
     min-width: 200px;
-    height: 200px;
-    left: 40px;
+    height: max-content;
     line-height: 60px;
-    text-align:center   ;
+    text-align:center;
+    
+}
+
+.logo 
+{
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 5em;
+    left: 0;
+    transform: scale(0.8);
+    
 }
 
 .navigation
 {
     
     position: fixed;
-    width: 300px;
+    width: 15em;
     height: 100%;
-    background:#ad2144;
+    background:rgb(223, 216, 221);
     transition: 0.5s;
     overflow: hidden;
+    border-right: 1px solid white;
 }
 
 .navigation.active
@@ -95,6 +107,7 @@
     display: flex;
     text-decoration: none;
     color: #fff;
+    
 
 }
 .navigation ul li.active a
@@ -116,7 +129,7 @@
 .navigation ul li a .icon .fa
 {
     color: #fff;
-    font-size: 24px;
+    font-size: 1em;
 }
 
 .navigation ul li a .title
@@ -132,10 +145,10 @@
 .main
 {
     position: absolute;
-    width: calc(100% - 300px);
-    left: 300px;
+    width: calc(100% - 15em); 
+    left: 15em;
     min-height: 100vh;
-    background-image: linear-gradient(315deg, #ad2144 20%, #77216F 80%);
+    background:rgb(223, 216, 221);
     transition: 0.5s;
 }
 
@@ -148,12 +161,13 @@
 .main .topbar
 {
     width: 100%;
-    background: linear-gradient(to left, #ad2144 , #77216F);
-    height: 60px;
+    background: rgb(223, 216, 221);
+    height: 50px;
     padding: 0 10px;
     display: flex;
     justify-content: space-between;
-    align-items: center;    
+    align-items: center;   
+    border-bottom: 1px solid white;
 }
 
 .toggle
@@ -172,7 +186,7 @@
   width: 100%;
   height: 100%;
   line-height: 60px;
-  font-size: 24px;
+  font-size: 1em;
   text-align: center;
   color:#111;
 }
@@ -208,16 +222,7 @@
     top: 4px;
 }
 
-.admin
-{
-    position: relative;
-    left: -5px;
-    min-width: 50px;
-    width: 50px;
-    height: 50px;
-    overflow: hidden;
-    cursor: pointer;
-}
+
 
 .cardBox
 {
@@ -227,9 +232,30 @@
     left: 5%;
     padding: 10px;
     display: grid;
-    grid-template-columns: repeat(3,30%);
+    grid-template-columns: repeat(2,45%);
     grid-gap:20px;
 
+}
+
+.cardBox-column{
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    height:100%;
+    
+}
+
+.inner-card{
+    border-radius: 25px;
+    border: 2px solid #ad2144;  
+    position: relative;
+    background: #fff;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    margin:1em;
+    height: 25%;
 }
 
 .cardBox .card
@@ -242,16 +268,16 @@
     display: flex;
     justify-content: space-between;
     cursor: pointer;
-    
-    
-
 }
 
-.cardBox .card .content{
+.cardBox .card .content,
+.inner-card .content
+{
     max-height: min-content;
 }
 
-.cardBox .card:hover
+.cardBox .card:hover,
+.inner-card:hover
 {
     animation: bounce 1s linear;
 }
@@ -276,75 +302,41 @@
     }
 }
 
-.cardBox .card .numbers1
+.cardBox .card .numbers
 {
     position: relative;
-    font-size: 14px;
+    font-size: 1em;
     font-weight: 500;
     padding: 10px;
     display: grid;
     grid-template-columns: repeat(1 ,1fr);
 }
 
-
-.cardBox .card .numbers2
-{
-    position: relative;
-    font-size: 25px;
-    font-weight: 500;
-    padding: 10px;
-    display: grid;
-    grid-template-columns: repeat(1 ,1fr);
-}
-
-.cardBox .card .numbers3
-{
-    position: relative;
-    font-size: 25px;
-    font-weight: 500;
-    padding: 10px;
-    display: grid;
-    grid-template-columns: repeat(1 ,1fr);
-}
-
-.cardBox .card .numbers4
-{
-    position: relative;
-    font-size: 25px;
-    font-weight: 500;
-    padding: 10px;
-    display: grid;
-    grid-template-columns: repeat(1 ,1fr);
-}
-
-.cardBox .card .numbers5
-{
-    position: relative;
-    font-size: 25px;
-    font-weight: 500;
-    padding: 10px;
-    display: grid;
-    grid-template-columns: repeat(1 ,1fr);
-}
-
-.cardBox .card .numbers6
-{
-    position: relative;
-    font-size: 25px;
-    font-weight: 500;
-    padding: 10px;
-    display: grid;
-    grid-template-columns: repeat(1 ,1fr);
-}
-
-.cardBox .card .title
+.title
 {
     color: #999;
 }
-.cardBox .card .iconBox
+.iconBox
 {
-    font-size: 2.5em;
+    font-size: 1em;
     color: #77216F ;
     padding: 15px;
 }
 
+.avatar-top-bar
+{
+    position: relative;
+    left: -5px;
+    min-width: 50px;
+    width: 50px;
+    height: 40px;
+    overflow: hidden;
+    cursor: pointer;
+    margin-left: auto;
+    order: 2;
+}
+
+.avg-data{
+    width: 100%;
+    position: relative;
+}

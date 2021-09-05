@@ -34,11 +34,11 @@ $(document).ready(function () {
 	$.ajax({
 		type: "GET",
 		url: "/harrow/model/ips_map_admin.php",
-
+		
 		success: function (response) {
-			let ip_pairs = JSON.parse(response);
-			console.log(response);
-			throw new Error("exiting");
+			// let ip_pairs = JSON.parse(response);
+			console.log(JSON.parse(response));
+			throw new Error("coafdpia");
 			let strength = [];
 
 			for (let i = 0; i < ip_pairs.length; i++) {

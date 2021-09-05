@@ -43,10 +43,10 @@
                 </a>
             </li>
             <li>
-                <a href="/harrow/view/home_admin/heatmap_admin.php">
+                <a href="/harrow/view/home_admin/map_admin.php">
                 <span class="icon"><i class="fas fa-map-marked"></i>
                 </span>
-                <span class="title">Heatmap</span>
+                <span class="title">IP-Map</span>
                 </a>
             </li>
             <li class ="active">
