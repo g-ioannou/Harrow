@@ -28,6 +28,7 @@ session_start();
 
     <div id="mapid"></div>
     <div class="icon"><img id="the-logo" src="/harrow/view/images/logo.png" alt=""></div>
+    <button id="back-to-home" class='btn'><i class="fas fa-home"></i></button>
 </body>
 
 <script src="/harrow/controller/ips_map_admin.js"></script>

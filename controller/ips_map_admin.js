@@ -27,13 +27,18 @@ mymap.options.maxBounds = bounds;
 //map functionality (ip)
 
 $(document).ready(function () {
+	$("#back-to-home").on("click", function () {
+    	window.location.replace("/harrow/view/home_admin/home_admin.php");
+  	});
+
 	$.ajax({
 		type: "GET",
 		url: "/harrow/model/ips_map_admin.php",
 
 		success: function (response) {
 			let ip_pairs = JSON.parse(response);
-
+			console.log(response);
+			throw new Error("exiting");
 			let strength = [];
 
 			for (let i = 0; i < ip_pairs.length; i++) {
