@@ -69,6 +69,7 @@ $(document).ready(function () {
     success: function (response) {
       let html = `<div class="avg-data">${response}</div>`;
       $("#average").append(html);
+      
     },
   });
 });

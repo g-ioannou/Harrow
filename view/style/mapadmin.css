@@ -1,19 +1,56 @@
 * {
-            margin: 0;
+	margin: 0;
 
-            padding: 0;
-        }
+	padding: 0;
+}
 
-        #mapid {
-            min-width: 100%;
-            min-height: 100%;
-            z-index: -5;
-            position: fixed;
-        }
+#mapid {
+	min-width: 100%;
+	min-height: 100%;
+	z-index: -5;
+	position: fixed;
+}
 
-        #the-logo {
-            position: fixed;
-            width: 4em;
-            top: 0.5em;
-            left: 0.5em;
-        }
+#the-logo {
+	position: fixed;
+	width: 4em;
+	top: 0.5em;
+	left: 0.5em;
+}
+#back-to-home {
+    position: fixed;
+    font-size: 1.5em;
+	right: 2.5em;
+	bottom: 1em;
+	padding: 0.5em;
+	border: none;
+	border-radius: 0.4em;
+	background: rgba(94, 98, 102, 0.2);
+	backdrop-filter: blur(5px);
+    color: rgb(203, 203, 203);
+}
+
+#back-to-home:hover {
+    color:purple;
+    cursor: pointer;
+    transition: 0.15s all 0.15s;
+}
+
+.leaflet-control-zoom-in,
+.leaflet-control-zoom-out {
+  color: rgb(203, 203, 203) !important;
+  border: none;
+  background-color: rgba(94, 98, 102, 0.2) !important;
+  backdrop-filter: blur(5px);
+  bottom: 2em;
+}
+
+.leaflet-control-zoom-in:hover,
+.leaflet-control-zoom-out:hover {
+  color: rgb(210, 58, 190) !important;
+  transition: 0.1s all 0.1s;
+}
+
+.leaflet-disabled{
+  color:black !important;
+}

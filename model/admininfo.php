@@ -214,10 +214,10 @@ if ($_POST['type'] == "average") {
         $avrg = $avrg["avrg"];
         if ($avrg == NULL) {
             echo "<b>", $value, "</b>", " : 0";
-            echo "\n";
+            echo "<br>";
         } else {
             echo "<b>", $value, "</b>", " : ", $avrg;
-            echo "\n";
+            echo "<br>";
         }
     }
 }
