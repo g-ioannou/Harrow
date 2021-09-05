@@ -10,13 +10,5 @@ $sql = mysqli_query($conn, "SELECT entries.serverIpAddress,files.upload_ip,COUNT
 
 $result = mysqli_fetch_all($sql);
 
-var_dump($result);
-// $results  = array();
+echo json_encode($result);
 
-
-// while ($row = mysqli_fetch_array($sql_upload_ip)) {
-//     $ip = $row['upload_ip'];
-//     $results[] = array('ip' => $ip);
-// }
-
-// echo json_encode($results);
