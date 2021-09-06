@@ -36,9 +36,8 @@ $(document).ready(function () {
 		url: "/harrow/model/ips_map_admin.php",
 		
 		success: function (response) {
-			// let ip_pairs = JSON.parse(response);
-			console.log(JSON.parse(response));
-			throw new Error("coafdpia");
+			let ip_pairs = JSON.parse(response);
+			
 			let strength = [];
 
 			for (let i = 0; i < ip_pairs.length; i++) {
