@@ -28,16 +28,16 @@ mymap.options.maxBounds = bounds;
 
 $(document).ready(function () {
 	$("#back-to-home").on("click", function () {
-    	window.location.replace("/harrow/view/home_admin/home_admin.php");
-  	});
+		window.location.replace("/harrow/view/home_admin/home_admin.php");
+	});
 
 	$.ajax({
 		type: "GET",
 		url: "/harrow/model/ips_map_admin.php",
-		
+
 		success: function (response) {
 			let ip_pairs = JSON.parse(response);
-			
+
 			let strength = [];
 
 			for (let i = 0; i < ip_pairs.length; i++) {
@@ -68,12 +68,11 @@ $(document).ready(function () {
 
 					let pointList = [pointA, pointB];
 
-                    let weight = normalize(ip_array[2], minimum, maximum);
+					let weight = normalize(ip_array[2], minimum, maximum);
 
-                    if (weight<1){
-        
-                        weight=1;
-                    }
+					if (weight < 1) {
+						weight = 1;
+					}
 					let polyline = new L.Polyline(pointList, {
 						color: "#F0A93C",
 						weight: weight,
@@ -86,6 +85,7 @@ $(document).ready(function () {
 						iconUrl: "/harrow/view/images/map-home.png",
 						iconSize: [30, 30],
 						popupAnchor: [-3, -76],
+						iconOffset: [10, 10],
 					});
 					let server_address_icon = L.icon({
 						iconUrl: "/harrow/view/images/map-server.png",
@@ -116,7 +116,7 @@ function normalize(number, min, max) {
 
 // returns a promise
 async function getPoint(ip_address) {
-	let url = `http://api.ipstack.com/${ip_address}?access_key=3c24d72f99f8afc4e2ca1a5f9199a871`;
+	let url = `http://api.ipstack.com/${ip_address}?access_key=94257e497e5ef89f67bcc18fb759ed74`;
 	return $.ajax({
 		type: "POST",
 		url: url,
