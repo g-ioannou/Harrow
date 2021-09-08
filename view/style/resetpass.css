@@ -55,7 +55,7 @@ input {
     margin:0.4em;
 }
 
-#email{
+#email,#password_re{
     width: 80%;
     background:none;
     border:none;
@@ -65,7 +65,7 @@ input {
     color: white;
 }  
 
-#email:focus{
+#email:focus, #password_re:focus{
     border:none;
     border-bottom: 1px solid orange;
     transition: 0.15s all 0.15s;
@@ -82,7 +82,7 @@ a:hover{
 }
 
 
-#reset_btn{
+#reset_btn,#save_btn{
     padding:0.4em;
     width: 50%;
     border: none;
@@ -91,41 +91,29 @@ a:hover{
     color: rgb(198, 198, 198);
 }
 
-#reset_btn:hover{
+#reset_btn:hover,#save_btn:hover{
     color:rgb(250, 180, 51);
-  background: rgba(128, 0, 128, 0.6);
+    background: rgba(128, 0, 128, 0.6);
+    cursor: pointer;
+    transition: 0.15s all 0.15s;
+}
+
+.msg{
+    position:fixed;
+    top:70%;
+    left:75.5%;
+    transform:translate(-50%,-50%);
+}
+
+.show-pass-btn {
+  font-size: 0.8em;
+  background: rgba(97, 0, 97, 0.6);
+  border-radius: 0.4em;
+  border: none;
+  margin-top: 0.4em;
+}
+
+.show-pass-btn:hover {
   cursor: pointer;
-  transition: 0.15s all 0.15s;
 }
-
-
-/* .form-reset input[type="email"]{
-    margin: 2%;
-    border: 1px solid #414d3a;
-    padding: 2%;
-    width: 50%;
-    
-}
-
-.form-submit input[type="submit"]{
-    margin: 1%;
-    border: 0px solid #546457;
-    padding: 2%;
-    width: 20%;
-    background-color: rgb(63, 82, 76);
-    font-weight: bold;
-    font-size: 100%;
-    font-style: italic;
-    color: rgb(199, 228, 228);
-    
-}
-
-.form-submit input[type="submit"]:hover {
-    background-color: rgb(5, 114, 81);
-}
-
-h3{
-    font-size: 30px;
-    color: rgb(6, 43, 43);
-} */
 
