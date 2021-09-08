@@ -96,20 +96,20 @@
                                 </div>
                                 <div class="isp-selector">
                                     Select data per ISP.
-                                    <button id="select-all-content">Select all</button>
+                                    <button id="select-all-isp">Select all</button>
                                 </div>
 
                                 <div class="method-selector">
                                     Select data per request method.
-                                    <button id="select-all-content">Select all</button>
+                                    <button id="select-all-method">Select all</button>
                                 </div>
 
                                 <div class="content-selector">
                                     Select data per content-type.
                                     <button id="select-all-content">Select all</button>
                                 </div>
-
-
+  
+ 
 
                                 <!-- <select name="select"  id="select"> 
                                 <option value="All" id="all" target="Avg_Wait_Chart">All</option>
@@ -134,6 +134,8 @@
             </div>
         </div>
         <script type=text/javascript>
+
+
             $.ajax({
                 type: "POST",
                 url: "../../model/admininfo.php",
@@ -147,7 +149,7 @@
                     let isp_responses = JSON.parse(response);
                     for (const isp_array in isp_responses) {
                         const isp = isp_responses[isp_array][0];
-                        let html = `<button id="${isp}" class="isp_choice unselected">${isp}</button>`;
+                        let html = `<button id="${isp}" class="isp_choice">${isp}</button>`;
                         $(".isp-selector").append(html);
                     }
 
@@ -172,7 +174,7 @@
 
                         const content_type = content_responses[content_array][0];
 
-                        let html = `<button id="${content_type}" class="content_type_choice unselected">${content_type}</button>`;
+                        let html = `<button id="${content_type}" class="content_type_choice">${content_type}</button>`;
                         $(".content-selector").append(html);
 
                     }
@@ -189,8 +191,11 @@
                 success: function(response) {
                     let method_responses = JSON.parse(response);
                     for (const method_array in method_responses) {
+
                         const method_type = method_responses[method_array][0];
-                        let html = `<button id="${method_type}" class="method_choice unselected">${method_type}</button>`;
+
+                        let html = `<button id="${method_type}" class="method_type_choice">${method_type}</button>`;
+                        console.log(method_type);
                         $(".method-selector").append(html);
                     }
                 }

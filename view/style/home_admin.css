@@ -340,3 +340,7 @@
     width: 100%;
     position: relative;
 }
+
+.selected {
+    background: green;
+}

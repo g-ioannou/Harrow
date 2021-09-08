@@ -1,151 +1,185 @@
-// $('#select').change(function () { 
-//     $(this).find("option").each(function () {
-//         console.log("allaksa");
-//                 $('#' +  $(this).attr('target')).hide();
-//     });
-//     $('#' + $(this).attr('target')).show();
 
-// });
+// ------------------ DAYS ---------------------------
+let all_selected_days = 0;
+$(document).on("click", "#select-all-day", function () {
+  if (all_selected_days == 0) {
+    $(".day_choice").addClass("selected");
+    all_selected_days = 1;
+    $(this).html("Unselect All");
+  } else {
+    $(".day_choice").removeClass("selected");
+    all_selected_days = 0;
+    $(this).html("Select All");
+  }
 
-$(document).on("click", ".isp_choice",function(){
-    let id = $(this).attr('id');
-    console.log(id);
-    // $.ajax({
-    //     type: "POST",
-    //     // 
-    //     data: {"type" : id},
+  get_selected(".day-selector");
+});
+
+$(document).on("click", ".day_choice", function () {
+    let id = $(this).attr("id");
+    let classes = $(this).attr("class").split(" ");
     
-    //     success: function (response) {
-            
-    //     }
-    // });
-} )
-            let isp_array = [];
-            $(document).on("click", ".isp_choice",function(){
-                let id = $(this).attr('id');
-                let classes = $(this).attr('class').split(' ');
+    if ($.inArray("selected", classes) != -1) {
+        $(this).removeClass("selected");
+    }
+    else {
+        $(this).addClass("selected");
+    }
+    get_selected(".day-selector");
+      
+});
 
-                
-                for(let i=0; i<classes.length; i++){
-                    const current_class = classes[i];
-                    if (current_class == 'unselected'){
-                        content_type_array.push(id);
-                        $(this).addClass('selected');
-                        $(this).removeClass('unselected');
-                    }
+// ------------------ ISP ---------------------------
 
-                    if (current_class == 'selected'){
-                        $(this).removeClass('selected');
-                        $(this).addClass('unselected');
-                        isp_array = isp_array.filter(item => item !== id);
-                    }
-                }
-                $.ajax({
-                    type: "POST",
-                    url: "../../model/admininfo.php",
-                    data: {"type" : "isp", "isp_list": isp_array},
-                    success: function (response) {
-                        
-                    }
-                });
-            });
-    
-let content_type_array = [];
-$(document).on("click", ".content_type_choice",function(){
-    let id = $(this).attr('id');
-    let classes = $(this).attr('class').split(' ');
+let all_selected_isp = 0;
+$(document).on("click", "#select-all-isp", function () {
+  if (all_selected_isp == 0) {
+    $(".isp_choice").addClass("selected");
+    all_selected_days = 1;
+    $(this).html("Unselect All");
+  } else {
+    $(".isp_choice").removeClass("selected");
+    all_selected_days = 0;
+    $(this).html("Select All");
+  }
 
-    
-    for(let i=0; i<classes.length; i++){
-        const current_class = classes[i];
-        if (current_class == 'unselected'){
-            content_type_array.push(id);
-            $(this).addClass('selected');
-            $(this).removeClass('unselected');
-        }
-
-        if (current_class == 'selected'){
-            $(this).removeClass('selected');
-            $(this).addClass('unselected');
-            content_type_array = content_type_array.filter(item => item !== id);
-        }
-    } 
-    $.ajax({
-            type: "POST",
-            url: "../../model/admininfo.php",
-            data: {"type" : "content_types", "content_list": content_type_array},
-            success: function (response) {
-                console.log(response);
-            }
-    });
+  get_selected(".isp-selector");
 });
 
 
+$(document).on("click", ".isp_choice", function () {
+    let id = $(this).attr("id");
+    console.log(id);
+    let classes = $(this).attr("class").split(" ");
 
-let method_type_array = [];
+    if ($.inArray("selected", classes) != -1) {
+        $(this).removeClass("selected");
+    }
+    else {
+        $(this).addClass("selected");
+    }
+    get_selected(".isp-selector");
+      
+});
+    
+// ------------------ CONTENT-TYPE ---------------------------
+let all_selected_content=0;
+$(document).on("click", "select-all-content", function () {
+    if (all_selected_content == 0) {
+      $(".content_type_choice").addClass("selected");
+      all_selected_day = 1;
+      $(this).html("Unselect All");
+    } else {
+      $(".content_type_choice").removeClass("selected");
+      all_selected = 0;
+      $(this).html("Select All");
+    }
+  
+    get_selected(".content-selector");
+});
+  
+
+$(document).on("click", ".content_type_choice", function () {
+    let id = $(this).attr("id");
+    let classes = $(this).attr("class").split(" ");
+
+    if ($.inArray("selected", classes) != -1) {
+        $(this).removeClass("selected");
+    }
+    else {
+        $(this).addClass("selected");
+    }
+    selected_content_types = get_selected(".content-selector");
+  
+  get_data(selected_methods, "methods");
+
+});
+
+// ------------------ METHOD ---------------------------
+let all_selected_method=0;
+$(document).on("click", "#select-all-method", function () {
+  if (all_selected_method == 0) {
+    $(".method_type_choice").addClass("selected");
+    all_selected_method = 1;
+    $(this).html("Unselect All");
+  } else {
+    $(".method_type_choice").removeClass("selected");
+    all_selected_method = 0;
+    $(this).html("Select All");
+  }
+
+  selected_methods = get_selected(".method-selector");
+  
+  get_data(selected_methods, "method_chart");
+});
+
 $(document).on("click", ".method_type_choice", function () {
-        let id = $(this).attr('id');
-        let classes = $(this).attr('class').split(' ');
+    let id = $(this).attr("id");
+    let classes = $(this).attr("class").split(" ");
 
-
-        for (let i = 0; i < classes.length; i++) {
-            const current_class = classes[i];
-            if (current_class == 'unselected') {
-                method_type_array.push(id);
-                $(this).addClass('selected');
-                $(this).removeClass('unselected');
-            }
-
-            if (current_class == 'selected') {
-                $(this).removeClass('selected');
-                $(this).addClass('unselected');
-                method_type_array = method_type_array.filter(item => item !== id);
-            }
-        }
-        $.ajax({
-            type: "POST",
-            url: "../../model/admininfo.php",
-            data: { "type": "method_types", "method_list": method_type_array },
-            success: function (response) {
-                
-            }
-        });
+    if ($.inArray("selected", classes) != -1) {
+        $(this).removeClass("selected");
+    }
+    else {
+        $(this).addClass("selected");
+    }
+    selected_methods = get_selected(".method-selector");
+  
+    get_data(selected_methods, "method_chart");
 });
 
-       
-$(document).on("click", ".day_choice",function(){
-    let id = $(this).attr('id');
-    console.log(id);
-    // $.ajax({
+
+function get_selected(selector_div) {
+  let selected_elements = [];
+    console.log("----------")
+    $(selector_div)
+      .find(".selected")
+      .each(function () {
+          selected_elements.push($(this).attr('id'));
+      });
+    console.log(selected_elements);
+    return selected_elements;
+}
+
+function get_data(data_array,type){
+    $.ajax({
+        type: "POST",
+        url: "/harrow/model/admininfo.php",
+        data: {type:type},
+        success: function (response) {
+            let time_data = JSON.parse(response);
+            console.log(time_data);
+        }
+    });
+
+}
+
+// $.ajax({
     //     type: "POST",
-    //     // 
-    //     data: {"type" : id},
-    
-    //     success: function (response) {
-            
-    //     }
+    //     url: "../../model/admininfo.php",
+    //     data: { type: "method_types", method_list: method_type_array },
+    //     success: function (response) {},
     // });
-} )
+
 
 // console.log("okk");
 //     google.charts.load('current',{packages:['corechart','bar']});
 //     google.charts.setOnLoadCallback();
 //  console.log("okk");
-//     function load_data(avg_wait) 
-//     {  
-      
-      
+//     function load_data(avg_wait)
+//     {
+
 //     $.ajax({
 //         method: "POST",
 //         url: "../../model/admininfo.php",
 //         data:
 //         { type:"chart_area"},
 //         dataType:"JSON",
-//         success: function (response) 
+//         success: function (response)
 //          {
-//            drawChart(response);       
+//            drawChart(response);
 //          }
-//           });   
+//           });
 //     }
 //     function drawChart(chart_data)
 // {
@@ -159,7 +193,7 @@ $(document).on("click", ".day_choice",function(){
 //         data.addRows([[avg_wait, day_time]]);
 //     });
 //     var options = {
-        
+
 //         hAxis: {
 //             title: "Day Time"
 //         },
@@ -171,6 +205,3 @@ $(document).on("click", ".day_choice",function(){
 //     var chart = new google.visualization.ColumnChart(document.getElementById('chart_area'));
 //     chart.draw(data, options);
 // }
-
-
-
