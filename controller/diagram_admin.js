@@ -35,21 +35,22 @@ let all_selected_isp = 0;
 $(document).on("click", "#select-all-isp", function () {
   if (all_selected_isp == 0) {
     $(".isp_choice").addClass("selected");
-    all_selected_days = 1;
+    all_selected_isp = 1;
     $(this).html("Unselect All");
   } else {
     $(".isp_choice").removeClass("selected");
-    all_selected_days = 0;
+    all_selected_isp = 0;
     $(this).html("Select All");
   }
 
-  get_selected(".isp-selector");
+  selected_isps = get_selected(".isp-selector");
+  
+  get_data(selected_isps,"isp_chart");
 });
 
 
 $(document).on("click", ".isp_choice", function () {
     let id = $(this).attr("id");
-    console.log(id);
     let classes = $(this).attr("class").split(" ");
 
     if ($.inArray("selected", classes) != -1) {
@@ -58,24 +59,27 @@ $(document).on("click", ".isp_choice", function () {
     else {
         $(this).addClass("selected");
     }
-    get_selected(".isp-selector");
-      
+    selected_isps = get_selected(".isp-selector");
+    
+    get_data(selected_isps,"isp_chart")
 });
     
 // ------------------ CONTENT-TYPE ---------------------------
 let all_selected_content=0;
-$(document).on("click", "select-all-content", function () {
+$(document).on("click", "#select-all-content", function () {
     if (all_selected_content == 0) {
       $(".content_type_choice").addClass("selected");
-      all_selected_day = 1;
+      all_selected_content= 1;
       $(this).html("Unselect All");
     } else {
       $(".content_type_choice").removeClass("selected");
-      all_selected = 0;
+      all_selected_content = 0;
       $(this).html("Select All");
     }
   
-    get_selected(".content-selector");
+    selected_content_types = get_selected(".content-selector");
+
+    get_data(selected_content_types,"content_type_chart")
 });
   
 
@@ -90,8 +94,8 @@ $(document).on("click", ".content_type_choice", function () {
         $(this).addClass("selected");
     }
     selected_content_types = get_selected(".content-selector");
-  
-  get_data(selected_methods, "methods");
+    
+    get_data(selected_content_types, "content_type_chart");
 
 });
 
