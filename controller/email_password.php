@@ -19,20 +19,20 @@ if (isset($_POST["email"])) {
 
     $query = mysqli_query($conn, "UPDATE users SET users.token ='$code' WHERE email='$emailTo'") or die(mysqli_error($conn));
 
-   
+
     $query_email = mysqli_query($conn, "SELECT email FROM users WHERE email='$emailTo'") or die(mysqli_error($conn));
 
-    
+
 
     if (mysqli_num_rows($query_email) == 0) {
-        echo '<p class="msg" style="color:  #FF0000;text-align: center;margin: 10%;">We do not have an account with this email.</p>';
+        echo '<p  style="color:  #FF0000;text-align: center;margin: 10%;">We do not have an account with this email.</p>';
     } else {
 
         if (!$query) {
             exit("Error");
         } else {
 
-            $url = 'http://' . $_SERVER['SERVER_NAME'] . '/harrow/controller/reset_password.php?code=' . $code;
+            $url =  'http://' . $_SERVER['SERVER_NAME'] . '/harrow/controller/reset_password.php?code=' . $code;
 
             $output = "<h3>You requested a password reset.</h3> Click <a href='$url'>this link.</a>";
 
@@ -58,11 +58,11 @@ if (isset($_POST["email"])) {
                 $mail->Subject = 'Reset Password ';
                 $mail->Body    = $output;
                 $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
-                
+
                 $mail->send();
-                echo '<p class="msg" style="color:darkorange;text-align: center; margin:10%;">Reset password link has been sent to your email.</p>';
+                echo '<p style="color:darkorange;text-align: center; margin:10%;">Reset password link has been sent to your email.</p>';
             } catch (Exception $e) {
-                echo '<p class="msg" style="color:#FF0000;text-align: center; margin:10%;">Message could not be sent. Mailer Error:</p>'. $mail->ErrorInfo ;
+                echo '<p  style="color:#FF0000;text-align: center; margin:10%;">Message could not be sent. Mailer Error:</p>' . $mail->ErrorInfo;
             }
         }
     }
