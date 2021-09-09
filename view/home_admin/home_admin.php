@@ -4,7 +4,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin's homepage</title>
-    <script src="https://kit.fontawesome.com/99e7bc666b.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.15.1/css/all.css" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="../../controller/home_admin.js"></script>
     <link rel="stylesheet" type="text/css" href="../../view/style/home_admin.css">
@@ -34,14 +34,14 @@
                     <a href="/harrow/view/home_admin/diagram_admin.php">
                         <span class="icon"><i class="fas fa-chart-area"></i>
                         </span>
-                        <span class="title">Diagram</span>
+                        <span class="title">Avg. Time Analysis</span>
                     </a>
                 </li>
                 <li>
                     <a href="/harrow/view/home_admin/tables_admin.php">
                         <span class="icon"><i class="fas fa-table"></i>
                         </span>
-                        <span class="title">Tables/Graphs</span>
+                        <span class="title">Response Analysis</span>
                     </a>
                 </li>
                 <li>
@@ -53,7 +53,7 @@
                 </li>
                 <li>
                     <a href="/harrow/controller/logout.php">
-                        <span class="icon"><i class="fas fa-sign-out-alt"></i>
+                        <span class="icon"><i class="fas fa-door-open"></i>
                         </span>
                         <span class="title">Sign Out</span>
                     </a>
@@ -63,7 +63,7 @@
 
         <div class="main">
             <div class="topbar">
-                <div class="toggle" onclick="toggleMenu()"></div>
+                <div class="toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
 
                 <?php
                 $seed = rand(0, 1000);
@@ -74,37 +74,40 @@
             <div class="cardBox">
                 <div class="card">
                     <div class="content" id="average">
-                        <div class="title">Average age of Content-Type </div>
-
+                        <div class="dash-title">Average age per Content-Type </div>
+                        <br>
 
                     </div>
                     <div class="iconBox"><i class="fas fa-clock"></i></div>
                 </div>
 
                 <div class="cardBox-column">
-                    
+
 
                     <div class="inner-card">
                         <div class="content">
-                            <div class="title">Types of Requests </div>
+                            <div class="dash-title"># of request methods </div>
+                            <br>
                             <span class="numbers" id="methods"></span>
 
                         </div>
-                        <div class="iconBox"><i class="fas fa-hand-pointer"></i></div>
+                        <div class="iconBox"><i class="fas fa-arrow-from-left"></i></div>
                     </div>
 
                     <div class="inner-card">
                         <div class="content">
-                            <div class="title">Νumber of entries in the database per status</div>
+                            <div class="dash-title"># response statuses </div>
+                            <br>
                             <span class="numbers" id="status"></span>
 
                         </div>
-                        <div class="iconBox"><i class="fas fa-file-import"></i></div>
+                        <div class="iconBox"><i class="fas fa-arrow-to-left"></i></div>
                     </div>
 
                     <div class="inner-card">
                         <div class="content">
-                            <div class="title">Number of different domains used </div>
+                            <div class="dash-title"># different domains used </div>
+                            <br>
                             <span class="numbers" id="domain"></span>
 
                         </div>
@@ -113,10 +116,20 @@
 
                     <div class="inner-card">
                         <div class="content">
-                            <div class="title"> Registered users</div>
+                            <div class="dash-title"># registered users</div>
+                            <br>
                             <span class="numbers" id="numbers"></span>
                         </div>
                         <div class="iconBox"><i class="fas fa-users"></i></div>
+                    </div>
+
+                    <div class="inner-card">
+                        <div class="content">
+                            <div class="dash-title"># of different isps</div>
+                            <br>
+                            <span class="numbers" id="isps"></span>
+                        </div>
+                        <div class="iconBox"><i class="fas fa-project-diagram"></i></div>
                     </div>
                 </div>
 

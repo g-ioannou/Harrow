@@ -76,95 +76,27 @@ if ($_POST['type'] == "regs") {
 
 
 if ($_POST['type'] == "methods") {
-    $query = "SELECT method ,count(*) AS get_count FROM requests WHERE method='GET' ";
-    $query_run = mysqli_query($conn, $query);
-    $get_count = mysqli_fetch_array($query_run);
-    $get_count = $get_count["get_count"];
+    $query = "SELECT method, count(*) AS method_count FROM requests GROUP BY method ORDER BY method_count DESC";
+    $query_run = mysqli_query($conn, $query) or die(mysqli_error($conn));
 
+    $results = mysqli_fetch_all($query_run);
 
-    echo "GET:", $get_count, '<br>';
+    foreach($results as $row){
+        echo "<b>$row[0]</b>:$row[1]<br>";
 
-    $query = "SELECT method ,count(*) AS post_count FROM requests WHERE method='POST' ";
-    $query_run = mysqli_query($conn, $query);
-    $post_count = mysqli_fetch_array($query_run);
-    $post_count = $post_count["post_count"];
-
-
-    //Print the element out.
-    echo "POST:", $post_count, '<br>';
+    }
 }
 
 
 
 if ($_POST['type'] == "status") {
 
-    $query = "SELECT status ,count(*) AS status1_count FROM responses WHERE status='200' ";
-    $query_run = mysqli_query($conn, $query);
-    $status1_count = mysqli_fetch_array($query_run);
-    $status1_count = $status1_count["status1_count"];
-    // if($status1_count==0)
-    // break;
-    // else
-    echo "200:",  $status1_count, "\r\n";
-
-
-
-
-    $query = "SELECT status ,count(*)AS status2_count FROM responses WHERE status='404' ";
-    $query_run = mysqli_query($conn, $query);
-    $status2_count = mysqli_fetch_array($query_run);
-    $status2_count = $status2_count["status2_count"];
-    // if($status2_count==0)
-    // break;
-    // else
-    echo "404:",  $status2_count, "\r\n";
-
-
-    $query = "SELECT status ,count(*)AS status3_count FROM responses WHERE status='401' ";
-    $query_run = mysqli_query($conn, $query);
-    $status3_count = mysqli_fetch_array($query_run);
-    $status3_count = $status3_count["status3_count"];
-    // if($status3_count==0)
-    // break;
-    // else
-    echo "401:",  $status3_count, "\r\n";
-
-
-
-
-    $query = "SELECT status ,count(*)AS status4_count FROM responses WHERE status='403' ";
-    $query_run = mysqli_query($conn, $query);
-    $status4_count = mysqli_fetch_array($query_run);
-    $status4_count = $status4_count["status4_count"];
-    // if($status4_count==0)
-    // break;
-    // else
-    echo "403:",  $status4_count, "\r\n";
-
-
-
-    $query = "SELECT status ,count(*) AS status5_count FROM responses WHERE status='304' ";
-    $query_run = mysqli_query($conn, $query);
-    $status5_count = mysqli_fetch_array($query_run);
-    $status5_count = $status5_count["status5_count"];
-    // if($status5_count==0)
-    // break;
-    // else
-    echo "304:",  $status5_count, "\r\n";
-
-
-    $query = "SELECT status ,count(*)AS status6_count FROM responses WHERE status='500' ";
-    $query_run = mysqli_query($conn, $query);
-    $status6_count = mysqli_fetch_array($query_run);
-    $status6_count = $status6_count["status6_count"];
-    // if($status6_count==0)
-    // break;
-    // else
-    echo "500:",  $status6_count, "\r\n";
+    $sql = mysqli_query($conn , "SELECT status,count(*) AS status_count FROM  responses WHERE status IS NOT NULL GROUP BY  status  ORDER BY status_count DESC") or die(mysqli_error($conn));
+    $results = mysqli_fetch_all($sql);
+    foreach ($results as $row) {
+        echo "<b>$row[0]</b>:$row[1]<br>";
+    }
 }
-
-
-
 
 
 if ($_POST['type'] == "domain") {
@@ -177,7 +109,6 @@ if ($_POST['type'] == "domain") {
 }
 
 if ($_POST['type'] == "isps") {
-
     $query = "SELECT COUNT(DISTINCT upload_isp ) AS isp_count FROM files";
     $query_run = mysqli_query($conn, $query);
     $isp_count = mysqli_fetch_array($query_run);
@@ -192,6 +123,7 @@ if ($_POST['type'] == "isp") {
     $isp_count = $isp_count["isp_count"];
     echo $isp_count;
 }
+
 if ($_POST['type'] == "average") {
 
     $query = "SELECT DISTINCT content_type  AS content_type FROM headers WHERE content_type IS NOT NULL";
@@ -280,7 +212,7 @@ if($_POST["type"]=='content_type_chart'){
 
         for($i=0;$i<24;$i++){ 
 
-            $content_type_array1=$content_type_array[i];
+            $content_type_array1=$content_type_array[$i];
             $time_1=$k[$z];
             $time_2=$k[$z+1];
 

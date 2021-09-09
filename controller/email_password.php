@@ -25,7 +25,7 @@ if (isset($_POST["email"])) {
 
 
     if (mysqli_num_rows($query_email) == 0) {
-        echo '<p class="msg" style="color:  #FF0000;text-align: center;margin: 10%;">We do not have an account with this email.</p>';
+        echo '<p  style="color:  #FF0000;text-align: center;margin: 10%;">We do not have an account with this email.</p>';
     } else {
 
         if (!$query) {
@@ -61,9 +61,9 @@ if (isset($_POST["email"])) {
                 $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
                 $mail->send();
-                echo '<p class="msg" style="color:darkorange;text-align: center; margin:10%;">Reset password link has been sent to your email.</p>';
+                echo '<p style="color:darkorange;text-align: center; margin:10%;">Reset password link has been sent to your email.</p>';
             } catch (Exception $e) {
-                echo '<p class="msg" style="color:#FF0000;text-align: center; margin:10%;">Message could not be sent. Mailer Error:</p>' . $mail->ErrorInfo;
+                echo '<p  style="color:#FF0000;text-align: center; margin:10%;">Message could not be sent. Mailer Error:</p>' . $mail->ErrorInfo;
             }
         }
     }

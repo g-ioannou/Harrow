@@ -131,7 +131,7 @@ $(document).on("click", ".method_type_choice", function () {
 
 function get_selected(selector_div) {
   let selected_elements = [];
-    console.log("----------")
+   
     $(selector_div)
       .find(".selected")
       .each(function () {

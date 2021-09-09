@@ -33,14 +33,14 @@
                     <a href="/harrow/view/home_admin/diagram_admin.php">
                         <span class="icon"><i class="fas fa-chart-area"></i>
                         </span>
-                        <span class="title">Diagram</span>
+                        <span class="title">Avg. Time Analysis</span>
                     </a>
                 </li>
                 <li class="active">
                     <a href="/harrow/view/home_admin/tables_admin.php">
                         <span class="icon"><i class="fas fa-table"></i>
                         </span>
-                        <span class="title">Tables/Graphs</span>
+                        <span class="title">Response Analysis</span>
                     </a>
                 </li>
                 <li>
@@ -52,7 +52,7 @@
                 </li>
                 <li>
                     <a href="/harrow/controller/logout.php">
-                        <span class="icon"><i class="fas fa-sign-out-alt"></i>
+                        <span class="icon"><i class="fas fa-door-open"></i>
                         </span>
                         <span class="title">Sign Out</span>
                     </a>
@@ -62,7 +62,7 @@
 
         <div class="main">
             <div class="topbar">
-                <div class="toggle" onclick="toggleMenu()"></div>
+                <div class="toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
                 <?php
                 $seed = rand(0, 1000);
                 echo '<img class="avatar-top-bar" src="https://avatars.dicebear.com/api/avataaars/:' . $seed . '.svg?mood[]=happy" /> <br>';

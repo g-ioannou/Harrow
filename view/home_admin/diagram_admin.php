@@ -4,10 +4,9 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin's homepage</title>
-    <script src="https://kit.fontawesome.com/99e7bc666b.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.15.1/css/all.css" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="../../controller/diagram_admin.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js" integrity="sha512-Wt1bJGtlnMtGP0dqNFH1xlkLBNpEodaiQ8ZN5JLA5wpc1sUlk/O5uuOMNgvzddzkpvZ9GLyYNa8w2s7rqiTk5Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="stylesheet" type="text/css" href="../../view/style/home_admin.css">
     <script src="../../view/style/admin.js"></script>
 
@@ -22,39 +21,39 @@
                     <div class="logo_container">
                         <img src="../../view/images/logo.png" class="logo">
                     </div>
-                    
+
                 </li>
                 <li>
-                    <a href="/harrow/view/home_admin/home_admin.php">
+                    <a class="page-ref" href="/harrow/view/home_admin/home_admin.php">
                         <span class="icon"><i class="fas fa-home"></i></i>
                         </span>
                         <span class="title">Dashboard</span>
                     </a>
                 </li>
                 <li class="active">
-                    <a href="/harrow/view/home_admin/diagram_admin.php">
+                    <a class="page-ref" href="/harrow/view/home_admin/diagram_admin.php">
                         <span class="icon"><i class="fas fa-chart-area"></i>
                         </span>
-                        <span class="title">Diagram</span>
+                        <span class="title">Avg. Time Analysis</span>
                     </a>
                 </li>
                 <li>
-                    <a href="/harrow/view/home_admin/tables_admin.php">
+                    <a class="page-ref" href="/harrow/view/home_admin/tables_admin.php">
                         <span class="icon"><i class="fas fa-table"></i>
                         </span>
-                        <span class="title">Tables/Graphs</span>
+                        <span class="title">Response Analysis</span>
                     </a>
                 </li>
                 <li>
-                    <a href="/harrow/view/home_admin/map_admin.php">
+                    <a class="page-ref" href="/harrow/view/home_admin/map_admin.php">
                         <span class="icon"><i class="fas fa-map-marked"></i>
                         </span>
                         <span class="title">IP-Map</span>
                     </a>
                 </li>
                 <li>
-                    <a href="/harrow/controller/logout.php">
-                        <span class="icon"><i class="fas fa-sign-out-alt"></i>
+                    <a class="page-ref" href="/harrow/controller/logout.php">
+                        <span class="icon"><i class="fas fa-door-open"></i>
                         </span>
                         <span class="title">Sign Out</span>
                     </a>
@@ -65,53 +64,89 @@
 
         <div class="main">
             <div class="topbar">
-                <div class="toggle" onclick="toggleMenu()"></div>
+                <div class="toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
 
                 <?php
                 $seed = rand(0, 1000);
                 echo '<img class="avatar-top-bar" src="https://avatars.dicebear.com/api/avataaars/:' . $seed . '.svg?mood[]=happy" /> <br>'; ?>
             </div>
 
-            <h3 allign="center">Diagrams</h3>
-            <br />
+
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <div class="row">
-                        <div class="col-md-9">
-                            <h3 class="panel-title">Response Time Analysis</h3>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="buttons">
-                                <div class="day-selector">
-                                    Select data per day.
-                                    <button id="select-all-day">Select all</button>
-                                    <button id="monday" class="day_choice">Monday</button>
-                                    <button id="tuesday" class="day_choice">Tuesday</button>
-                                    <button id="wednesday" class="day_choice">Wednesday</button>
-                                    <button id="thursday" class="day_choice">Thursday</button>
-                                    <button id="friday" class="day_choice">Friday</button>
-                                    <button id="saturday" class="day_choice">Saturday</button>
-                                    <button id="sunday" class="day_choice">Sunday</button>
+                        <div class="content">
+                            <div class="day-selector">
 
+                                <div class="select-title">Data per day</div>
+
+                                <div class="diagramm-card">
+                                    <div class="buttons">
+
+
+                                        <button id="select-all-day" class="select-all-btn">Select all</button>
+                                        <button id="monday" class="day_choice">Monday</button>
+                                        <button id="tuesday" class="day_choice">Tuesday</button>
+                                        <button id="wednesday" class="day_choice">Wednesday</button>
+                                        <button id="thursday" class="day_choice">Thursday</button>
+                                        <button id="friday" class="day_choice">Friday</button>
+                                        <button id="saturday" class="day_choice">Saturday</button>
+                                        <button id="sunday" class="day_choice">Sunday</button>
+                                    </div>
+
+                                    <div class="diagramm">
+                                        Place the peculiar diagram here Mr.Consantinos Moragemos.
+                                    </div>
                                 </div>
-                                <div class="isp-selector">
-                                    Select data per ISP.
-                                    <button id="select-all-isp">Select all</button>
+                            </div>
+                            <div class="isp-selector">
+                                <div class="select-title">Data per ISP</div>
+                                <div class="diagramm-card">
+                                    <div class="buttons">
+                                        <button id="select-all-isp" class="select-all-btn">Select all</button>
+                                    </div>
+                                    <div class="diagramm">
+                                        Place the peculiar diagram here Mr.Consantinos Moragemos.
+                                    </div>
                                 </div>
 
-                                <div class="method-selector">
-                                    Select data per request method.
-                                    <button id="select-all-method">Select all</button>
+
+                            </div>
+
+                            <div class="method-selector">
+
+                                <div class="select-title">Data per request method</div>
+                                <div class="diagramm-card">
+                                    <div class="buttons">
+
+                                        <button id="select-all-method" class="select-all-btn">Select all</button>
+                                    </div>
+                                    <div class="diagramm">
+                                        Place the peculiar diagram here Mr.Consantinos Moragemos.
+                                    </div>
                                 </div>
 
-                                <div class="content-selector">
-                                    Select data per content-type.
-                                    <button id="select-all-content">Select all</button>
-                                </div>
-  
- 
 
-                                <!-- <select name="select"  id="select"> 
+                            </div>
+
+                            <div class="content-selector">
+                                <div class="select-title" class="select-all-btn">Data per content-type</div>
+                                <div class="diagramm-card">
+                                    <div class="buttons">
+
+                                        <button id="select-all-content" class="select-all-btn">Select all</button>
+                                    </div>
+                                    <div class="diagramm">
+                                        Place the peculiar diagram here Mr.Consantinos Moragemos.
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+
+
+                            <!-- <select name="select"  id="select"> 
                                 <option value="All" id="all" target="Avg_Wait_Chart">All</option>
                                 <option value="Content-type" id="content-type" target="Content_Type_Chart" class="single"> Content-Type</option>
                                 <option value="Day" id="day" target="Day_Chart" class="single"> Day</option>
@@ -120,22 +155,13 @@
                             </select>  -->
 
 
-                            </div>
                         </div>
+
                     </div>
-                </div>
-                <div class="panel-body" id="panel-body">
-                    <canvas id="Avg_Wait_Chart" class="all">I am all</canvas>
-                    <canvas id="Content_Type_Chart" class="single">2</canvas>
-                    <canvas id="Day_Chart" class="single">3</canvas>
-                    <canvas id="Method_Chart" class="single">4</canvas>
-                    <canvas id="ISP_Chart" class="single">5</canvas>
                 </div>
             </div>
         </div>
         <script type=text/javascript>
-
-
             $.ajax({
                 type: "POST",
                 url: "../../model/admininfo.php",
@@ -150,7 +176,7 @@
                     for (const isp_array in isp_responses) {
                         const isp = isp_responses[isp_array][0];
                         let html = `<button id="${isp}" class="isp_choice">${isp}</button>`;
-                        $(".isp-selector").append(html);
+                        $(".isp-selector>.diagramm-card>.buttons").append(html);
                     }
 
 
@@ -175,7 +201,7 @@
                         const content_type = content_responses[content_array][0];
 
                         let html = `<button id="${content_type}" class="content_type_choice">${content_type}</button>`;
-                        $(".content-selector").append(html);
+                        $(".content-selector>.diagramm-card>.buttons").append(html);
 
                     }
 
@@ -196,7 +222,7 @@
 
                         let html = `<button id="${method_type}" class="method_type_choice">${method_type}</button>`;
                         console.log(method_type);
-                        $(".method-selector").append(html);
+                        $(".method-selector>.diagramm-card>.buttons").append(html);
                     }
                 }
             });
