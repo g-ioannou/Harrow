@@ -124,6 +124,9 @@
                         </div>
                     </div>
                 </div>
+
+
+
                 <div class="panel-body" id="panel-body">
                     <canvas id="Avg_Wait_Chart" class="all">I am all</canvas>
                     <canvas id="Content_Type_Chart" class="single">2</canvas>
@@ -195,7 +198,7 @@
                         const method_type = method_responses[method_array][0];
 
                         let html = `<button id="${method_type}" class="method_type_choice">${method_type}</button>`;
-                        console.log(method_type);
+                        
                         $(".method-selector").append(html);
                     }
                 }
