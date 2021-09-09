@@ -155,7 +155,6 @@ function get_data(data_array,type){
             console.log(time_data);
         }
     });
-
 }
 
 // $.ajax({

@@ -5,10 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin's homepage</title>
     <script src="https://kit.fontawesome.com/99e7bc666b.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.15.1/css/all.css" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="../../controller/home_admin.js"></script>
     <link rel="stylesheet" type="text/css" href="../../view/style/home_admin.css">
     <script src="../../view/style/admin.js"></script>
+    <script src="../../controller/tables_admin.js"></script>
 </head>
 
 <body>
@@ -69,22 +71,33 @@
                 ?>
             </div>
 
+            <div class="content-selector">
+                <div class="select-title" class="select-all-btn">Data per content-type</div>
+                <div class="table-card">
+                    <div class="buttons">
+
+                        <button id="select-all-content" class="select-all-btn">Select all</button>
+                    </div>
+                    <div class="content-choices">
+                        
+                    </div>
+                </div>
 
 
+            </div>
         </div>
-    </div>
-    <script>
-        function toggleMenu() {
-            let toggle = document.querySelector('.toggle');
-            let navigation = document.querySelector('.navigation');
-            let main = document.querySelector('.main');
-            toggle.classList.toggle('active');
-            navigation.classList.toggle('active');
-            main.classList.toggle('active');
+        <script>
+            function toggleMenu() {
+                let toggle = document.querySelector('.toggle');
+                let navigation = document.querySelector('.navigation');
+                let main = document.querySelector('.main');
+                toggle.classList.toggle('active');
+                navigation.classList.toggle('active');
+                main.classList.toggle('active');
 
 
-        }
-    </script>
+            }
+        </script>
 </body>
 
 </html>
