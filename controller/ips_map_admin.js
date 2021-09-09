@@ -85,7 +85,7 @@ $(document).ready(function () {
 						iconUrl: "/harrow/view/images/map-home.png",
 						iconSize: [30, 30],
 						popupAnchor: [-3, -76],
-						iconOffset: [10, 10],
+						iconAnchor: [20, 20],
 					});
 					let server_address_icon = L.icon({
 						iconUrl: "/harrow/view/images/map-server.png",
