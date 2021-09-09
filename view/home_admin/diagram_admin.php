@@ -221,13 +221,8 @@
                         const method_type = method_responses[method_array][0];
 
                         let html = `<button id="${method_type}" class="method_type_choice">${method_type}</button>`;
-<<<<<<< HEAD
                         console.log(method_type);
                         $(".method-selector>.diagramm-card>.buttons").append(html);
-=======
-                        
-                        $(".method-selector").append(html);
->>>>>>> da2495d4b0438f00e8204f07e29abcdb4afbef69
                     }
                 }
             });
