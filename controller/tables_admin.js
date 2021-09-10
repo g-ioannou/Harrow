@@ -73,8 +73,8 @@ function get_data(data_array, type) {
             url: "/harrow/model/tables_data.php",
             data: { type: type, data_array },
             success: function (response) {
-                let max_age_data = JSON.parse(response);
-                console.log(max_age_data);
+                let ttl_data = JSON.parse(response);
+				console.log(ttl_data);
             },
         });
     }
