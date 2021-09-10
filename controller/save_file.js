@@ -2,7 +2,13 @@ $(document).ready(function () {
   $("#save-to-server-btn").click(function (e) {
     for (const id in uploaded_selected_files) {
       const file = uploaded_selected_files[id];
-      upload_file_to_server(file);
+      
+      
+      
+      $.when(upload_file_to_server(file)).done(function () {
+        update_uploaded_files();
+      })
+      
     }
   });
 });
@@ -11,7 +17,7 @@ function upload_file_to_server(file) {
   
   notify("upload", `<b>Uploading file: ${file.name}`);
 
-  $.ajax({
+  return $.ajax({
     type: "POST",
     url: "/harrow/model/save_file.php",
     data: {
@@ -22,7 +28,6 @@ function upload_file_to_server(file) {
     
     success: function (response) {
       notify("success", `<b>File ${file.name} uploaded.</b>`);
-      console.log(response);
     },
     error: function (error) {
       console.log(error);
@@ -33,4 +38,5 @@ function upload_file_to_server(file) {
       
     },
   });
+  
 }

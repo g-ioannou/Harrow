@@ -2,10 +2,13 @@
   display: flex;
   position: relative;
   top:5em;
-  padding: 2em;
+  
   justify-content: center;
   flex-wrap: wrap;
   align-items: stretch;
+  left:50%;
+  transform: translateX(-50%);
+  height: max-content;
   
 }
 
@@ -26,12 +29,14 @@
 }
 
 .card {
-  width: max-content;
-  margin: 0.4em;
+  width: 100%;
+  margin:0.4em;
   padding: 0.4em;
-  background: rgba(64, 12, 60, 0.45);
+  background: rgb(187, 164, 185);
   border-radius: 0.4em;
   text-align: center;
+  overflow: auto;
+  
 }
 
 .card:hover{
@@ -39,10 +44,38 @@
   transition: 0.1s all 0.1s;
 }
 
-.card:hover .info-title{
-  color: orange;
+.card:hover .info-title ,.card:hover #username{
+  color: orange !important;
   border-bottom: 1px solid orange;
   transition: 0.1s all 0.1s;
+}
+
+.card-box{
+  position:relative;
+  width: 100%;
+  height: 90% ;
+  display: grid;
+  grid-template-columns: repeat(2,48%);
+  grid-gap:20px;
+}
+
+.card-box-column{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height:100%;
+  
+  
+}
+
+.flex-div{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  height: 100%;
+  flex-direction: column;
 }
 
 
@@ -67,20 +100,40 @@
 
 
 .avatar {
-  height: max-content;
+  height: 92.5%;
   width: 100%;
   padding: 0.4em;
   border-radius: 0.4em;
-  
   text-align: center;
+  
 }
 
 .avatar-img{
-  height:5em;
+  height:12em;
 }
 
 .info-title{
   color: darkmagenta;
   
-  padding:0.2em;
+  
+}
+
+.inner{
+  height: 20%;
+}
+
+::-webkit-scrollbar {
+  width: 0.4em;
+  height: 0.4em;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 0.4em;
+}
+
+::-webkit-scrollbar-thumb {
+  
+  background: rgb(41, 6, 44);
+  border-radius: 0.4em;
 }

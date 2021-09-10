@@ -129,3 +129,16 @@ function checkNewFilesBtn() {
     $("#save-to-server-btn").attr("disabled", true);
   }
 }
+
+function checkOldFilesBtn() {
+  
+  let count = get_json_len(user_selected_files);
+  console.log(count);
+  if (count > 0) {
+    $("#delete-multiple-old-btn").removeAttr("disabled");
+    $("#download-multiple-old-btn").removeAttr("disabled");
+  } else {
+    $("#delete-multiple-old-btn").attr("disabled", true);
+    $("#download-multiple-old-btn").attr("disabled", true);
+  }
+}

@@ -96,7 +96,7 @@ if (!isset($_SESSION['email'])) {
                 <span style="font-size:0.8em;color:rgb(149, 157, 165)">All sensitive data will removed during upload and you may download the sanitized file :)</span>
             </div>
             <br>
-            <div class="file-list">
+            <div class="file-list new-list">
 
                 <table id="new-files-table" class="file-table">
 
@@ -134,17 +134,22 @@ if (!isset($_SESSION['email'])) {
     <!-- old files area -->
     <div class="old-files">
         <div id="already-uploaded-msg"><span><b>Your files</b></span></div><br>
-        <div class="file-list">
-            <table class="file-table" id='old-files-table'>
+        <div class="file-list old-list">
+            <table class="file-table" id='old-files-table' hidden>
 
                 <th></th>
                 <th><i class="fas fa-file"></i></th>
                 <th><i class="fas fa-save"></i></th>
                 <th><i class="fas fa-trash-alt"></i></th>
                 <th><i class="fas fa-download"></i></th>
-
             </table>
 
+        </div>
+        <button id="select-all-old" class="btn">Select all</button>
+        <button id="delete-multiple-old-btn" class="btn" disabled='disabled'><i class="fas fa-trash-alt"></i> Delete </button>
+        <button id="download-multiple-old-btn" class="btn" disabled='disabled'><i class="fas fa-download"></i> Download </button>
+        <div id='selected-saved-files-msg'>
+            <span id="selected-saved-files-number">0</span> files selected
         </div>
 
     </div>

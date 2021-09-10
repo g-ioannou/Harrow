@@ -106,14 +106,16 @@ if (!isset($_SESSION['email'])) {
                     <input type="password" class="form-control" id="password_user" placeholder="Password" name="password_user" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,32}" title="Your password must be at least 8 characters long, contain at least one number, one symbol and have a mixture of uppercase and lowercase letters." required="">
                     <br>
                     <span class="error_form" id="pass_error_message"></span>
-                    <br>
+                    
                     <!-- An button to toggle between password visibility -->
 
 
-                    Show password <button class="show-pass-btn"><i class="fas fa-eye-slash"></i></button>
+                    <span>Show password</span> <button type="button" class="show-pass-btn"><i class="fas fa-eye-slash"></i></button>
                     <br>
-
+                    <br>
                     <input type="button" name="save_username_edit" class="btn btn-primary" value="Save changes" id="edit_user_btn">
+                    <br>
+                    <br>
 
                     <div id="username_error"></div>
                 </div>
@@ -131,13 +133,13 @@ if (!isset($_SESSION['email'])) {
 
 
                 <div class="form-user">
-                    <label for="username">Username</label><br>
-                    <input type="text" class="form-control" id="username_p" placeholder="username" name="username_p" required="">
+                    <i class="fas fa-user"></i>
+                    <input type="text" class="form-control" id="username_p" placeholder="Username" name="username_p" required="">
                     <span class="error_form" id="username_error_mess"></span>
                 </div>
 
                 <div class="form-user">
-                    <label for="password">Old password</label><br>
+                    <i class="fas fa-key"></i>
                     <input type="password" class="form-control" id="old_password" placeholder="Old password" name="old_password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,32}" title="Your password must be at least 8 characters long, contain at least one number, one symbol and have a mixture of uppercase and lowercase letters." required="">
                     <span class="error_form" id="old_pass_error"></span>
                     <br>
@@ -147,7 +149,7 @@ if (!isset($_SESSION['email'])) {
                 </div>
 
                 <div class="form-user">
-                    <label for="password">New password</label><br>
+                    <i class="far fa-key"></i>
                     <input type="password" class="form-control" id="new_password" placeholder="New password" name="new_password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,32}" required="">
                     <span class="error_form" id="new_pass_error"></span>
 
@@ -157,15 +159,15 @@ if (!isset($_SESSION['email'])) {
                 </div>
 
                 <div class="form-user">
-                    <label for="password">Re-enter password</label><br>
+                    <i class="far fa-key"></i>
                     <input type="password" class="form-control" id="password_re" placeholder="Re-enter password" name="password_re" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,32}" title="Your password must be at least 8 characters long, contain at least one number, one symbol and have a mixture of uppercase and lowercase letters." required="">
                     <span class="error_form" id="re_pass_error"></span>
                     <br>
-                    <span>Show password</span><button class="show-pass-btn-chpass"><i class="fas fa-eye-slash"></i></button>
-
+                    <span>Show passwords</span><button type="button" class="show-pass-btn-chpass"><i class="fas fa-eye-slash"></i></button>
                     <br>
-
+                    <br>
                     <input type="button" name="save_password_edit" class="btn btn-primary" value="Save changes" id="edit_pass_btn">
+                    <br>
                     <br>
                     <div id="pass_error"></div>
                 </div>
