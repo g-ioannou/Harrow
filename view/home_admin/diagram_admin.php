@@ -3,12 +3,16 @@
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin's homepage</title>
+    <title>Harrow - Admin</title>
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.15.1/css/all.css" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="../../controller/diagram_admin.js"></script>
     <link rel="stylesheet" type="text/css" href="../../view/style/home_admin.css">
+
     <script src="../../view/style/admin.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="/harrow/chart_obj.js"></script>
+    <link rel="shortcut icon " type="image/x-icon" href="/harrow/view/images/tab_icon.png">
 
 </head>
 
@@ -94,8 +98,8 @@
                                         <button id="sunday" class="day_choice">Sunday</button>
                                     </div>
 
-                                    <div class="diagramm">
-                                        Place the peculiar diagram here Mr.Consantinos Moragemos.
+                                    <div id="daily_dia" class="diagramm">
+                                        <canvas id="daily_chart"></canvas>
                                     </div>
                                 </div>
                             </div>
@@ -105,8 +109,8 @@
                                     <div class="buttons">
                                         <button id="select-all-isp" class="select-all-btn">Select all</button>
                                     </div>
-                                    <div class="diagramm">
-                                        Place the peculiar diagram here Mr.Consantinos Moragemos.
+                                    <div id="isp_dia" class="diagramm">
+                                        <canvas id="isp_chart_"></canvas>
                                     </div>
                                 </div>
 
@@ -121,8 +125,8 @@
 
                                         <button id="select-all-method" class="select-all-btn">Select all</button>
                                     </div>
-                                    <div class="diagramm">
-                                        Place the peculiar diagram here Mr.Consantinos Moragemos.
+                                    <div id="method_dia" class="diagramm">
+                                        <canvas id="method_chart"></canvas>
                                     </div>
                                 </div>
 
@@ -136,8 +140,8 @@
 
                                         <button id="select-all-content" class="select-all-btn">Select all</button>
                                     </div>
-                                    <div class="diagramm">
-                                        Place the peculiar diagram here Mr.Consantinos Moragemos.
+                                    <div id="content_dia" class="diagramm">
+                                        <canvas id="content_chart"></canvas>
                                     </div>
                                 </div>
 
@@ -221,63 +225,10 @@
                         const method_type = method_responses[method_array][0];
 
                         let html = `<button id="${method_type}" class="method_type_choice">${method_type}</button>`;
-<<<<<<< HEAD
-                        console.log(method_type);
                         $(".method-selector>.diagramm-card>.buttons").append(html);
-=======
-                        
-                        $(".method-selector").append(html);
->>>>>>> da2495d4b0438f00e8204f07e29abcdb4afbef69
                     }
                 }
             });
-
-            //       }
-            //   });
-            //   $.ajax({
-            //       type: "method",
-            //       url: "url",
-            //       data: {"type": 'initial_choices_isp'},
-            //       success: function (response) {
-            //           // kane to button append kapou
-            //           $(".isp-selector").append(response);
-
-            //       }
-            //   });
-
-            //   $(document).ready(function () 
-            //     $.ajax({
-            //                 method: "POST",
-            //                 url: "../../model/admininfo.php",
-            //                 data:
-            //                 {
-            //                     type: "Avg_Wait_Chart", // initial_choices
-            //                     dataType: "JSON"
-            //                 },
-
-            //                  success: function (response) {
-
-
-
-            //                 let myChart=document.getElementById('Avg_Wait_Chart').getContext('2d');
-            //                 let barChart=   new Chart(myChart,{
-            //                     type:'bar',
-            //                     data:{
-            //                         labels:["00:00-00:59","01:00-01:59","02:00-02:59","03:00-03:59","04:00-04:59","05:00-05:59",
-            //                         "06:00-06:59","07:00-07:59","08:00-08:59","00:09-09:59","10:00-10:59",
-            //                         "11:00-11:59","12:00-12:59","13:00-13:59","14:00-14:59","15:00-15:59","16:00-16:59",
-            //                         "17:00-17:59","18:00-18:59","19:00-19:59","20:00-20:59","21:00-21:59","22:00-22:59","23:00-00:59","23:00-00:59"],
-            //                         datasets:[
-            //                             {
-            //                                 label:'Average Wait',
-            //                                 data: JSON.parse(response)
-            //                             }
-            //                         ]
-            //                     },
-            //                     options:{}
-            //                                            });
-
-            //                                         });
         </script>
 </body>
 

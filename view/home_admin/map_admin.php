@@ -18,7 +18,9 @@ session_start();
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
     <link rel="shortcut icon " type="image/x-icon" href="/harrow/view/images/tab_icon.png">
     <link rel="stylesheet" href="../../view/style/mapadmin.css" />
-    <title>Harrow-Map</title>
+
+    <link rel="shortcut icon " type="image/x-icon" href="/harrow/view/images/tab_icon.png">
+    <title>Harrow - Admin</title>
 
 </head>
 

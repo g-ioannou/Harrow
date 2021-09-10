@@ -27,7 +27,7 @@ if ($_POST['type'] == 'initial_choices_content_type') {
 if ($_POST['type'] == "initial_choices_method") {
     $query = "SELECT DISTINCT(method) FROM requests WHERE method IS NOT NULL";
     $query_run = mysqli_query($conn, $query) or die(mysqli_error($conn));
-   
+
     $result = mysqli_fetch_all($query_run);
 
     echo json_encode($result);
@@ -55,7 +55,7 @@ if ($_POST['type'] == "content_types") {
             BETWEEN '$time_1' AND '$time_2' ");
         }
         $content_type = mysqli_fetch_array($query);
-        $content_type= $content_type['content_type'];
+        $content_type = $content_type['content_type'];
         $time_index = $time_index + 2;
         $data[$i] = $content_type;
     }
@@ -80,9 +80,8 @@ if ($_POST['type'] == "methods") {
 
     $results = mysqli_fetch_all($query_run);
 
-    foreach($results as $row){
+    foreach ($results as $row) {
         echo "<b>$row[0]</b>:$row[1]<br>";
-
     }
 }
 
@@ -90,7 +89,7 @@ if ($_POST['type'] == "methods") {
 
 if ($_POST['type'] == "status") {
 
-    $sql = mysqli_query($conn , "SELECT status,count(*) AS status_count FROM  responses WHERE status IS NOT NULL GROUP BY  status  ORDER BY status_count DESC") or die(mysqli_error($conn));
+    $sql = mysqli_query($conn, "SELECT status,count(*) AS status_count FROM  responses WHERE status IS NOT NULL GROUP BY  status  ORDER BY status_count DESC") or die(mysqli_error($conn));
     $results = mysqli_fetch_all($sql);
     foreach ($results as $row) {
         echo "<b>$row[0]</b>:$row[1]<br>";
@@ -198,145 +197,184 @@ if ($_POST["type"] == 'avg_wait_chart') {
     echo json_encode($data);
 }
 
-if($_POST["type"]=='content_type_chart'){ 
+if ($_POST['type'] == 'days_chart') {
+    $hours = array(
+        "00:00:00", "00:59:59", "01:00:00", "01:59:59", "02:00:00", "02:59:59", "03:00:00", "03:59:59", "04:00:00", "04:59:59",
+        "05:00:00", "05:59:59", "06:00:00", "06:59:59", "07:00:00", "07:59:59", "08:00:00", "08:59:59", "09:00:00", "09:59:59", "10:00:00", "10:59:59", "11:00:00", "11:59:59", "12:00:00", "12:59:59",
+        "13:00:00", "13:59:59", "14:00:00", "14:59:59", "15:00:00", "15:59:59", "16:00:00", "16:59:59", "17:00:00", "17:59:59",
+        "18:00:00", "18:59:59", "19:00:00", "19:59:59", "20:00:00", "20:59:59", "21:00:00", "21:59:59", "22:00:00", "22:59:59", "23:00:00", "23:59:59"
+    );
+    $interval = 0;
+
     
-    $hours = array("00:00:00","00:59:59","01:00:00","01:59:59","02:00:00","02:59:59","03:00:00","03:59:59","04:00:00","04:59:59",
-    "05:00:00","05:59:59","06:00:00","06:59:59","07:00:00","07:59:59","08:00:00","08:59:59"
-    ,"09:00:00","09:59:59","10:00:00","10:59:59","11:00:00","11:59:59","12:00:00","12:59:59",
-    "13:00:00","13:59:59","14:00:00","14:59:59","15:00:00","15:59:59","16:00:00","16:59:59","17:00:00","17:59:59",
-    "18:00:00","18:59:59","19:00:00","19:59:59","20:00:00","20:59:59","21:00:00","21:59:59","22:00:00","22:59:59","23:00:00","23:59:59");
+    $sql = mysqli_query($conn, "SELECT DISTINCT(DAYNAME(startedDateTime)) AS day FROM `entries`;") or die(mysqli_error($conn));
+
+    $days = mysqli_fetch_all($sql);
+    
+    $days_array = array();
+
+    foreach ($days as $row) {
+         $day = $row[0];
+         
+         for ($i = 0; $i < 24; $i++) {
+             $time_1 = $hours[$interval];
+             $time_2 = $hours[$interval + 1];
+            
+             
+            $sql = mysqli_query($conn, "SELECT AVG(wait) AS avg_wait FROM entries WHERE DAYNAME(startedDateTime)= '$day' AND CAST(startedDateTime as Time) BETWEEN '$time_1' AND '$time_2' ") or die(mysqli_error($conn));
+            
+
+            $avg_wait = mysqli_fetch_array($sql);
+
+            $avg_wait = $avg_wait['avg_wait'];
+            $interval = $interval + 2;
+
+            $data[$day][$i] = $avg_wait;
+        }
+        $interval = 0;
+    }
+
+    echo json_encode($data);
+}
+
+
+if ($_POST["type"] == 'content_type_chart') {
+
+    $hours = array(
+        "00:00:00", "00:59:59", "01:00:00", "01:59:59", "02:00:00", "02:59:59", "03:00:00", "03:59:59", "04:00:00", "04:59:59",
+        "05:00:00", "05:59:59", "06:00:00", "06:59:59", "07:00:00", "07:59:59", "08:00:00", "08:59:59", "09:00:00", "09:59:59", "10:00:00", "10:59:59", "11:00:00", "11:59:59", "12:00:00", "12:59:59",
+        "13:00:00", "13:59:59", "14:00:00", "14:59:59", "15:00:00", "15:59:59", "16:00:00", "16:59:59", "17:00:00", "17:59:59",
+        "18:00:00", "18:59:59", "19:00:00", "19:59:59", "20:00:00", "20:59:59", "21:00:00", "21:59:59", "22:00:00", "22:59:59", "23:00:00", "23:59:59"
+    );
     $interval = 0;
     $content_type_array = array();
 
     $query = "SELECT DISTINCT(content_type) AS content_type FROM headers ";
-    $query_run = mysqli_query($conn,$query) or die(mysqli_error($conn));
-    
+    $query_run = mysqli_query($conn, $query) or die(mysqli_error($conn));
 
-    $content_types= mysqli_fetch_all($query_run);
-    $content_type_array= array(); 
-    
-    
-    foreach($content_types as $row){
+
+    $content_types = mysqli_fetch_all($query_run);
+    $content_type_array = array();
+
+
+    foreach ($content_types as $row) {
         $content_type = $row[0];
-     
 
-        for($i=0; $i<24; $i++){ 
-          
+
+        for ($i = 0; $i < 24; $i++) {
+
             $time_1 = $hours[$interval];
             $time_2 = $hours[$interval + 1];
 
 
             $query = "SELECT AVG(entries.wait) AS avg_wait FROM `headers` RIGHT JOIN responses ON responses.response_id = headers.response_id INNER JOIN entries ON entries.entry_id = responses.entry_id WHERE headers.content_type= '$content_type' AND cast(entries.startedDateTime as Time) 
             BETWEEN '$time_1' AND '$time_2' ";
-        
+
             $query_run = mysqli_query($conn, $query) or die(mysqli_error($conn));
 
-            
-            $avg_wait= mysqli_fetch_array($query_run);
 
-            
-        
+            $avg_wait = mysqli_fetch_array($query_run);
+
+
+
             $avg_wait = $avg_wait['avg_wait'];
             $interval = $interval + 2;
-            
-            $data[$content_type][$i]=$avg_wait;
+
+            $data[$content_type][$i] = $avg_wait;
         }
         $interval = 0;
     }
     echo json_encode($data);
 }
 
-if($_POST["type"]=='method_chart'){ 
+if ($_POST["type"] == 'method_chart') {
 
     // initiating iterating time array
-    $hours = array("00:00:00","00:59:59","01:00:00","01:59:59","02:00:00","02:59:59","03:00:00","03:59:59","04:00:00","04:59:59",
-    "05:00:00","05:59:59","06:00:00","06:59:59","07:00:00","07:59:59","08:00:00","08:59:59"
-    ,"09:00:00","09:59:59","10:00:00","10:59:59","11:00:00","11:59:59","12:00:00","12:59:59",
-    "13:00:00","13:59:59","14:00:00","14:59:59","15:00:00","15:59:59","16:00:00","16:59:59","17:00:00","17:59:59",
-    "18:00:00","18:59:59","19:00:00","19:59:59","20:00:00","20:59:59","21:00:00","21:59:59","22:00:00","22:59:59","23:00:00","23:59:59");
+    $hours = array(
+        "00:00:00", "00:59:59", "01:00:00", "01:59:59", "02:00:00", "02:59:59", "03:00:00", "03:59:59", "04:00:00", "04:59:59",
+        "05:00:00", "05:59:59", "06:00:00", "06:59:59", "07:00:00", "07:59:59", "08:00:00", "08:59:59", "09:00:00", "09:59:59", "10:00:00", "10:59:59", "11:00:00", "11:59:59", "12:00:00", "12:59:59",
+        "13:00:00", "13:59:59", "14:00:00", "14:59:59", "15:00:00", "15:59:59", "16:00:00", "16:59:59", "17:00:00", "17:59:59",
+        "18:00:00", "18:59:59", "19:00:00", "19:59:59", "20:00:00", "20:59:59", "21:00:00", "21:59:59", "22:00:00", "22:59:59", "23:00:00", "23:59:59"
+    );
 
-    $interval = 0; 
+    $interval = 0;
 
     // get all method types
     $query = "SELECT DISTINCT(method) FROM requests";
-    $query_run = mysqli_query($conn,$query) or die(mysqli_error($conn));
+    $query_run = mysqli_query($conn, $query) or die(mysqli_error($conn));
 
     $method_types = mysqli_fetch_all($query_run);
 
     $method_type_array = array();
 
-    foreach($method_types as $row){
+    foreach ($method_types as $row) {
         $method = $row[0];
-        
+
         // for each method type calculate its average wait per hour of the day
-        for($i=0; $i < 24; $i++){ 
-            
+        for ($i = 0; $i < 24; $i++) {
+
             $time_1 = $hours[$interval];
             $time_2 = $hours[$interval + 1];
 
             $query = "SELECT AVG(entries.wait) AS avg_wait FROM entries INNER JOIN requests ON requests.entry_id = entries.entry_id WHERE requests.method = '$method' AND cast(entries.startedDateTime as Time) 
             BETWEEN '$time_1' AND '$time_2' ";
-        
+
             $query_run = mysqli_query($conn, $query) or die(mysqli_error($conn));
 
-            $avg_wait= mysqli_fetch_array($query_run);
-            
-            $avg_wait=$avg_wait['avg_wait'];
-            $interval=$interval+2;
-            
-            $data[$method][$i]=$avg_wait;
-            
+            $avg_wait = mysqli_fetch_array($query_run);
+
+            $avg_wait = $avg_wait['avg_wait'];
+            $interval = $interval + 2;
+
+            $data[$method][$i] = $avg_wait;
         }
-        
+
         $interval = 0;
     }
     echo json_encode($data);
 }
 
-if($_POST["type"]=='isp_chart')
-{ 
-    
-    $hours=array("00:00:00","00:59:59","01:00:00","01:59:59","02:00:00","02:59:59","03:00:00","03:59:59","04:00:00","04:59:59",
-    "05:00:00","05:59:59","06:00:00","06:59:59","07:00:00","07:59:59","08:00:00","08:59:59"
-    ,"09:00:00","09:59:59","10:00:00","10:59:59","11:00:00","11:59:59","12:00:00","12:59:59",
-    "13:00:00","13:59:59","14:00:00","14:59:59","15:00:00","15:59:59","16:00:00","16:59:59","17:00:00","17:59:59",
-    "18:00:00","18:59:59","19:00:00","19:59:59","20:00:00","20:59:59","21:00:00","21:59:59","22:00:00","22:59:59","23:00:00","23:59:59");
-     $interval=0;
+if ($_POST["type"] == 'isp_chart') {
 
-        // get all isps
-        $query = "SELECT DISTINCT(upload_isp) FROM files";
-        $query_run = mysqli_query($conn,$query) or die(mysqli_error($conn));
-    
-        $upload_isps = mysqli_fetch_all($query_run);
-    
-        $upload_isp_array = array();
-    
-        foreach($upload_isps as $row){
-            $isp = $row[0];
-            
-            // for each method type calculate its average wait per hour of the day
-            for($i=0; $i < 24; $i++){ 
-                
-                $time_1 = $hours[$interval];
-                $time_2 = $hours[$interval + 1];
-    
-                $query = "SELECT AVG(entries.wait) AS avg_wait FROM entries RIGHT JOIN files ON files.file_id = entries.file_id WHERE files.upload_isp = '$isp' AND cast(entries.startedDateTime as Time) 
+    $hours = array(
+        "00:00:00", "00:59:59", "01:00:00", "01:59:59", "02:00:00", "02:59:59", "03:00:00", "03:59:59", "04:00:00", "04:59:59",
+        "05:00:00", "05:59:59", "06:00:00", "06:59:59", "07:00:00", "07:59:59", "08:00:00", "08:59:59", "09:00:00", "09:59:59", "10:00:00", "10:59:59", "11:00:00", "11:59:59", "12:00:00", "12:59:59",
+        "13:00:00", "13:59:59", "14:00:00", "14:59:59", "15:00:00", "15:59:59", "16:00:00", "16:59:59", "17:00:00", "17:59:59",
+        "18:00:00", "18:59:59", "19:00:00", "19:59:59", "20:00:00", "20:59:59", "21:00:00", "21:59:59", "22:00:00", "22:59:59", "23:00:00", "23:59:59"
+    );
+    $interval = 0;
+
+    // get all isps
+    $query = "SELECT DISTINCT(upload_isp) FROM files";
+    $query_run = mysqli_query($conn, $query) or die(mysqli_error($conn));
+
+    $upload_isps = mysqli_fetch_all($query_run);
+
+    $upload_isp_array = array();
+
+    foreach ($upload_isps as $row) {
+        $isp = $row[0];
+
+        // for each method type calculate its average wait per hour of the day
+        for ($i = 0; $i < 24; $i++) {
+
+            $time_1 = $hours[$interval];
+            $time_2 = $hours[$interval + 1];
+
+            $query = "SELECT AVG(entries.wait) AS avg_wait FROM entries RIGHT JOIN files ON files.file_id = entries.file_id WHERE files.upload_isp = '$isp' AND cast(entries.startedDateTime as Time) 
                 BETWEEN '$time_1' AND '$time_2' ";
-            
-                $query_run = mysqli_query($conn, $query) or die(mysqli_error($conn));
-    
-                $avg_wait= mysqli_fetch_array($query_run);
-                
-                $avg_wait=$avg_wait['avg_wait'];
-                $interval=$interval+2;
-                
-                $data[$isp][$i]=$avg_wait;
-                
-            }
-            
-            $interval = 0;
 
+            $query_run = mysqli_query($conn, $query) or die(mysqli_error($conn));
+
+            $avg_wait = mysqli_fetch_array($query_run);
+
+            $avg_wait = $avg_wait['avg_wait'];
+            $interval = $interval + 2;
+
+            $data[$isp][$i] = $avg_wait;
         }
-        echo json_encode($data);
-        
+
+        $interval = 0;
     }
+    echo json_encode($data);
+}

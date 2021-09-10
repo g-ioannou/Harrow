@@ -3,12 +3,14 @@
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin's homepage</title>
+    <title>Harrow - Admin</title>
     <script src="https://kit.fontawesome.com/99e7bc666b.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="../../controller/home_admin.js"></script>
     <link rel="stylesheet" type="text/css" href="../../view/style/home_admin.css">
     <script src="../../view/style/admin.js"></script>
+
+    <link rel="shortcut icon " type="image/x-icon" href="/harrow/view/images/tab_icon.png">
 </head>
 
 <body>
