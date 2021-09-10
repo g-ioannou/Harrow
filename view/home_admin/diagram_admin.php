@@ -126,7 +126,7 @@
                                         <button id="select-all-method" class="select-all-btn">Select all</button>
                                     </div>
                                     <div id="method_dia" class="diagramm">
-                                        <canvas id="method_chart"></canvas>
+                                        <canvas id="method_chart" class="chart"></canvas>
                                     </div>
                                 </div>
 
@@ -141,7 +141,7 @@
                                         <button id="select-all-content" class="select-all-btn">Select all</button>
                                     </div>
                                     <div id="content_dia" class="diagramm">
-                                        <canvas id="content_chart"></canvas>
+                                        <canvas id="content_chart" class="chart"></canvas>
                                     </div>
                                 </div>
 
@@ -242,7 +242,59 @@
         toggle.classList.toggle('active');
         navigation.classList.toggle('active');
         main.classList.toggle('active');
-
-
     }
+
+
+    // instantiating empty graphs just for visuals
+    var ctx1 = document.getElementById("content_chart").getContext("2d");
+    var ctx2 = document.getElementById("isp_chart_").getContext("2d");
+    var ctx3 = document.getElementById("method_chart").getContext("2d");
+    var ctx4 = document.getElementById("daily_chart").getContext("2d");
+
+    var chart = new Chart(ctx1, {
+        type: "bar",
+        data: {},
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                }
+            }
+        }
+    });
+
+    var chart = new Chart(ctx2, {
+        type: "bar",
+        data: {},
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                }
+            }
+        }
+    });
+    var chart = new Chart(ctx3, {
+        type: "bar",
+        data: {},
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                }
+            }
+        }
+    });
+
+    var chart = new Chart(ctx4, {
+        type: "bar",
+        data: {},
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                }
+            }
+        }
+    });
 </script>

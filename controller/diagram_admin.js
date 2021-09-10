@@ -205,23 +205,29 @@ function get_selected(selector_div) {
 }
 
 function get_data(data_array, type, div, labels) {
+  console.log(data_array);
   $.ajax({
     type: "POST",
     url: "/harrow/model/admininfo.php",
     data: { type: type },
     success: function (response) {
       let time_data = JSON.parse(response);
-
+      console.log(time_data);
       let new_obj = {};
 
       for (const key in time_data) {
         new_obj[key.toLowerCase()] = time_data[key];
       }
+      console.log(new_obj);
 
       let keep_data = {};
       for (let i = 0; i < data_array.length; i++) {
         const key = data_array[i];
-        keep_data[key] = new_obj[key];
+
+        let key_low = key.toLowerCase();
+        
+          keep_data[key_low] = new_obj[key_low];
+        
       }
 
       make_graph(keep_data, div, labels);
@@ -232,7 +238,7 @@ function get_data(data_array, type, div, labels) {
 let graph_ids = {};
 function make_graph(data, div, labels) {
   let datasets = [];
-  console.log(data,div,labels);
+  
   for (const key in data) {
     let color = `rgb(${Math.round(Math.random() * 255)},${Math.round(
       Math.random() * 255
@@ -245,9 +251,7 @@ function make_graph(data, div, labels) {
         colors.push(color);
       }
     } catch (e) {
-      alert(
-        `${key} has no data to display. Remove it from your selection to stop this alert.`
-      );
+      
     }
 
     try {
@@ -272,7 +276,7 @@ function make_graph(data, div, labels) {
   let parent_id = $(`#${div}`).parent().attr("id");
   try {
     $(`#${div}`).remove();
-    $(`#${parent_id}`).append(`<canvas id="${div}"></canvas>`);
+    $(`#${parent_id}`).append(`<canvas id="${div}" class="chart"></canvas>`);
   } catch (e) {}
 
   var ctx = document.getElementById(div).getContext("2d");

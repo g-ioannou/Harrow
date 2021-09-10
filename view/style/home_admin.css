@@ -166,6 +166,7 @@ body
     min-height: 100vh;
     background:rgb(223, 216, 221);
     transition: 0.5s;
+    height:max-content;
 }
 
 .main.active
@@ -442,9 +443,10 @@ body
     margin:1em;
 }
 
-.diagramm{
+.chart{
     position:relative;
-    width: 100%;
+    width: 95% !important;
+    height: 100% !important;
     background:none;
     
 }
