@@ -99,7 +99,7 @@
                                     </div>
 
                                     <div id="daily_dia" class="diagramm">
-                                        <canvas id="daily_chart"></canvas>
+                                        <canvas id="daily_chart" class="chart"></canvas>
                                     </div>
                                 </div>
                             </div>
@@ -110,7 +110,7 @@
                                         <button id="select-all-isp" class="select-all-btn">Select all</button>
                                     </div>
                                     <div id="isp_dia" class="diagramm">
-                                        <canvas id="isp_chart_"></canvas>
+                                        <canvas id="isp_chart_" class="chart"></canvas>
                                     </div>
                                 </div>
 
@@ -252,6 +252,7 @@
     var ctx4 = document.getElementById("daily_chart").getContext("2d");
 
     var chart = new Chart(ctx1, {
+        response:"true",
         type: "bar",
         data: {},
         options: {
