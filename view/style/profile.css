@@ -109,11 +109,26 @@ input:focus{
     transition-timing-function: ease-in;
 }
 
-#edit_user_btn {
+#edit_user_btn , #edit_pass_btn{
     border: 1px solid black;
     border-radius: 0.2em;
 }
 
-.spacer{
-    height: 2em;
+#edit_user_btn:hover , #edit_pass_btn:hover{
+    border: 1px solid darkorange;
+    color: darkorange;
+}
+
+
+
+
+
+.show-pass-btn, .show-pass-btn-chpass{
+    background:none;
+    border: none;
+}
+
+.show-pass-btn:hover,.show-pass-btn-chpass:hover{
+    cursor: pointer ;
+    color:purple !important;
 }

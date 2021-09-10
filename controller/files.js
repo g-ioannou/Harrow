@@ -1,61 +1,36 @@
 let uploaded_files = {};
 let uploaded_selected_files = {};
 let user_files = {};
+let user_selected_files = {};
 
 $(document).ready(function () {
   // const handler = new UploadHandler()
+  update_uploaded_files();
 
-  $.ajax({
-    type: "GET",
-    url: "/harrow/model/get_file_user.php",
-
-    success: function (response) {
-      let files = JSON.parse(response);
-      for (const f in files) {
-        const file = files[f];
-        let current_id = new Date().valueOf();
-
-        current_id = current_id + Math.floor(Math.random() * 10000000);
-
-        harFile = new HARfile(
-          current_id,
-          file.name,
-          file.size,
-          JSON.parse(file.contents).contents,
-          1
-        );
-        user_files[current_id] = harFile;
-        harFile.db_id = file.db_id;
-        let html = harFile.displayHTML();
-        $("#old-files-table").append(html);
-      }
-    },
-
-    error: function (response) {
-      console.log(response);
-    },
-  });
-
+  //  1. select-all new files button functionality
+  // 1. is binded with 3. with an event listener (check 3.)
   let select_all = 0;
   $(document).on("click", "#select-all-new", function () {
     if (select_all == 0) {
       let ctr = 0;
-      $(".new-files")
+      $(".new-files") //find all checkboxes checked inside .new-files
         .find(":checkbox")
         .each(function () {
           $(".new-files :checkbox").prop("checked", true);
-          
           ctr++;
-        });
+        }); // make all checkboxes of new files checked
 
-      $("#selected-uploaded-files-number").html(ctr);
+      $("#selected-uploaded-files-number").html(ctr); // update the message
       if (ctr > 0) {
+        // if files are found (table rows) are found inside the new files
         uploaded_selected_files = uploaded_files;
         $("#select-all-new").html("Unselect all");
       }
-      select_all = 1;
+      select_all = 1; // will enter the else block on next click
     } else {
-      $(".file-list")
+      // unchecking
+
+      $(".new-list") // will find all the checkboxes and uncheck them
         .find(":checkbox")
         .each(function () {
           $(":checkbox").prop("checked", false);
@@ -68,18 +43,66 @@ $(document).ready(function () {
     checkNewFilesBtn();
   });
 
+  // 2. same as 1. but is binded with 4.
+  let select_all_old = 0;
+  $(document).on("click", "#select-all-old", function () {
+    if (select_all_old == 0) {
+      let ctr = 0;
+      $(".old-files")
+        .find(":checkbox")
+        .each(() => {
+          $(".old-files :checkbox").prop("checked", true);
+          ctr++;
+        });
+      if (ctr > 0) {
+        user_selected_files = user_files;
+        $("#select-all-old").html("Unselect all");
+      }
+      select_all_old = 1;
+    } else {
+      $(".old-list")
+        .find(":checkbox")
+        .each(function () {
+          $(":checkbox").prop("checked", false);
+        });
+      $("#select-all-old").html("Select all");
+      select_all_old = 0;
+      user_selected_files = {};
+      $("#selected-saved-files-number").html("0");
+    }
+    checkOldFilesBtn();
+  });
+
+  //3. listens for a change on the checkboxes of the new files table
   $(document).on("change", ".new-files :checkbox", function () {
+    // if a change happens it clears the uploaded_SELECTED_files
     uploaded_selected_files = {};
-    $(".new-files")
+
+    $(".new-files") // then finds all the selected files again
       .find(":checkbox:checked")
       .each(function () {
         let id = $(this).attr("id");
-        uploaded_selected_files[id] = uploaded_files[id];
+        uploaded_selected_files[id] = uploaded_files[id]; // updates the uploaded_selected_files with the selected files
       });
 
     let selected_files_ctr = get_json_len(uploaded_selected_files);
-    $("#selected-uploaded-files-number").html(selected_files_ctr);
-    checkNewFilesBtn();
+    $("#selected-uploaded-files-number").html(selected_files_ctr); // refreshes the files selected number html
+    checkNewFilesBtn(); // makes checks for making buttons disabled or enabled
+  });
+
+  // 4. same as 3. but for files inluced the "Your files" table
+  $(document).on("change", ".old-files :checkbox", function () {
+    user_selected_files = {};
+    $(".old-files")
+      .find(":checkbox:checked")
+      .each(function () {
+        let id = $(this).attr("id");
+        user_selected_files[id] = user_files[id];
+      });
+
+    let selected_files_ctr = get_json_len(user_selected_files);
+    $("#selected-saved-files-number").html(selected_files_ctr);
+    checkOldFilesBtn();
   });
 
   $(document).on("click", "#hidden-display", function () {
@@ -105,6 +128,15 @@ $(document).ready(function () {
     }
   });
 
+  $("#download-multiple-old-btn").click(function (e) {
+    e.preventDefault();
+
+    for (const id in user_selected_files) {
+      const file = user_selected_files[id];
+      file.download();
+    }
+  });
+
   $("#delete-multiple-new-btn").click(function (e) {
     e.preventDefault();
     let id_list = [];
@@ -120,10 +152,25 @@ $(document).ready(function () {
     }
 
     $("#selected-uploaded-files-number").html("0");
-    $("#selected-uploaded-files-msg").css({ color: "gray" });
     $("#delete-multiple-new-btn").attr("disabled", true);
     $("#download-multiple-new-btn").attr("disabled", true);
     $("#save-to-server-btn").attr("disabled", true);
+  });
+
+  $("#delete-multiple-old-btn").click(function (e) {
+    e.preventDefault();
+    let id_list = [];
+    for (const id in user_selected_files) {
+      id_list.push(id);
+      deleteFile(id);
+      delete user_files[id];
+    }
+
+    for (let i = 0; i < id_list.length; i++) {
+      const id = id_list[i];
+      delete uploaded_selected_files[id];
+      $(`#${id}`).fadeOut(300);
+    }
   });
 
   $(document).on("click", ".file-dow-btn", function () {
@@ -153,6 +200,44 @@ $(document).ready(function () {
     }
   });
 });
+
+function update_uploaded_files() {
+  $("#old-files-table").fadeOut(300);
+  $(".saved-file").remove();
+  $.ajax({
+    type: "GET",
+    url: "/harrow/model/get_file_user.php",
+
+    success: function (response) {
+      let files = JSON.parse(response);
+      for (const f in files) {
+        const file = files[f];
+        let current_id = new Date().valueOf();
+        $(".server-file").remove();
+        current_id = current_id + Math.floor(Math.random() * 10000000);
+
+        harFile = new HARfile(
+          current_id,
+          file.name,
+          file.size,
+          JSON.parse(file.contents).contents,
+          1
+        );
+        user_files[current_id] = harFile;
+        harFile.db_id = file.db_id;
+
+        let html = harFile.displayHTML();
+
+        $("#old-files-table").append(html);
+      }
+      $("#old-files-table").fadeIn(300);
+    },
+
+    error: function (response) {
+      console.log(response);
+    },
+  });
+}
 
 function uploadFile(file) {
   let fr = new FileReader();
@@ -189,6 +274,7 @@ function uploadFile(file) {
 
 function deleteFile(file_id) {
   let file_name = "";
+  
   try {
     file_name = uploaded_files[file_id].name;
     delete uploaded_files[file_id];
@@ -204,12 +290,13 @@ function deleteFile(file_id) {
   try {
     file_name = user_files[file_id].name;
     file_db_id = user_files[file_id].db_id;
+
+    
     $.ajax({
       type: "POST",
       data: { file_id: file_db_id },
       url: "/harrow/model/delete_file_user.php",
       success: function (response) {
-        
         delete user_files[file_id];
         notify("delete", `File <b>${file_name}</b> deleted from server.`);
         console.log(response);
@@ -243,15 +330,13 @@ class HARfile {
       this.contents = contents;
       let size_calc = new TextEncoder().encode(this.contents).length;
       this.size = size_calc;
-      let current_size = (this.size / Math.pow(10, 6));
+      let current_size = this.size / Math.pow(10, 6);
       this.size_display = `${current_size} MB`;
-      
-      if (current_size <=10000) {
+
+      if (current_size <= 10000) {
         current_size = this.size / Math.pow(10, 3);
         this.size_display = `${current_size.toFixed(1)} KB`;
-        
       }
-      
     }
     this.db_id = 0;
     this.shown = 0;
@@ -266,7 +351,7 @@ class HARfile {
     this.selected = value;
   }
 
-  get file_size(){
+  get file_size() {
     let size = new TextEncoder().encode(JSON.stringify(this.contents)).length;
     return size;
   }
@@ -289,6 +374,7 @@ class HARfile {
 
   displayHTML() {
     this.shown = 1;
+
     let html = `<tr id="${this.id}" class="uploaded-file">
                 <td><input type="checkbox" class="file-select" id="${this.id}" ></td>
                 <td><i class="fal fa-file"></i>&nbsp;&nbsp; ${this.name}</td>
@@ -297,6 +383,17 @@ class HARfile {
                 <td><button class="btn file-dow-btn" id="${this.id}" class="${this.id}"><i class="fal fa-file-download"></i></button></td>
             </tr>
             `;
+    if (this.db_id != 0) {
+      html = `<tr id="${this.id}" class="saved-file">
+                <td><input type="checkbox" class="file-select" id="${this.id}" ></td>
+                <td><i class="fal fa-file"></i>&nbsp;&nbsp; ${this.name}</td>
+                <td>${this.size_display}</td>
+                <td><button class="btn file-dlt-btn file-dlt-btn-old" id="${this.id}" class="${this.id}"><i class="fal fa-trash-alt"></i></button></td>
+                <td><button class="btn file-dow-btn" id="${this.id}" class="${this.id}"><i class="fal fa-file-download"></i></button></td>
+            </tr>
+            `;
+    }
+
     return html;
   }
 
@@ -318,14 +415,14 @@ class HARfile {
       // let temp_IP = entry.serverIPAddress.replace("[", "");
       // temp_IP = temp_IP.replace("]", "");
 
- 
-    
       let cleaned_entry = {
         startedDateTime: final_date_time,
         timings: {
           wait: entry.timings.wait,
         },
-        serverIPAddress: entry.serverIPAddress.replace("[",'').replace(']',''),
+        serverIPAddress: entry.serverIPAddress
+          .replace("[", "")
+          .replace("]", ""),
         request: {
           method: entry.request.method,
           url: getHostName(entry.request.url),
@@ -338,20 +435,19 @@ class HARfile {
         },
       };
 
-
       cleaned_entries.push(cleaned_entry);
     }
     return cleaned_entries;
 
     function cleanHeaders(headers) {
       let cleaned_headers = [];
-      
+
       for (let i = 0; i < headers.length; i++) {
         const header = headers[i];
-        
+
         let name = header.name.toLowerCase();
         let cleaned_header = {};
-        
+
         if (
           name == "content-type" ||
           name == "cache-control" ||
@@ -361,13 +457,10 @@ class HARfile {
           name == "last-modified" ||
           name == "host"
         ) {
-          
-         
           cleaned_header[name] = header["value"]
             .replace("-", "_")
-            .split(";")[0]
-          
-          
+            .split(";")[0];
+
           cleaned_headers.push(cleaned_header);
         }
       }

@@ -88,7 +88,7 @@
 
                     <div class="inner-card">
                         <div class="content">
-                            <div class="dash-title"># of request methods </div>
+                            <div class="dash-title"># request methods logged</div>
                             <br>
                             <span class="numbers" id="methods"></span>
 
@@ -98,7 +98,7 @@
 
                     <div class="inner-card">
                         <div class="content">
-                            <div class="dash-title"># response statuses </div>
+                            <div class="dash-title"># response statuses logged </div>
                             <br>
                             <span class="numbers" id="status"></span>
 
@@ -108,7 +108,7 @@
 
                     <div class="inner-card">
                         <div class="content">
-                            <div class="dash-title"># different domains used </div>
+                            <div class="dash-title"># different domains logged </div>
                             <br>
                             <span class="numbers" id="domain"></span>
 
@@ -127,7 +127,7 @@
 
                     <div class="inner-card">
                         <div class="content">
-                            <div class="dash-title"># of different isps</div>
+                            <div class="dash-title"># ISPs logged</div>
                             <br>
                             <span class="numbers" id="isps"></span>
                         </div>

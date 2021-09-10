@@ -3,19 +3,16 @@ body {
   margin: 0;
   font-size: 1em;
   overflow: auto;
-  
- 
 }
 
-.page{
+.page {
   position: relative;
-  top:5em;
+  top: 5em;
 }
 
-.spacer{
+.spacer {
   height: 15em;
 }
-
 
 .notification {
   position: relative;
@@ -37,11 +34,11 @@ body {
   min-width: 0;
   backdrop-filter: blur(5px);
   z-index: 200;
-  color:rgb(41, 6, 44);
+  color: rgb(41, 6, 44);
 }
 
-.notification_msg{
-  color:rgb(41, 6, 44);
+.notification_msg {
+  color: rgb(41, 6, 44);
 }
 
 .notification-perma {
@@ -83,14 +80,14 @@ body {
 .file-dlt-btn,
 .file-dow-btn {
   border: none;
-  color:white;
+  color: white;
 }
 
 .btn {
   background: none;
   cursor: pointer;
   border: none;
-  color:white;
+  color: white;
 }
 
 .btn:hover {
@@ -201,11 +198,14 @@ tr:nth-child(odd) {
 #save-to-server-btn,
 #delete-multiple-new-btn,
 #download-multiple-new-btn,
-#select-all-new {
+#select-all-new,
+#select-all-old,
+#delete-multiple-old-btn,
+#download-multiple-old-btn {
   float: right;
   font-size: 1em;
   color: rgb(41, 6, 44);
-  
+
   padding: 0.5em;
   border-radius: 0.4em;
   margin-top: 0.5em;
@@ -213,7 +213,8 @@ tr:nth-child(odd) {
   border: 1px solid rgb(41, 6, 44);
 }
 
-#select-all-new {
+#select-all-new,
+#select-all-old {
   float: left;
   margin-left: 0;
   margin-right: 0.5em;
@@ -239,7 +240,8 @@ tr:nth-child(odd) {
 }
 
 #fake-upload:hover,
-#select-all-new:hover {
+#select-all-new:hover,
+#select-all-old:hover {
   border: 1px solid darkorange;
   color: darkorange;
 }
@@ -250,24 +252,30 @@ tr:nth-child(odd) {
 
 #save-to-server-btn:disabled,
 #delete-multiple-new-btn:disabled,
-#download-multiple-new-btn:disabled {
+#download-multiple-new-btn:disabled,
+#delete-multiple-old-btn:disabled,
+#download-multiple-old-btn:disabled {
   background-color: transparent;
   color: gray;
 }
 
 #save-to-server-btn:enabled,
 #delete-multiple-new-btn:enabled,
-#download-multiple-new-btn:enabled {
-  border:1px solid rgb(41, 6, 44);
+#download-multiple-new-btn:enabled,
+#delete-multiple-old-btn:enabled,
+#download-multiple-old-btn:enabled {
+  border: 1px solid rgb(41, 6, 44);
   color: rgb(41, 6, 44);
 }
 
-#delete-multiple-new-btn:hover {
+#delete-multiple-new-btn:hover,
+#delete-multiple-old-btn:hover {
   color: red;
   border: 1px solid red;
 }
 
-#download-multiple-new-btn:hover {
+#download-multiple-new-btn:hover,
+#download-multiple-old-btn:hover {
   color: darkorange;
   border: 1px solid darkorange;
 }
@@ -277,13 +285,14 @@ tr:nth-child(odd) {
   border: 1px solid blueviolet;
 }
 
-#selected-uploaded-files-msg {
+#selected-uploaded-files-msg,
+#selected-saved-files-msg {
   margin-top: 0.5em;
   vertical-align: middle;
   text-align: center;
   float: right;
   padding: 0.5em;
-  color:rgb(41, 6, 44);
+  color: rgb(41, 6, 44);
 }
 
 .error {
@@ -343,7 +352,6 @@ tr:nth-child(odd) {
 }
 
 ::-webkit-scrollbar-thumb {
-  
   background: rgb(41, 6, 44);
   border-radius: 0.4em;
 }
@@ -351,7 +359,6 @@ tr:nth-child(odd) {
 .notification-list-btn {
   font-size: 1.2em;
   z-index: 500;
-  
 }
 
 .notifications-side {
@@ -378,7 +385,7 @@ tr:nth-child(odd) {
   height: 2em;
   border-radius: 0.4em;
   text-align: center;
-  color:rgb(41, 6, 44);
+  color: rgb(41, 6, 44);
 }
 
 #close-side-notifications,
@@ -387,7 +394,7 @@ tr:nth-child(odd) {
   border: none;
   margin-left: 0.5em;
   margin-right: 0.5em;
-  color:rgb(41, 6, 44);
+  color: rgb(41, 6, 44);
 }
 
 .notifications {
