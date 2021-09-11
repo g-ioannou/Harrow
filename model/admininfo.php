@@ -25,7 +25,7 @@ if ($_POST['type'] == 'initial_choices_content_type') {
 
 
 if ($_POST['type'] == "initial_choices_method") {
-    $query = "SELECT DISTINCT(method) FROM requests WHERE method IS NOT NULL";
+    $query = "SELECT DISTINCT(method) FROM requests WHERE method IS NOT NULL AND method NOT LIKE ''";
     $query_run = mysqli_query($conn, $query) or die(mysqli_error($conn));
 
     $result = mysqli_fetch_all($query_run);

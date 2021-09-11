@@ -145,7 +145,7 @@ include "../../model/connection_db.php";
                             <div class="content-selector">
                                 <div class="select-title" class="select-all-btn">Data per content-type</div>
                                 <div class="diagramm-card">
-                                    <div class="buttons">
+                                    <div class="buttons content-buttons-diagram">
 
                                         <button id="select-all-content" class="select-all-btn">Select all</button>
                                     </div>

@@ -200,6 +200,10 @@ function create_pie(data, div, colors, selected) {
 				display: true,
 				text: "Cacheability per content type",
 			},
+			legend:{
+				display:true,
+				position:'bottom',
+			},
 			elements:{arc:{borderWidth:0.2}},
 			responsive: true,
 		},
@@ -330,6 +334,7 @@ function get_datasets() {
 			backgroundColor: "darkorange",
 			borderColor: "darkorange",
 			borderWidth: 1,
+			
 		};
 	}
 	return datasets;

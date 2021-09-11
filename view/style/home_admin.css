@@ -445,10 +445,9 @@ body
 
 .chart{
     position:relative;
-    width: 100% !important;
-    height: 95% !important;
+     width: 100% !important;
+    /*height: 95% !important; */
     background:none;
-    
 }
 
 .charts-diagrams{
@@ -457,5 +456,12 @@ body
 }
 
 .response-analysis-buttons{
-    height: max-content;
+    max-height:100vh;
+    overflow:auto;
 }
+
+.content-buttons-diagram{
+    max-height:30em;
+    overflow:auto;
+}
+
