@@ -1,3 +1,11 @@
+<?php
+session_start();
+if (!isset($_SESSION['email'])) {
+    header('location: ../../view/login/login.html');
+}
+include "../../model/connection_db.php";
+?>
+
 <!DOCTYPE html>
 <html>
 

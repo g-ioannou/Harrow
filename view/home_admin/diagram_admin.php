@@ -1,3 +1,12 @@
+<?php
+session_start();
+if (!isset($_SESSION['email'])) {
+    header('location: ../../view/login/login.html');
+}
+include "../../model/connection_db.php";
+?>
+
+
 <!DOCTYPE html>
 <html>
 
@@ -252,7 +261,7 @@
     var ctx4 = document.getElementById("daily_chart").getContext("2d");
 
     var chart = new Chart(ctx1, {
-        response:"true",
+        response: "true",
         type: "bar",
         data: {},
         options: {
