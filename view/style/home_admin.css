@@ -292,7 +292,7 @@ body
 .cardBox .card .content,
 .inner-card .content
 {
-    max-height: min-content;
+    max-height: max-content;
 }
 
 .cardBox .card:hover,
@@ -409,7 +409,7 @@ body
 .diagramm-card ,.table-card{
     width: 96%;
     display: flex;
-    height: 30em;
+    height: max-content;
     margin:0;
 }
 
@@ -449,4 +449,13 @@ body
     height: 95% !important;
     background:none;
     
+}
+
+.charts-diagrams{
+    display: flex;
+    flex-direction: column;
+}
+
+.response-analysis-buttons{
+    height: max-content;
 }

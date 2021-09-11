@@ -235,7 +235,7 @@ function get_data(data_array, type, div, labels) {
   });
 }
 
-let graph_ids = {};
+
 function make_graph(data, div, labels) {
   let datasets = [];
   
@@ -295,7 +295,7 @@ function make_graph(data, div, labels) {
       },
     },
   });
-  graph_ids[div] = myChart.canvas.id;
+ 
 }
 
 // $.ajax({

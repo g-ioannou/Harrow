@@ -60,7 +60,6 @@ function get_selected(selector_div) {
 		.each(function () {
 			selected_elements.push($(this).attr("id"));
 		});
-	console.log(selected_elements);
 	return selected_elements;
 }
 
@@ -71,14 +70,150 @@ function get_data(data_array, type) {
 			url: "/harrow/model/tables_data.php",
 			data: { type: type, data_array },
 			success: function (response) {
-				let ttl_data = JSON.parse(response);
-				create_histogram(ttl_data, "ttl_chart");
+				let data = JSON.parse(response);
+
+				let chart_colors = [];
+				let pie_colors = [];
+
+				for (const content_type in data.ttl_data) {
+					let color = random_color();
+					chart_colors.push(color);
+					if ($.inArray(content_type, data_array) != -1) {
+						pie_colors.push(color);
+					}
+				}
+
+				create_histogram(data.ttl_data, "ttl_chart", pie_colors);
+
+				create_pie(
+					data.cacheability_data,
+					"cacheability_pie",
+					pie_colors,
+					data_array
+				);
 			},
 		});
+	} else {
+		create_histogram({}, "ttl_chart", []);
+		create_pie({}, "cacheability_pie",[],[]);
 	}
 }
 
-function create_histogram(data, div) {
+function create_pie(data, div, colors, selected) {
+	let parent_id = $(`#${div}`).parent().attr("id");
+	try {
+		$(`#${div}`).remove();
+		$(`#${parent_id}`).append(
+			`<canvas id="${div}" class="chart"></canvas>`
+		);
+	} catch (e) {}
+
+	let grouped_data = {};
+	let others_percentage = 100; // total % percentage is 100
+	
+
+	for (const content_cache in data) {
+		const content = data[content_cache];
+
+		let content_title = content[0];
+
+		grouped_data[content_title] = {
+			private: 0,
+			public: 0,
+			no_cache: 0,
+			no_store: 0,
+			color: "grey",
+		};
+	}
+
+
+
+	for (const content_cache in data) {
+		const content = data[content_cache];
+
+		let content_title = content[0];
+		let content_cache_title = content[1].replace("-", "_");
+		let content_value = parseFloat(content[4]);
+
+		grouped_data[content_title][content_cache_title] += content_value;
+	}
+
+	let labels = [];
+	let chart_data = {
+		backgroundColor: [],
+		borderColor: [],
+		data: [],
+	};
+
+	console.log("------------");
+	console.log(grouped_data);
+	let i = 0;
+	for (const content in grouped_data) {
+		const obj = grouped_data[content];
+		if ($.inArray(content, selected) != -1) {
+			let label = `${content}:private`;
+			labels.push(label);
+			chart_data.data.push(obj["private"]);
+
+			label = `${content}:public`;
+			labels.push(label);
+			chart_data.data.push(obj["public"]);
+
+			label = `${content}:no_cache`;
+			labels.push(label);
+			chart_data.data.push(obj["no_cache"]);
+
+			label = `${content}:no_store`;
+			labels.push(label);
+			chart_data.data.push(obj["no_store"]);
+
+			obj["color"] = colors[i];
+			i++;
+			for (let i = 0; i < 4; i++) {
+				chart_data.backgroundColor.push(obj["color"]);
+				chart_data.borderColor.push("white");
+			}
+
+			others_percentage -= obj["private"];
+			others_percentage -= obj["public"];
+			others_percentage -= obj["no_cache"];
+			others_percentage -= obj["no_store"];
+		}
+	}
+
+	console.log(chart_data);
+
+	labels.push("other");
+	chart_data.backgroundColor.push("grey");
+	chart_data.borderColor.push("grey");
+	chart_data.data.push(others_percentage);
+
+	let ctx = document.getElementById(div).getContext("2d");
+	var myChart = new Chart(ctx, {
+		type: "pie",
+		data: {
+			labels: labels,
+			datasets: [chart_data],
+		},
+		options: {
+			title: {
+				display: true,
+				text: "Cacheability per content type",
+			},
+			elements:{arc:{borderWidth:0.2}},
+			responsive: true,
+		},
+	});
+}
+
+function create_histogram(data, div, colors) {
+	let parent_id = $(`#${div}`).parent().attr("id");
+	try {
+		$(`#${div}`).remove();
+		$(`#${parent_id}`).append(
+			`<canvas id="${div}" class="chart"></canvas>`
+		);
+	} catch (e) {}
 	let max_val = data.max;
 	let min_val = data.min;
 	delete data.min;
@@ -88,8 +223,8 @@ function create_histogram(data, div) {
 	let datasets = [];
 
 	let labels = [
-		`${min_val}-${bucket_width - 1}`,
-		`${bucket_width}-${2 * bucket_width - 1}`,
+		`${min_val} - ${bucket_width - 1}`,
+		`${bucket_width} - ${2 * bucket_width - 1}`,
 		`${2 * bucket_width} - ${3 * bucket_width - 1}`,
 		`${3 * bucket_width} - ${4 * bucket_width - 1}`,
 		`${4 * bucket_width} - ${5 * bucket_width - 1}`,
@@ -98,6 +233,7 @@ function create_histogram(data, div) {
 		`${9 * bucket_width} - ${max_val}`,
 	];
 
+	let color_ctr = 0;
 	for (const content_type in data) {
 		let buckets = {
 			0: 0,
@@ -112,7 +248,7 @@ function create_histogram(data, div) {
 			9: 0,
 		};
 		let content_data = data[content_type];
-		console.log(content_data);
+
 		for (let i = 0; i < content_data.length; i++) {
 			const ttl = content_data[i][1];
 
@@ -126,24 +262,18 @@ function create_histogram(data, div) {
 			chart_data.push(bucket_count);
 		}
 
-		let color = random_color();
 		let dataset = {
 			label: content_type,
 			data: chart_data,
-			backgroundColor: color,
-			borderColor: color,
+			backgroundColor: colors[color_ctr],
+			borderColor: colors[color_ctr],
 			borderWidth: 1,
 		};
+		color_ctr++;
 		datasets.push(dataset);
 	}
+
 	console.log(datasets);
-	let parent_id = $(`#${div}`).parent().attr("id");
-	try {
-		$(`#${div}`).remove();
-		$(`#${parent_id}`).append(
-			`<canvas id="${div}" class="chart"></canvas>`
-		);
-	} catch (e) {}
 
 	var ctx = document.getElementById(div).getContext("2d");
 

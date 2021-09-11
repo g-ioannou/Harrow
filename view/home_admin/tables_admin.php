@@ -9,6 +9,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
 
     <script src="../../controller/home_admin.js"></script>
     <link rel="stylesheet" type="text/css" href="../../view/style/home_admin.css">
@@ -80,15 +81,22 @@
                 <div class="content-selector">
                     <div class="select-title" class="select-all-btn">TTL histogram</div>
                     <div class="table-card">
-                        <div class="buttons">
+                        <div class="buttons response-analysis-buttons">
                             <button id="select-all-content" class="select-all-btn">Select all</button>
 
                         </div>
-                        <div id="ttl_diagram" class="diagramm">
-                            <canvas id="ttl_chart" class="chart"></canvas>
+                        <div class="charts-diagrams">
+                            <div id="ttl_diagram" class="diagramm">
+                                <canvas id="ttl_chart" class="chart"></canvas>
+                            </div>
+                            <div id="cacheability_diagramm" class="diagramm">
+                                <canvas id="cacheability_pie" class="chart"></canvas>
+                            </div>
                         </div>
 
                     </div>
+
+
                 </div>
             </div>
         </div>
@@ -115,6 +123,41 @@
                             beginAtZero: true,
                         }
                     }
+                }
+            });
+
+            var ctx2 = document.getElementById("cacheability_pie").getContext("2d");
+
+            var chart2 = new Chart(ctx2, {
+                type: "pie",
+
+                data: {
+                    labels: ['others'],
+                    datasets: [{
+                            label: "donight1",
+                            backgroundColor: ["grey"],
+                            borderColor: ["grey"],
+                            data: [1],
+                            
+
+                        },
+                       
+                    ]
+                },
+                options: {
+
+                    plugins: {
+                        legend: {
+                            display: true,
+
+                        },
+                    },
+                    title: {
+                        display: true,
+                        text: "Cacheability per content type",
+                    },
+                    responsive: true,
+                   
                 }
             });
         </script>
