@@ -1,5 +1,4 @@
 <?php
-session_destroy();
 session_start();
 include "../../model/connection_db.php";
 

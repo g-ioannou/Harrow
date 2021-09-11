@@ -7,10 +7,15 @@
     <script src="https://kit.fontawesome.com/99e7bc666b.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.15.1/css/all.css" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <script src="../../controller/home_admin.js"></script>
     <link rel="stylesheet" type="text/css" href="../../view/style/home_admin.css">
     <script src="../../view/style/admin.js"></script>
     <script src="../../controller/tables_admin.js"></script>
+
+    <link rel="shortcut icon " type="image/x-icon" href="/harrow/view/images/tab_icon.png">
 </head>
 
 <body>
@@ -71,19 +76,20 @@
                 ?>
             </div>
 
-            <div class="content-selector">
-                <div class="select-title" class="select-all-btn">Data per content-type</div>
-                <div class="table-card">
-                    <div class="buttons">
+            <div class="content">
+                <div class="content-selector">
+                    <div class="select-title" class="select-all-btn">TTL histogram</div>
+                    <div class="table-card">
+                        <div class="buttons">
+                            <button id="select-all-content" class="select-all-btn">Select all</button>
 
-                        <button id="select-all-content" class="select-all-btn">Select all</button>
-                    </div>
-                    <div class="content-choices">
-                        
+                        </div>
+                        <div id="ttl_diagram" class="diagramm">
+                            <canvas id="ttl_chart" class="chart"></canvas>
+                        </div>
+
                     </div>
                 </div>
-
-
             </div>
         </div>
         <script>
@@ -94,9 +100,23 @@
                 toggle.classList.toggle('active');
                 navigation.classList.toggle('active');
                 main.classList.toggle('active');
-
-
             }
+
+            // instantiating empty graphs just for visuals
+            var ctx1 = document.getElementById("ttl_chart").getContext("2d");
+
+            var chart = new Chart(ctx1, {
+                response: "true",
+                type: "bar",
+                data: {},
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                        }
+                    }
+                }
+            });
         </script>
 </body>
 

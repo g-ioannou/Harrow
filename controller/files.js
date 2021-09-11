@@ -274,7 +274,7 @@ function uploadFile(file) {
 
 function deleteFile(file_id) {
   let file_name = "";
-  
+
   try {
     file_name = uploaded_files[file_id].name;
     delete uploaded_files[file_id];
@@ -291,7 +291,6 @@ function deleteFile(file_id) {
     file_name = user_files[file_id].name;
     file_db_id = user_files[file_id].db_id;
 
-    
     $.ajax({
       type: "POST",
       data: { file_id: file_db_id },
