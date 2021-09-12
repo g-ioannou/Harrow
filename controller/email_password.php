@@ -33,7 +33,7 @@ if (isset($_POST["email"])) {
         } else {
 
             $url = 'http://' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . '/harrow/controller/reset_password.php?code=' . $code;
-            $url = 'http://' . $_SERVER['SERVER_NAME'] . '/harrow/controller/reset_password.php?code=' . $code;
+            
 
             $output = "<h3>You requested a password reset.</h3> Click <a href='$url'>this link.</a>";
 
