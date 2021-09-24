@@ -2,6 +2,7 @@
 var mymap = L.map("mapid", {
 	zoomControl: false,
 }).setView([0, 0], 3);
+
 L.tileLayer(
 	"https://api.mapbox.com/styles/v1/gioannou/cksrvxxau2j6l18o5z2pjigy0/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiZ2lvYW5ub3UiLCJhIjoiY2tzOGVuZWhmMTlyMDMxczN4aXhlaTFvbSJ9.orSKOqbjH3hFv4LAPLJqRw",
 	{
@@ -73,6 +74,7 @@ $(document).ready(function () {
 					if (weight < 1) {
 						weight = 1;
 					}
+					// object of type polyline
 					let polyline = new L.Polyline(pointList, {
 						color: "#F0A93C",
 						weight: weight,
@@ -116,7 +118,7 @@ function normalize(number, min, max) {
 
 // returns a promise
 async function getPoint(ip_address) {
-	let url = `http://api.ipstack.com/${ip_address}?access_key=11bf86695beba9730711cacb0c7674c1`;
+	let url = `http://api.ipstack.com/${ip_address}?access_key=c31b1edea26096377608182d621add4a`;
 	return $.ajax({
 		type: "POST",
 		url: url,

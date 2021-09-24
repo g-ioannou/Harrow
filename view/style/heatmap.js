@@ -140,7 +140,7 @@ function displayOnHeatmap(heat) {
 
             for (let ip in ip_addresses_count) {
               ip = ip.replace("[", "").replace("]", "");
-              let url = `http://api.ipstack.com/${ip}?access_key=29e960169862b3a0809ce40d9bb6acbc`;
+              let url = `http://api.ipstack.com/${ip}?access_key=beb82d57ad62b0ed11882f2ab7dec25f`;
               $.ajax({
                 type: "GET",
                 url: url,

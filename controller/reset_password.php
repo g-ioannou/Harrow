@@ -21,7 +21,7 @@ if(mysqli_num_rows($getEmailQuery) == 0){
 
 if(isset($_POST["password_re"])){
     $password = $_POST["password_re"];
-    $password = sha1(md5($password)); //crypt password
+    $password = sha1(md5($password)); //encrypt password
 
     $row = mysqli_fetch_array($getEmailQuery);
     $email = $row["email"];
