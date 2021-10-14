@@ -5,15 +5,15 @@ WEB project 2021
 The general objective of the project is to develop a complete system of collection, management and
 analysis of crowdsourced information concerning HTTP traffic data.
 More precisely, the purpose is to build a population collection system of
-HAR data in order to provide some basic analysis for each user individually, but also
-general analyzes concerning the internet infrastructure in an area (eg Patras).
+HTTP request/response data (contained in HAR files), in order to provide some basic analytics for each user individually, as well as
+general analysis concerning the internet infrastructure in an area (e.g. Patras).
 
 **Μην χρησιμοποιειτε πολυ το heatmap γιατι κανει API call στο ipstack που εχει limit στα requests (5000)**
 
 **_Αν θελετε να το τεσταρετε για πολλα calls φτιαξτε τζαμπα λογαριασμο στο ipstack.com και θα σας δωσει API key. ΜΕΤΑ πηγαινετε στο `../view/style/heatmap.js` και βαλτε στο YOUR_API_KEY το key σας_**
 `` let url = `http://api.ipstack.com/${entry_ip}?access_key=YOUR_API_KEY`; ``
 
-For project were used :
+For the project were used :
 - HTML
 - CSS
 - JAVASCRIPT
