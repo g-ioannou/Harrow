@@ -16,20 +16,20 @@ general analyzes concerning the internet infrastructure in an area (eg Patras).
 For project were used :
 - HTML
 - CSS
--JAVASCRIPT
-	-Βιβλιοθήκη JQUERY
--PHP
--MySQL
--APIs
-	-Font Awesome (Icons)
-	-LeafletJS (Maps Functionallity) 
-	-Map Box (Base Map Provider for LeafletJS)
-	-Leaflet-Heat (Heatmap Layer for LeafletJs)
-  	-CHART JS (Graphs)
--Enviroment XAMPP.
--Port 8080 for configuration of APACHE Web Server.
--MySQL port: default
--Model View Controller for file Structure.
+- JAVASCRIPT
+	- Βιβλιοθήκη JQUERY
+- PHP
+- MySQL
+- APIs
+	- Font Awesome (Icons)
+	- LeafletJS (Maps Functionallity) 
+	- Map Box (Base Map Provider for LeafletJS)
+	- Leaflet-Heat (Heatmap Layer for LeafletJs)
+  	- CHART JS (Graphs)
+- Enviroment XAMPP.
+- Port 8080 for configuration of APACHE Web Server.
+- MySQL port: default
+- Model View Controller for file Structure.
 
 Structure of the Database (ER, table schema)
 
