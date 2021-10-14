@@ -17,8 +17,8 @@ For project were used :
 •	HTML
 •	CSS
 •	JAVASCRIPT
-    Βιβλιοθήκη JQUERY
-•	PHP
+          Βιβλιοθήκη JQUERY
+-	PHP
 •	MySQL
 •	APIs
    Font Awesome (Icons)
