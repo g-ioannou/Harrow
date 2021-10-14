@@ -14,22 +14,22 @@ general analyzes concerning the internet infrastructure in an area (eg Patras).
 `` let url = `http://api.ipstack.com/${entry_ip}?access_key=YOUR_API_KEY`; ``
 
 For project were used :
-•	HTML
-•	CSS
-•	JAVASCRIPT
-          Βιβλιοθήκη JQUERY
--	PHP
-•	MySQL
-•	APIs
-   Font Awesome (Icons)
-   LeafletJS (Maps Functionallity) 
-	  Map Box (Base Map Provider for LeafletJS)
-   Leaflet-Heat (Heatmap Layer for LeafletJs)
-  	CHART JS (Graphs)
-•	Enviroment XAMPP.
-•	Port 8080 for configuration of APACHE Web Server.
-•	MySQL port: default
-•	Model View Controller for file Structure.
+-HTML
+-CSS
+-JAVASCRIPT
+	-Βιβλιοθήκη JQUERY
+-PHP
+-MySQL
+-APIs
+	-Font Awesome (Icons)
+	-LeafletJS (Maps Functionallity) 
+	-Map Box (Base Map Provider for LeafletJS)
+	-Leaflet-Heat (Heatmap Layer for LeafletJs)
+  	-CHART JS (Graphs)
+-Enviroment XAMPP.
+-Port 8080 for configuration of APACHE Web Server.
+-MySQL port: default
+-Model View Controller for file Structure.
 
 Structure of the Database (ER, table schema)
 
@@ -62,6 +62,7 @@ Upload Page:
 Heatmap Page:
 
 ![image](https://user-images.githubusercontent.com/66412286/137300232-1efccc67-128d-45b0-bc95-2ce72b7d3142.png)
+
 
 Admin:
 
