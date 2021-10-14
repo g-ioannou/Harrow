@@ -14,8 +14,8 @@ general analyzes concerning the internet infrastructure in an area (eg Patras).
 `` let url = `http://api.ipstack.com/${entry_ip}?access_key=YOUR_API_KEY`; ``
 
 For project were used :
--HTML
--CSS
+- HTML
+- CSS
 -JAVASCRIPT
 	-Βιβλιοθήκη JQUERY
 -PHP
